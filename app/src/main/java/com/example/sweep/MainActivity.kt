@@ -1,40 +1,69 @@
+
 package com.example.sweep
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.outlined.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.example.sweep.screens.*
 import com.example.sweep.ui.theme.SweepTheme
+import com.example.sweep.data.bottomNavbarItems
+import com.example.sweep.utilities.navigation.Navigation
+import com.example.sweep.utilities.TopBar
+import com.example.sweep.utilities.navigation.BottomNavigationBar
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             SweepTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-                    Greeting("Android")
+                Surface(
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.fillMaxSize(),
+                ) {
+                    MainScreen()
                 }
             }
         }
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
+fun MainScreen() {
+    val navController = rememberNavController()
+    Scaffold(
+        bottomBar = {
+            BottomNavigationBar(
+                items = bottomNavbarItems,
+                navController = navController
+            ) {
+                navController.navigate(it.route)
+            }
+        },
+//        containerColor = MaterialTheme.colorScheme.background,
+        topBar = {
+            TopBar()
+        },
+        content = { paddingValues ->
+            Navigation(
+                paddingValues = paddingValues,
+                navController = navController
+            )
+        }
+    )
 }
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
+private fun Preview() {
     SweepTheme {
-        Greeting("Android")
+        MainScreen()
     }
 }
