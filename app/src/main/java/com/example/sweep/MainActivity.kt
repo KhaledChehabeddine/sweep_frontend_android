@@ -15,8 +15,8 @@ import com.example.sweep.screens.*
 import com.example.sweep.ui.theme.SweepTheme
 import com.example.sweep.data.bottomNavbarItems
 import com.example.sweep.utilities.navigation.Navigation
-import com.example.sweep.utilities.TopBar
 import com.example.sweep.utilities.navigation.BottomNavigationBar
+import com.example.sweep.utilities.navigation.NavigationTopBar
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +49,8 @@ fun MainScreen() {
         },
 //        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
-            TopBar()
+            NavigationTopBar(navController)
+//            TopBar()
         },
         content = { paddingValues ->
             Navigation(
