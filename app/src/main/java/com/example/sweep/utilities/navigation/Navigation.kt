@@ -8,7 +8,7 @@ import androidx.navigation.compose.composable
 import com.example.sweep.screens.*
 
 @Composable
-fun Navigation(
+fun NavigationContent(
     navController: NavHostController,
     paddingValues: PaddingValues = PaddingValues(),
 ) {

@@ -14,19 +14,16 @@ import androidx.navigation.compose.rememberNavController
 import com.example.sweep.screens.*
 import com.example.sweep.ui.theme.SweepTheme
 import com.example.sweep.data.bottomNavbarItems
-import com.example.sweep.utilities.navigation.Navigation
 import com.example.sweep.utilities.TopBar
 import com.example.sweep.utilities.navigation.BottomNavigationBar
+import com.example.sweep.utilities.navigation.NavigationContent
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             SweepTheme {
-                Surface(
-                    color = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.fillMaxSize(),
-                ) {
+                Surface(modifier = Modifier.fillMaxSize(),) {
                     MainScreen()
                 }
             }
@@ -47,12 +44,11 @@ fun MainScreen() {
                 navController.navigate(it.route)
             }
         },
-//        containerColor = MaterialTheme.colorScheme.background,
         topBar = {
             TopBar()
         },
         content = { paddingValues ->
-            Navigation(
+            NavigationContent(
                 paddingValues = paddingValues,
                 navController = navController
             )

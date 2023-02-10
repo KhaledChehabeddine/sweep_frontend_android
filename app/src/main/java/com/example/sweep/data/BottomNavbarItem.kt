@@ -8,7 +8,8 @@ import androidx.compose.material.icons.outlined.Search
 import androidx.compose.ui.graphics.vector.ImageVector
 
 data class BottomNavbarItem(
-    val icon: ImageVector,
+    val icon: ImageVector? = null,
+    val id: Int? = null,
     val name: String,
     val route: String
 )
@@ -25,7 +26,7 @@ val bottomNavbarItems = listOf(
         route = "search"
     ),
     BottomNavbarItem(
-        icon = Icons.Outlined.Home,
+        id = com.example.sweep.R.drawable.ic_launcher_sweep_logo,
         name = "Sweep",
         route = "sweep"
     ),
