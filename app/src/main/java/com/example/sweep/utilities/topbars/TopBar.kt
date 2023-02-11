@@ -1,12 +1,10 @@
-package com.example.sweep.utilities
+package com.example.sweep.utilities.topbars
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.sweep.data.notificationIcon
 import com.example.sweep.ui.theme.SweepTheme
@@ -47,7 +45,6 @@ fun TopBar() {
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.background,
         ),
-//        modifier = Modifier.border(width = 1.dp, color = MaterialTheme.colorScheme.primary),
         navigationIcon = {
             IconButton(
                 colors = IconButtonDefaults.iconButtonColors(contentColor = MaterialTheme.colorScheme.onSurface),
@@ -58,7 +55,6 @@ fun TopBar() {
                 Icon(
                     contentDescription = "Menu",
                     imageVector = Icons.Outlined.Menu,
-//                    tint = MaterialTheme.colorScheme.onSurface
                 )
             }
         },

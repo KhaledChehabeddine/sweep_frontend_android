@@ -6,6 +6,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.sweep.screens.*
+import com.example.sweep.utilities.topbars.TopBar
+import com.example.sweep.utilities.topbars.TopBarSweep
 
 @Composable
 fun NavigationContent(
@@ -30,6 +32,30 @@ fun NavigationContent(
         }
         composable(route = "account") {
             AccountScreen(paddingValues)
+        }
+    }
+}
+
+@Composable
+fun NavigationTopBar(navController: NavHostController) {
+    NavHost(
+        navController = navController,
+        startDestination = "home"
+    ) {
+        composable(route = "home") {
+            TopBar()
+        }
+        composable(route = "search") {
+            TopBar()
+        }
+        composable(route = "sweep") {
+            TopBarSweep()
+        }
+        composable(route = "history") {
+            TopBar()
+        }
+        composable(route = "account") {
+            TopBar()
         }
     }
 }
