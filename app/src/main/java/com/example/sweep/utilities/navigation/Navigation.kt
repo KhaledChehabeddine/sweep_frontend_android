@@ -7,9 +7,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.sweep.screens.*
 import com.example.sweep.utilities.topbars.TopBar
+import com.example.sweep.utilities.topbars.TopBarSweep
 
 @Composable
-fun Navigation(
+fun NavigationContent(
     navController: NavHostController,
     paddingValues: PaddingValues = PaddingValues(),
 ) {
@@ -46,11 +47,9 @@ fun NavigationTopBar(navController: NavHostController) {
         }
         composable(route = "search") {
             TopBar()
-//            SearchView()
         }
         composable(route = "sweep") {
-            TopBar()
-
+            TopBarSweep()
         }
         composable(route = "history") {
             TopBar()
