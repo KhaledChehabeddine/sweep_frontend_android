@@ -6,7 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.sweep.screens.*
-import com.example.sweep.utilities.topbars.TopBar
+import com.example.sweep.utilities.topbars.TopBarHome
 import com.example.sweep.utilities.topbars.TopBarSweep
 
 @Composable
@@ -43,19 +43,19 @@ fun NavigationTopBar(navController: NavHostController) {
         startDestination = "home"
     ) {
         composable(route = "home") {
-            TopBar()
+            TopBarHome()
         }
         composable(route = "search") {
-            TopBar()
+            TopBarHome()
         }
         composable(route = "sweep") {
             TopBarSweep()
         }
         composable(route = "history") {
-            TopBar()
+            TopBarHome()
         }
         composable(route = "account") {
-            TopBar()
+            TopBarHome()
         }
     }
 }

@@ -10,7 +10,7 @@ import com.example.sweep.data.notificationIcon
 import com.example.sweep.ui.theme.SweepTheme
 
 @Composable
-fun TopBar() {
+fun TopBarHome() {
     CenterAlignedTopAppBar(
         actions = {
             if (notificationIcon.badgeCount > 0)
@@ -66,6 +66,6 @@ fun TopBar() {
 @Composable
 private fun Preview() {
     SweepTheme {
-        TopBar()
+        TopBarHome()
     }
 }
