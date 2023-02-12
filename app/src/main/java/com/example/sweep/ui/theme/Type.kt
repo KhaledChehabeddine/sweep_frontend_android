@@ -1,5 +1,6 @@
 package com.example.sweep.ui.theme
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -79,16 +80,23 @@ private val _rubikFontFamily = FontFamily(
 
 // Set of Material typography styles to start with
 val Typography = Typography(
-    bodyLarge = TextStyle(
-        fontFamily = FontFamily.Default,
-        fontWeight = FontWeight.Normal,
+    bodyMedium = TextStyle(
+        fontFamily = _rubikFontFamily,
+        fontWeight = FontWeight.Medium,
         fontSize = 16.sp,
-        lineHeight = 24.sp,
+        lineHeight = 24.sp
+    ),
+
+    headlineLarge = TextStyle(
+        fontFamily = _rubikFontFamily,
+        fontSize = 24.sp,
+        fontWeight = FontWeight.Bold,
+        lineHeight = 32.sp,
         letterSpacing = 0.5.sp
     ),
 
     labelMedium = TextStyle(
         fontFamily = _rubikFontFamily,
-        fontSize = 12.sp,
+        fontSize = 12.sp
     )
 )
