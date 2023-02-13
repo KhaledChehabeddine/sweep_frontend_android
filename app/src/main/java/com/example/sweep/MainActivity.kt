@@ -1,4 +1,3 @@
-
 package com.example.sweep
 
 import android.os.Bundle

@@ -109,7 +109,7 @@ fun SweepTheme(
         SideEffect {
             val currentWindow = (view.context as Activity).window
             currentWindow.statusBarColor = colorScheme.background.toArgb()
-            WindowCompat.getInsetsController(currentWindow, view).isAppearanceLightStatusBars = darkTheme
+            WindowCompat.getInsetsController(currentWindow, view).isAppearanceLightStatusBars = !darkTheme
         }
     }
 
