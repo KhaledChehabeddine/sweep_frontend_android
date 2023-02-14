@@ -81,7 +81,7 @@ fun SearchScreen(paddingValues: PaddingValues) {
                             Row(){
                                 for(i in 1 .. 2){
                                     Column(
-                                        modifier = Modifier
+                                        modifier = Modifiers
                                             .padding(10.dp)
                                     ){
                                         Box(
