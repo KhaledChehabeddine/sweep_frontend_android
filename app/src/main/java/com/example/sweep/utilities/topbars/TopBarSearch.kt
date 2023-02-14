@@ -1,5 +1,6 @@
 package com.example.sweep.utilities.topbars
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
@@ -24,10 +25,14 @@ fun TopBarSearch() {
     ) {
         Row(
             modifier = Modifier
-                .padding(10.dp)
+                .padding(start = 10.dp)
+                .padding(end = 10.dp)
+                .padding(bottom = 10.dp)
                 .fillMaxWidth()
+                .background(color = MaterialTheme.colorScheme.secondaryContainer)
 //                .height(70.dp)
             ,
+
         ) {
             val searchValue = remember {
                 mutableStateOf("")
@@ -56,8 +61,8 @@ fun TopBarSearch() {
 //                    trailingIconView
                                 },
                 modifier = Modifier
-                    .fillMaxWidth(fraction = 0.9f)
-                    .padding(10.dp)
+                    .fillMaxWidth(fraction = 0.85f)
+//                    .padding(10.dp)
                     .align(Alignment.CenterVertically)
                 ,
                 label = {
@@ -81,6 +86,8 @@ fun TopBarSearch() {
 
             )
 
+            Spacer(modifier = Modifier.padding(5.dp))
+
             IconButton(
                 onClick = {
                     searchValue.value = ""
@@ -100,37 +107,6 @@ fun TopBarSearch() {
         }
         }
 }
-
-//@Composable
-//fun SearchBar(
-//    hint: String = "",
-//    modifier: Modifier = Modifier,
-//    onSearch: (String) -> Unit = {}
-//) {
-//    var text by remember {
-//        mutableStateOf("")
-//    }
-//    var isHintDisplayed by remember {
-//        mutableStateOf(hint != "")
-//    }
-//
-//    Box(modifier = Modifier) {
-//        BasicTextField(
-//            value = text,
-//            onValueChange = {
-//                text = it
-//                onSearch(it)
-//            },
-//            maxLines = 1,
-//            singleLine = true,
-//            textStyle = TextStyle(color = Color.Black),
-//            modifier = Modifier.fillMaxWidth().background(color = Color.White, shape = CircleShape)
-//                .padding(horizontal = 0.dp, vertical = 16.dp)
-//        ) {
-//
-//        }
-//    }
-//}
 
 
 @Preview(showBackground = true)
