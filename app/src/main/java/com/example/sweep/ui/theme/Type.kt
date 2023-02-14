@@ -87,6 +87,13 @@ val Typography = Typography(
         lineHeight = 24.sp
     ),
 
+    displayMedium = TextStyle(
+        fontFamily = _rubikFontFamily,
+        fontWeight = FontWeight.Medium,
+        fontSize = 12.sp,
+        lineHeight = 16.sp
+    ),
+
     headlineLarge = TextStyle(
         fontFamily = _rubikFontFamily,
         fontSize = 24.sp,
@@ -95,8 +102,16 @@ val Typography = Typography(
         letterSpacing = 0.5.sp
     ),
 
+    headlineMedium = TextStyle(
+        fontFamily = _rubikFontFamily,
+        fontSize = 14.sp,
+        fontWeight = FontWeight.Bold,
+        lineHeight = 20.sp,
+    ),
+
     labelMedium = TextStyle(
         fontFamily = _rubikFontFamily,
-        fontSize = 12.sp
+        fontSize = 12.sp,
+        lineHeight = 16.sp
     )
 )

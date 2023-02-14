@@ -36,8 +36,7 @@ fun ServiceCategoryGrid() {
                                    .background(color = MaterialTheme.colorScheme.secondaryContainer)
                                    .clickable(
                                        indication = rememberRipple(
-                                           color = MaterialTheme.colorScheme
-                                               .onSecondaryContainer
+                                           color = MaterialTheme.colorScheme.onSecondaryContainer
                                        ),
                                        interactionSource = remember {
                                            MutableInteractionSource()
@@ -73,7 +72,7 @@ fun ServiceCategoryGrid() {
                     Row(
                         horizontalArrangement = Arrangement.Center,
                         modifier = Modifier.fillMaxWidth()
-                            .padding(top = 20.dp)
+                                           .padding(top = 20.dp)
                     ) {
                         Text(
                             color = MaterialTheme.colorScheme.onSurface,
