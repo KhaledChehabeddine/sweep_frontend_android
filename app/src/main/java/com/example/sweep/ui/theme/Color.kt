@@ -60,6 +60,8 @@ val md_theme_light_surfaceTint = Color(0xFF0054D8)
 
 val blue700 = Color(0xFF1D4ED8)
 val blue500 = Color(0xFF3B82F6)
+val blue300 = Color(0xFF93C5FD)
+val blue200 = Color(0xFFBFDBFE)
 val blue100 = Color(0xFFDBEAFE)
 val blue50 = Color(0xFFEFF6FF)
 

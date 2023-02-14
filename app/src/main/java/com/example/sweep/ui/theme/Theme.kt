@@ -55,11 +55,11 @@ private val _darkColorPalette = darkColorScheme(
 private val _lightColorPalette = lightColorScheme(
     primary = md_theme_light_primary,
     onPrimary = md_theme_light_onPrimary,
-    primaryContainer = md_theme_light_primaryContainer,
+    primaryContainer = blue200,
     onPrimaryContainer = md_theme_light_onPrimaryContainer,
     inversePrimary = md_theme_light_inversePrimary,
 
-    secondary = md_theme_light_secondary,
+    secondary = blue300,
     onSecondary = blue700,
     secondaryContainer = blue100,
     onSecondaryContainer = blue500,

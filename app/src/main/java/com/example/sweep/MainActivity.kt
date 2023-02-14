@@ -43,16 +43,16 @@ fun MainScreen() {
                 items = bottomNavbarItems,
                 navController = navController
             ) {
-                navController.navigate(it.route)
+                navController.navigate(route = it.route)
             }
         },
         topBar = {
-            NavigationTopBar(navController)
+            NavigationTopBar(navController = navController)
         },
         content = { paddingValues ->
             NavigationContent(
-                paddingValues = paddingValues,
-                navController = navController
+                navController = navController,
+                paddingValues = paddingValues
             )
         }
     )
