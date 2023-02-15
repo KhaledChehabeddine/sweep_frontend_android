@@ -17,97 +17,92 @@ import com.example.sweep.ui.theme.SweepTheme
 
 @Composable
 fun TopBarSearch() {
-    Surface(
-        modifier = Modifier
-            .fillMaxWidth()
-        ,
-        tonalElevation = 10.dp,
-    ) {
-        Row(
-            modifier = Modifier
-                .padding(start = 10.dp)
-                .padding(end = 10.dp)
-                .padding(bottom = 10.dp)
-                .fillMaxWidth()
-                .background(color = MaterialTheme.colorScheme.secondaryContainer)
-//                .height(70.dp)
-            ,
-
-        ) {
-            val searchValue = remember {
-                mutableStateOf("")
-            }
-
-            val trailingIconView = @Composable{
-                        IconButton(
-                            onClick = {
-                                searchValue.value = ""
-                            }
-                        ) {
-                            Icon(
-                                Icons.Default.Close,
-                                contentDescription = "",
-                                modifier = Modifier
-//                                    .padding(15.dp)
-                                    .size(25.dp)
-                            )
-                        }
-            }
-
-            OutlinedTextField(
-                value = searchValue.value,
-                onValueChange = {
-                    searchValue.value = it
-//                    trailingIconView
-                                },
+    CenterAlignedTopAppBar(
+        actions = { },
+        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+            containerColor = MaterialTheme.colorScheme.background,
+        ),
+        navigationIcon = { },
+        title = {
+            Row(
                 modifier = Modifier
-                    .fillMaxWidth(fraction = 0.85f)
-//                    .padding(10.dp)
-                    .align(Alignment.CenterVertically)
+                    .padding(start = 10.dp)
+                    .padding(end = 10.dp)
+                    .padding(bottom = 10.dp)
+                    .fillMaxWidth()
                 ,
-                label = {
-                    Text("Search")
-                },
-                singleLine = true,
-                leadingIcon = {
+
+                ) {
+                val searchValue = remember {
+                    mutableStateOf("")
+                }
+
+                val trailingIconView = @Composable{
+                    IconButton(
+                        onClick = {
+                            searchValue.value = ""
+                        }
+                    ) {
+                        Icon(
+                            Icons.Default.Close,
+                            contentDescription = "",
+                            modifier = Modifier
+                                .size(25.dp)
+                        )
+                    }
+                }
+
+                OutlinedTextField(
+                    value = searchValue.value,
+                    onValueChange = {
+                        searchValue.value = it
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth(fraction = 0.85f)
+                        .align(Alignment.CenterVertically)
+                    ,
+                    label = {
+                        Text("Search")
+                    },
+                    singleLine = true,
+                    leadingIcon = {
+                        Icon(
+                            Icons.Default.Search,
+                            contentDescription = "",
+                            modifier = Modifier
+                                .size(25.dp)
+                        )
+                    },
+                    trailingIcon = (if(searchValue.value == ""){
+                        null
+                    } else{
+                        trailingIconView
+                    })
+
+                )
+
+                Spacer(modifier = Modifier.padding(5.dp))
+
+                IconButton(
+                    onClick = {
+                        searchValue.value = ""
+                    },
+                    modifier = Modifier
+                        .align(Alignment.CenterVertically)
+                        .padding(top = 10.dp)
+
+                ) {
                     Icon(
-                        Icons.Default.Search,
+                        Icons.Default.Menu,
                         contentDescription = "",
                         modifier = Modifier
-                            .size(25.dp)
+                            .size(30.dp)
                     )
-                },
-//                if (!(searchValue.value).equals(TextFieldValue("")))
-                trailingIcon = (if(searchValue.value == ""){
-                    null
-                } else{
-                    trailingIconView
-                })
-
-            )
-
-            Spacer(modifier = Modifier.padding(5.dp))
-
-            IconButton(
-                onClick = {
-                    searchValue.value = ""
-                },
-                modifier = Modifier
-                    .align(Alignment.CenterVertically)
-                    .padding(top = 10.dp)
-
-            ) {
-                Icon(
-                    Icons.Default.Menu,
-                    contentDescription = "",
-                    modifier = Modifier
-                        .size(30.dp)
-                )
+                }
             }
         }
-        }
+    )
 }
-
 
 @Preview(showBackground = true)
 @Composable
