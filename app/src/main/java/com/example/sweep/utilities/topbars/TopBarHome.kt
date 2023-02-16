@@ -43,7 +43,7 @@ fun TopBarHome() {
                 }
         },
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.background,
+            containerColor = MaterialTheme.colorScheme.background
         ),
         navigationIcon = {
             IconButton(

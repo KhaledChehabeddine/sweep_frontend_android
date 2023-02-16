@@ -31,7 +31,7 @@ fun ServiceCategoryGrid() {
     ) {
         items(serviceCategories) { serviceCategory ->
             Box(
-                modifier = Modifier.height(112.5.dp)
+                modifier = Modifier.height(105.dp)
                                    .clip(RoundedCornerShape(percent = 8))
                                    .background(color = MaterialTheme.colorScheme.secondaryContainer)
                                    .clickable(
@@ -72,7 +72,7 @@ fun ServiceCategoryGrid() {
                     Row(
                         horizontalArrangement = Arrangement.Center,
                         modifier = Modifier.fillMaxWidth()
-                                           .padding(top = 20.dp)
+                                           .padding(top = 10.dp)
                     ) {
                         Text(
                             color = MaterialTheme.colorScheme.onSurface,

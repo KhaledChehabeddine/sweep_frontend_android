@@ -6,19 +6,15 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.sweep.ui.theme.SweepTheme
 
 @Composable
-fun TopBarSweep() {
+fun TopBarHistory() {
     CenterAlignedTopAppBar(
         actions = { },
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-          containerColor = MaterialTheme.colorScheme.onSecondaryContainer
+            containerColor = MaterialTheme.colorScheme.background
         ),
         navigationIcon = { },
         title = {
-            Text(
-                color = MaterialTheme.colorScheme.onBackground,
-                style = MaterialTheme.typography.headlineLarge,
-                text = "Sweepers"
-            )
+            
         }
     )
 }
@@ -27,6 +23,6 @@ fun TopBarSweep() {
 @Composable
 private fun Preview() {
     SweepTheme {
-        TopBarSweep()
+        TopBarHistory()
     }
 }

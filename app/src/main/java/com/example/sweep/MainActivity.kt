@@ -46,14 +46,14 @@ fun MainScreen() {
                 navController.navigate(route = it.route)
             }
         },
-        topBar = {
-            NavigationTopBar(navController = navController)
-        },
         content = { paddingValues ->
             NavigationContent(
                 navController = navController,
                 paddingValues = paddingValues
             )
+        },
+        topBar = {
+            NavigationTopBar(navController = navController)
         }
     )
 }
