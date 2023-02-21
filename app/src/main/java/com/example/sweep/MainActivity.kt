@@ -13,9 +13,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.sweep.screens.*
 import com.example.sweep.ui.theme.SweepTheme
 import com.example.sweep.data.bottomNavbarItems
-import com.example.sweep.utilities.navigation.BottomNavigationBar
-import com.example.sweep.utilities.navigation.NavigationContent
-import com.example.sweep.utilities.navigation.NavigationTopBar
+import com.example.sweep.navigation.BottomBar
+import com.example.sweep.navigation.Content
+import com.example.sweep.navigation.TopBar
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,7 +39,7 @@ fun MainScreen() {
     val navController = rememberNavController()
     Scaffold(
         bottomBar = {
-            BottomNavigationBar(
+            BottomBar(
                 items = bottomNavbarItems,
                 navController = navController
             ) {
@@ -47,13 +47,13 @@ fun MainScreen() {
             }
         },
         content = { paddingValues ->
-            NavigationContent(
+            Content(
                 navController = navController,
                 paddingValues = paddingValues
             )
         },
         topBar = {
-            NavigationTopBar(navController = navController)
+            TopBar(navController = navController)
         }
     )
 }

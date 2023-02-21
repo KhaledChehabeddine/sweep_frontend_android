@@ -42,8 +42,7 @@ fun HomeScreen(paddingValues: PaddingValues) {
                                                .background(color = MaterialTheme.colorScheme.secondaryContainer)
                                                .clickable(
                                                    indication = rememberRipple(
-                                                       color = MaterialTheme.colorScheme
-                                                           .onSecondaryContainer
+                                                       color = MaterialTheme.colorScheme.onSecondaryContainer
                                                    ),
                                                    interactionSource = remember {
                                                        MutableInteractionSource()
@@ -134,6 +133,6 @@ fun HomeScreen(paddingValues: PaddingValues) {
 @Composable
 private fun Preview() {
     SweepTheme {
-        HomeScreen(PaddingValues())
+        HomeScreen(paddingValues = PaddingValues())
     }
 }

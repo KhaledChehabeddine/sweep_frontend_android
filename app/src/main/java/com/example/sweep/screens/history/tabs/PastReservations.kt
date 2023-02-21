@@ -1,6 +1,7 @@
-package com.example.sweep.screens
+package com.example.sweep.screens.history.tabs
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
@@ -11,12 +12,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.sweep.ui.theme.SweepTheme
 
 @Composable
-fun HistoryScreen(paddingValues: PaddingValues) {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.fillMaxSize()
+fun PastReservations(paddingValues: PaddingValues) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center
     ) {
-        Text(text = "History Screen")
+        Text(text = "Past Reservations")
     }
 }
 
@@ -24,6 +26,6 @@ fun HistoryScreen(paddingValues: PaddingValues) {
 @Composable
 private fun Preview() {
     SweepTheme {
-        HistoryScreen(PaddingValues())
+        PastReservations(paddingValues = PaddingValues())
     }
 }
