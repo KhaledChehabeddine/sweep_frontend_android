@@ -5,7 +5,11 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.sweep.data.historyTabItems
 import com.example.sweep.ui.theme.SweepTheme
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.rememberPagerState
+import kotlinx.coroutines.launch
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun TopBarHistory() {
     CenterAlignedTopAppBar(
@@ -15,18 +19,19 @@ fun TopBarHistory() {
         ),
         navigationIcon = { },
         title = {
-            var state by remember {
-                mutableStateOf(0)
-            }
+            val coroutineScope = rememberCoroutineScope()
+            val pagerState = rememberPagerState()
 
             TabRow(
                 containerColor = MaterialTheme.colorScheme.background,
-                selectedTabIndex = state
+                selectedTabIndex = pagerState.currentPage
             ) {
                 historyTabItems.forEachIndexed { index, historyTabItem ->
                     Tab(
                         onClick = {
-                            state = index
+                            coroutineScope.launch {
+                                pagerState.animateScrollToPage(index)
+                            }
                         },
                         text = {
                             Text(
@@ -34,7 +39,7 @@ fun TopBarHistory() {
                                 text = historyTabItem.name
                             )
                         },
-                        selected = state == index,
+                        selected = pagerState.currentPage == index,
                         unselectedContentColor = MaterialTheme.colorScheme.onSurface,
                     )
                 }

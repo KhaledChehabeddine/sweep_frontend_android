@@ -6,6 +6,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.sweep.screens.*
+import com.example.sweep.screens.history.HistoryScreen
 import com.example.sweep.screens.history.tabs.PastReservations
 
 @Composable
@@ -18,19 +19,19 @@ fun Content(
         startDestination = "home"
     ) {
         composable(route = "home") {
-            HomeScreen(paddingValues)
+            HomeScreen(paddingValues = paddingValues)
         }
         composable(route = "search") {
-            SearchScreen(paddingValues)
+            SearchScreen(paddingValues = paddingValues)
         }
         composable(route = "sweep") {
-            SweepScreen(paddingValues)
+            SweepScreen(paddingValues = paddingValues)
         }
         composable(route = "history") {
-            PastReservations(paddingValues)
+            HistoryScreen(paddingValues = paddingValues)
         }
         composable(route = "account") {
-            AccountScreen(paddingValues)
+            AccountScreen(paddingValues = paddingValues)
         }
     }
 }
