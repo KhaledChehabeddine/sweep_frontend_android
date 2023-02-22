@@ -64,7 +64,7 @@ private val _lightColorPalette = lightColorScheme(
     onSecondaryContainer = blue500,
 
     tertiary = cool_gray400,
-    onTertiary = md_theme_light_onTertiary,
+    onTertiary = emerald300,
     tertiaryContainer = cool_gray300,
     onTertiaryContainer = md_theme_light_onTertiaryContainer,
 

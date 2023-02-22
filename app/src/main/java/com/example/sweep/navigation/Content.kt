@@ -7,12 +7,16 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.sweep.screens.*
 import com.example.sweep.screens.history.HistoryScreen
-import com.example.sweep.screens.history.tabs.PastReservations
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.PagerState
+import com.google.accompanist.pager.rememberPagerState
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun Content(
     navController: NavHostController,
     paddingValues: PaddingValues = PaddingValues(),
+    pagerState: PagerState = rememberPagerState()
 ) {
     NavHost(
         navController = navController,
@@ -28,7 +32,10 @@ fun Content(
             SweepScreen(paddingValues = paddingValues)
         }
         composable(route = "history") {
-            HistoryScreen(paddingValues = paddingValues)
+            HistoryScreen(
+                paddingValues = paddingValues,
+                pagerState = pagerState
+            )
         }
         composable(route = "account") {
             AccountScreen(paddingValues = paddingValues)

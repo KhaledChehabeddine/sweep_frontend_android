@@ -5,9 +5,16 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.sweep.utilities.topbars.*
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.PagerState
+import com.google.accompanist.pager.rememberPagerState
 
+@OptIn(ExperimentalPagerApi::class)
 @Composable
-fun TopBar(navController: NavHostController) {
+fun TopBar(
+    navController: NavHostController,
+    pagerState: PagerState = rememberPagerState()
+) {
     NavHost(
         navController = navController,
         startDestination = "home"
@@ -22,7 +29,7 @@ fun TopBar(navController: NavHostController) {
             TopBarSweep()
         }
         composable(route = "history") {
-            TopBarHistory()
+            TopBarHistory(pagerState = pagerState)
         }
         composable(route = "account") {
             TopBarAccount()

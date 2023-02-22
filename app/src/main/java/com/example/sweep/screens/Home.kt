@@ -48,7 +48,7 @@ fun HomeScreen(paddingValues: PaddingValues) {
                                                        MutableInteractionSource()
                                                    }
                                                ) {
-                                                    /* TODO */
+
                                                }
                         ) {
 
@@ -58,7 +58,7 @@ fun HomeScreen(paddingValues: PaddingValues) {
                         ServiceCategoryGrid()
                     }
                 }
-                Spacer(modifier = Modifier.padding(top = 20.dp))
+                Spacer(modifier = Modifier.height(height = 20.dp))
                 Column(modifier = Modifier.background(color = MaterialTheme.colorScheme.onBackground)
                                           .fillMaxWidth()) {
                     for (i in 1..2) {

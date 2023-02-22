@@ -6,12 +6,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.sweep.data.historyTabItems
 import com.example.sweep.ui.theme.SweepTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
-fun TopBarHistory() {
+fun TopBarHistory(pagerState: PagerState = rememberPagerState()) {
     CenterAlignedTopAppBar(
         actions = { },
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
@@ -20,8 +21,6 @@ fun TopBarHistory() {
         navigationIcon = { },
         title = {
             val coroutineScope = rememberCoroutineScope()
-            val pagerState = rememberPagerState()
-
             TabRow(
                 containerColor = MaterialTheme.colorScheme.background,
                 selectedTabIndex = pagerState.currentPage
@@ -48,10 +47,11 @@ fun TopBarHistory() {
     )
 }
 
+@OptIn(ExperimentalPagerApi::class)
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {
     SweepTheme {
-        TopBarHistory()
+        TopBarHistory(pagerState = rememberPagerState())
     }
 }
