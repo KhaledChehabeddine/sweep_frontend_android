@@ -188,6 +188,6 @@ private fun DisplaySubCategory(subCategories: List<SubCategory>) {
 @Composable
 private fun Preview() {
     SweepTheme {
-        AccountScreen(PaddingValues())
+        AccountScreen(paddingValues = PaddingValues())
     }
 }

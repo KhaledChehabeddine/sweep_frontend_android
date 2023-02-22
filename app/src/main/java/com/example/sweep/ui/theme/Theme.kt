@@ -48,7 +48,6 @@ private val _darkColorPalette = darkColorScheme(
     onError = md_theme_dark_onError,
     onErrorContainer = md_theme_dark_onErrorContainer,
 
-
     outline = md_theme_dark_outline,
 )
 
@@ -65,7 +64,7 @@ private val _lightColorPalette = lightColorScheme(
     onSecondaryContainer = blue500,
 
     tertiary = cool_gray400,
-    onTertiary = md_theme_light_onTertiary,
+    onTertiary = emerald300,
     tertiaryContainer = cool_gray300,
     onTertiaryContainer = md_theme_light_onTertiaryContainer,
 
@@ -77,7 +76,7 @@ private val _lightColorPalette = lightColorScheme(
     surfaceVariant = md_theme_light_surfaceVariant,
     onSurfaceVariant = blue_gray400,
     surfaceTint = md_theme_light_surfaceTint,
-    inverseSurface = md_theme_light_inverseSurface,
+    inverseSurface = transparent_black,
     inverseOnSurface = md_theme_light_inverseOnSurface,
 
     error = md_theme_light_error,
