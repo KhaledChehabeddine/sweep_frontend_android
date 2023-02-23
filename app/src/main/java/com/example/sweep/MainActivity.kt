@@ -43,8 +43,8 @@ fun MainScreen() {
             BottomBar(
                 items = bottomNavbarItems,
                 navController = navController
-            ) {
-                navController.navigate(route = it.route)
+            ) { bottomNavbarItem ->
+                navController.navigate(route = bottomNavbarItem.route)
             }
         },
         content = { paddingValues ->

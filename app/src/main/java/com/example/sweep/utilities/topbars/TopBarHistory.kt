@@ -34,7 +34,7 @@ fun TopBarHistory(pagerState: PagerState = rememberPagerState()) {
                         },
                         text = {
                             Text(
-                                style = MaterialTheme.typography.bodyMedium,
+                                style = MaterialTheme.typography.titleMedium,
                                 text = historyTabItem.name
                             )
                         },
