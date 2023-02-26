@@ -19,10 +19,7 @@ fun SweepScreen(paddingValues: PaddingValues) {
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(
-                end = 20.dp,
-                start = 20.dp
-            )
+            modifier = Modifier.padding(horizontal = 20.dp)
         ) {
             Row(modifier = Modifier.padding(vertical = 20.dp)) {
                Text(
@@ -42,6 +39,6 @@ fun SweepScreen(paddingValues: PaddingValues) {
 @Composable
 private fun Preview() {
     SweepTheme {
-        SweepScreen(PaddingValues())
+        SweepScreen(paddingValues = PaddingValues())
     }
 }
