@@ -22,6 +22,7 @@ private val _rubikFontFamily = FontFamily(
     ),
 
     Font(resId = R.font.rubik_regular),
+
     Font(
         resId = R.font.rubik_italic,
         style = FontStyle.Italic
@@ -80,38 +81,92 @@ private val _rubikFontFamily = FontFamily(
 
 // Set of Material typography styles to start with
 val Typography = Typography(
-    bodyMedium = TextStyle(
+
+    //display => Bold
+    displayLarge = TextStyle(
         fontFamily = _rubikFontFamily,
-        fontWeight = FontWeight.Medium,
-        fontSize = 16.sp,
-        lineHeight = 24.sp
+        fontWeight = FontWeight.Bold,
+        fontSize = 30.sp,
+        lineHeight = 16.sp
     ),
 
     displayMedium = TextStyle(
         fontFamily = _rubikFontFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = 25.sp,
+        lineHeight = 16.sp
+    ),
+
+    displaySmall = TextStyle(
+        fontFamily = _rubikFontFamily,
+        fontWeight = FontWeight.Bold,
+        fontSize = 20.sp,
+        lineHeight = 16.sp
+    ),
+
+    //Body => Medium
+    bodyLarge = TextStyle(
+        fontFamily = _rubikFontFamily,
         fontWeight = FontWeight.Medium,
-        fontSize = 12.sp,
-        lineHeight = 16.sp
+        fontSize = 20.sp,
+        lineHeight = 24.sp
     ),
 
-    headlineLarge = TextStyle(
+    bodyMedium = TextStyle(
         fontFamily = _rubikFontFamily,
-        fontSize = 24.sp,
-        fontWeight = FontWeight.Bold,
-        lineHeight = 32.sp,
-        letterSpacing = 0.5.sp
+        fontWeight = FontWeight.Medium,
+        fontSize = 15.sp,
+        lineHeight = 24.sp
     ),
 
-    headlineMedium = TextStyle(
+    bodySmall = TextStyle(
         fontFamily = _rubikFontFamily,
-        fontSize = 14.sp,
-        fontWeight = FontWeight.Bold,
-        lineHeight = 20.sp,
+        fontWeight = FontWeight.Medium,
+        fontSize = 13.sp,
+        lineHeight = 24.sp
     ),
 
-    labelMedium = TextStyle(
+    //Title => ExtraBold
+    titleLarge = TextStyle(
         fontFamily = _rubikFontFamily,
-        fontSize = 12.sp,
-        lineHeight = 16.sp
-    )
+        fontWeight = FontWeight.ExtraBold,
+        fontSize = 30.sp,
+        lineHeight = 24.sp
+    ),
+
+    titleMedium = TextStyle(
+        fontFamily = _rubikFontFamily,
+        fontWeight = FontWeight.ExtraBold,
+        fontSize = 30.sp,
+        lineHeight = 24.sp
+    ),
+
+    titleSmall = TextStyle(
+        fontFamily = _rubikFontFamily,
+        fontWeight = FontWeight.ExtraBold,
+        fontSize = 20.sp,
+        lineHeight = 24.sp
+    ),
+
+//    //headline
+//    headlineLarge = TextStyle(
+//        fontFamily = _rubikFontFamily,
+//        fontSize = 24.sp,
+//        fontWeight = FontWeight.,
+//        lineHeight = 32.sp,
+//        letterSpacing = 0.5.sp
+//    ),
+//
+//    headlineMedium = TextStyle(
+//        fontFamily = _rubikFontFamily,
+//        fontSize = 14.sp,
+//        fontWeight = FontWeight.Bold,
+//        lineHeight = 20.sp,
+//    ),
+//
+//    labelMedium = TextStyle(
+//        fontFamily = _rubikFontFamily,
+//        fontSize = 12.sp,
+//        lineHeight = 16.sp
+//    )
 )
