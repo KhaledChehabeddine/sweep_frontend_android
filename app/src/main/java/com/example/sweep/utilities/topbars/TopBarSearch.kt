@@ -1,105 +1,96 @@
 package com.example.sweep.utilities.topbars
 
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.input.TextFieldValue
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.example.sweep.ui.theme.SweepTheme
 
 @Composable
 fun TopBarSearch() {
     CenterAlignedTopAppBar(
-        actions = { },
+        actions = {
+            IconButton(
+                colors = IconButtonDefaults.iconButtonColors(contentColor = MaterialTheme.colorScheme.onSurface),
+                onClick = {
+                    /* TODO */
+                }
+
+            ) {
+                Icon(
+                    contentDescription = "Menu",
+                    imageVector = Icons.Default.Menu,
+                )
+            }
+        },
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.background,
         ),
-        navigationIcon = { },
+        navigationIcon = {
+           IconButton(
+               colors = IconButtonDefaults.iconButtonColors(contentColor = MaterialTheme.colorScheme.onSurface),
+               onClick = {
+                   /* TODO */
+               }
+           ) {
+               Icon(
+                   contentDescription = "Search",
+                   imageVector = Icons.Default.Search,
+               )
+           }
+        },
         title = {
-            Row(
-                modifier = Modifier
-                    .padding(start = 10.dp)
-                    .padding(end = 10.dp)
-                    .padding(bottom = 10.dp)
-                    .fillMaxWidth()
-                ,
-
-                ) {
-                val searchValue = remember {
-                    mutableStateOf("")
-                }
-
-                val trailingIconView = @Composable{
-                    IconButton(
-                        onClick = {
-                            searchValue.value = ""
-                        }
-                    ) {
-                        Icon(
-                            Icons.Default.Close,
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(25.dp)
-                        )
-                    }
-                }
-
-                OutlinedTextField(
-                    value = searchValue.value,
-                    onValueChange = {
-                        searchValue.value = it
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth(fraction = 0.85f)
-                        .align(Alignment.CenterVertically)
-                    ,
-                    label = {
-                        Text("Search")
-                    },
-                    singleLine = true,
-                    leadingIcon = {
-                        Icon(
-                            Icons.Default.Search,
-                            contentDescription = "",
-                            modifier = Modifier
-                                .size(25.dp)
-                        )
-                    },
-                    trailingIcon = (if(searchValue.value == ""){
-                        null
-                    } else{
-                        trailingIconView
-                    })
-
-                )
-
-                Spacer(modifier = Modifier.padding(5.dp))
-
-                IconButton(
-                    onClick = {
-                        searchValue.value = ""
-                    },
-                    modifier = Modifier
-                        .align(Alignment.CenterVertically)
-                        .padding(top = 10.dp)
-
-                ) {
-                    Icon(
-                        Icons.Default.Menu,
-                        contentDescription = "",
-                        modifier = Modifier
-                            .size(30.dp)
-                    )
-                }
+            val focusManager = LocalFocusManager.current
+            val isFocused = remember {
+                mutableStateOf(value = false)
             }
+            val searchValue = remember {
+                mutableStateOf(value = "")
+            }
+
+            OutlinedTextField(
+                keyboardActions = KeyboardActions {
+                    focusManager.clearFocus()
+                },
+                modifier = Modifier.onFocusChanged { focusState ->
+                    isFocused.value = focusState.isFocused
+                },
+                onValueChange = { searchQuery ->
+                    searchValue.value =  searchQuery
+                },
+                placeholder = {
+                    Text(
+                        fontWeight = FontWeight.Normal,
+                        style = MaterialTheme.typography.bodyMedium,
+                        text = "Search for a firm or person"
+                    )
+                },
+                singleLine = true,
+                textStyle = MaterialTheme.typography.bodyMedium,
+                trailingIcon = {
+                    if (isFocused.value)
+                        IconButton(
+                            onClick = {
+                                if (searchValue.value.isBlank()) focusManager.clearFocus()
+                                searchValue.value = ""
+                            }
+                        ) {
+                            Icon(
+                                contentDescription = "Close",
+                                imageVector = Icons.Default.Close,
+                            )
+                        }
+                },
+                value = searchValue.value
+            )
         }
     )
 }

@@ -1,6 +1,5 @@
 package com.example.sweep.screens
-import android.content.ClipData.Item
-import android.graphics.Color
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -21,123 +20,103 @@ import com.example.sweep.ui.theme.SweepTheme
 
 @Composable
 fun SearchScreen(paddingValues: PaddingValues) {
-
-    LazyColumn(
-        modifier = Modifier
-            .padding(10.dp)
-            .padding(top = 70.dp)
-            .fillMaxSize()
-        ,
+    Surface(
+        color = MaterialTheme.colorScheme.background,
+        modifier = Modifier.fillMaxSize()
+                           .padding(paddingValues = paddingValues)
     ) {
-        item {
-            Column {
-                Box(modifier = Modifier
-                    .padding(10.dp)
-                ) {
-                    Text(
-                        color = MaterialTheme.colorScheme.onSurface,
-                        style = MaterialTheme.typography.titleLarge,
-                        text = "Recent Searches"
-                    )
-                }
-
-                LazyRow(
-                    modifier = Modifier
-                        .fillMaxWidth()
-//                    .padding(10.dp)
-                    ,
-                ) {
-                    item{
-                        for (i in 1..6) {
-                            Spacer(modifier = Modifier.padding(5.dp))
+        LazyColumn(
+            modifier = Modifier.padding(
+                                    end = 20.dp,
+                                    start = 20.dp,
+                                    top = 50.dp
+                              )
+        ) {
+            item {
+                Text(
+                    color = MaterialTheme.colorScheme.onSurface,
+                    style = MaterialTheme.typography.titleLarge,
+                    text = "Recent Searches"
+                )
+                Spacer(modifier = Modifier.height(height = 10.dp))
+                LazyRow {
+                    item {
+                        for (i in 0..5) {
+                            if (i != 0) Spacer(modifier = Modifier.padding(start = 10.dp))
                             Box(
-                                modifier = Modifier
-                                    .height(40.dp)
-                                    .width(110.dp)
-                                    .clip(RoundedCornerShape(10.dp))
-                                    .background(color = MaterialTheme.colorScheme.secondaryContainer)
-                                    .clickable(
-                                        indication = rememberRipple(
-                                            color = MaterialTheme.colorScheme
-                                                .onSecondaryContainer
-                                        ),
-                                        interactionSource = remember {
-                                            MutableInteractionSource()
-                                        }
-                                    ) {
-
-                                    }
-                            ) {
-
-                            }
+                                modifier = Modifier.size(
+                                                        height = 40.dp,
+                                                        width = 100.dp
+                                                  ).clip(RoundedCornerShape(size = 10.dp))
+                                                   .background(color = MaterialTheme.colorScheme.secondaryContainer)
+                                                   .clickable(
+                                                       indication = rememberRipple(
+                                                           color = MaterialTheme.colorScheme.onSecondaryContainer
+                                                       ),
+                                                       interactionSource = remember {
+                                                           MutableInteractionSource()
+                                                       }
+                                                   ) {
+                                                       /* TODO */
+                                                   }
+                            )
                         }
                     }
                 }
-                Box(
-                    modifier = Modifier
-                        .padding(10.dp)
-                ){
-                    Text(
-                        color = MaterialTheme.colorScheme.onSurface,
-                        style = MaterialTheme.typography.titleLarge,
-                        text = "Categories"
-                    )
-                }
-
-
-                Column(
-                    modifier = Modifier.padding(bottom = 50.dp)
-                ) {
-                    for (i in 1..10) {
-                        Row() {
-                            for (i in 1..2) {
+                Spacer(modifier = Modifier.height(height = 20.dp))
+                Text(
+                    color = MaterialTheme.colorScheme.onSurface,
+                    style = MaterialTheme.typography.titleLarge,
+                    text = "Categories"
+                )
+                Spacer(modifier = Modifier.height(height = 15.dp))
+                Column {
+                    for (i in 0..9)
+                        Row(
+                            horizontalArrangement = Arrangement.spacedBy(space = 10.dp)
+                        ) {
+                            for (j in 0..1)
                                 Column(
-                                    modifier = Modifier
-                                        .padding(10.dp)
+                                    modifier = Modifier.fillMaxWidth()
+                                                       .weight(1f)
+
                                 ) {
                                     Box(
-                                        modifier = Modifier
-                                            .height(100.dp)
-                                            .width(170.dp)
-                                            .clip(RoundedCornerShape(10.dp))
-                                            .background(color = MaterialTheme.colorScheme.secondaryContainer)
-                                            .clickable(
-                                                indication = rememberRipple(
-                                                    color = MaterialTheme.colorScheme
-                                                        .onSecondaryContainer
-                                                ),
-                                                interactionSource = remember {
-                                                    MutableInteractionSource()
-                                                }
-                                            ) {
-                                            }
+                                        modifier = Modifier.height(100.dp)
+                                                           .fillMaxWidth()
+                                                           .clip(RoundedCornerShape(10.dp))
+                                                           .background(
+                                                               color = MaterialTheme.colorScheme.secondaryContainer
+                                                           )
+                                                           .clickable(
+                                                               indication = rememberRipple(
+                                                                   color = MaterialTheme.colorScheme
+                                                                                        .onSecondaryContainer
+                                                               ),
+                                                               interactionSource = remember {
+                                                                   MutableInteractionSource()
+                                                               }
+                                                           ) {
+                                                                /* TODO */
+                                                           }
                                     )
-
+                                    Spacer(modifier = Modifier.height(height = 10.dp))
                                     Box(
-                                        modifier = Modifier
-                                            .padding(top = 10.dp)
-                                            .padding(bottom = 10.dp)
-                                            .height(20.dp)
-                                            .width(100.dp)
-                                            .clip(RoundedCornerShape(5.dp))
-                                            .background(
-                                                color = MaterialTheme.colorScheme.tertiary
-                                            )
+                                        modifier = Modifier.height(height = 16.dp)
+                                                           .fillMaxWidth()
+                                                           .clip(CircleShape)
+                                                           .background(color = MaterialTheme.colorScheme.tertiary)
                                     )
+                                    Spacer(modifier = Modifier.height(height = 5.dp))
                                     Box(
-                                        modifier = Modifier
-                                            .height(10.dp)
-                                            .width(150.dp)
-                                            .clip(RoundedCornerShape(5.dp))
-                                            .background(
-                                                color = MaterialTheme.colorScheme.tertiary
-                                            )
+                                        modifier = Modifier.height(height = 10.dp)
+                                                           .fillMaxWidth(fraction = 0.5f)
+                                                           .clip(CircleShape)
+                                                           .background(color = MaterialTheme.colorScheme.tertiaryContainer)
                                     )
-                                    Spacer(modifier = Modifier.padding(10.dp))
+                                    Spacer(modifier = Modifier.height(height = 15.dp))
                                 }
-                            }
                         }
-                    }
                 }
             }
         }
@@ -148,6 +127,6 @@ fun SearchScreen(paddingValues: PaddingValues) {
 @Composable
 private fun Preview() {
     SweepTheme {
-        SearchScreen(PaddingValues())
+        SearchScreen(paddingValues = PaddingValues())
     }
 }
