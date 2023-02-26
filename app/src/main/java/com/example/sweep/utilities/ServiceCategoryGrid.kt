@@ -24,9 +24,9 @@ import com.example.sweep.ui.theme.SweepTheme
 @Composable
 fun ServiceCategoryGrid() {
     LazyVerticalGrid(
-        columns = GridCells.Adaptive(77.5.dp),
+        columns = GridCells.Fixed(count = 4),
         horizontalArrangement = Arrangement.spacedBy(10.dp),
-        modifier = Modifier.height(height = 235.dp),
+        modifier = Modifier.height(height = 220.dp),
         verticalArrangement = Arrangement.spacedBy(10.dp)
     ) {
         items(serviceCategories) { serviceCategory ->
