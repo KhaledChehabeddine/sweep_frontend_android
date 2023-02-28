@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.example.sweep.ui.theme.SweepTheme
 
 @Composable
-fun LoginPage(paddingValues: PaddingValues) {
+fun LoginPage() {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
@@ -62,7 +62,7 @@ fun Login(){
         mutableStateOf("")
     }
 
-    var passwordVisible by rememberSaveable { mutableStateOf(false) }
+    val passwordVisible by rememberSaveable { mutableStateOf(false) }
 
     Column(
         verticalArrangement = Arrangement.spacedBy(10.dp),
@@ -114,6 +114,6 @@ fun Login(){
 @Composable
 private fun Preview() {
     SweepTheme {
-        LoginPage(PaddingValues())
+        LoginPage()
     }
 }

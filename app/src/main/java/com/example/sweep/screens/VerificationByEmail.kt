@@ -3,7 +3,6 @@ package com.example.sweep.screens
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
-import androidx.compose.material.icons.filled.Phone
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -14,7 +13,7 @@ import androidx.compose.ui.unit.dp
 import com.example.sweep.ui.theme.SweepTheme
 
 @Composable
-fun VerificationEmail(paddingValues: PaddingValues) {
+fun VerificationEmail() {
     IconButton(
         modifier = Modifier.padding(top=20.dp),
         onClick = {}
@@ -106,6 +105,6 @@ fun VerificationCode(){
 @Composable
 private fun Preview() {
     SweepTheme {
-        VerificationEmail(PaddingValues())
+        VerificationEmail()
     }
 }

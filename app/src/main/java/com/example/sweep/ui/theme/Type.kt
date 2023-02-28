@@ -1,6 +1,5 @@
 package com.example.sweep.ui.theme
 
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
@@ -81,92 +80,44 @@ private val _rubikFontFamily = FontFamily(
 
 // Set of Material typography styles to start with
 val Typography = Typography(
-
-    //display => Bold
-    displayLarge = TextStyle(
+    bodyMedium = TextStyle(
         fontFamily = _rubikFontFamily,
-        fontWeight = FontWeight.Bold,
-        fontSize = 30.sp,
-        lineHeight = 16.sp
+        fontWeight = FontWeight.Medium,
+        fontSize = 16.sp,
+        lineHeight = 24.sp
     ),
 
     displayMedium = TextStyle(
         fontFamily = _rubikFontFamily,
-        fontWeight = FontWeight.Bold,
-        fontSize = 25.sp,
+        fontWeight = FontWeight.Medium,
+        fontSize = 12.sp,
         lineHeight = 16.sp
     ),
 
-    displaySmall = TextStyle(
+    headlineLarge = TextStyle(
         fontFamily = _rubikFontFamily,
+        fontSize = 24.sp,
         fontWeight = FontWeight.Bold,
-        fontSize = 20.sp,
+        lineHeight = 32.sp,
+        letterSpacing = 0.5.sp
+    ),
+
+    headlineMedium = TextStyle(
+        fontFamily = _rubikFontFamily,
+        fontSize = 14.sp,
+        fontWeight = FontWeight.Bold,
+        lineHeight = 20.sp,
+    ),
+
+    labelMedium = TextStyle(
+        fontFamily = _rubikFontFamily,
+        fontSize = 12.sp,
         lineHeight = 16.sp
-    ),
-
-    //Body => Medium
-    bodyLarge = TextStyle(
-        fontFamily = _rubikFontFamily,
-        fontWeight = FontWeight.Medium,
-        fontSize = 20.sp,
-        lineHeight = 24.sp
-    ),
-
-    bodyMedium = TextStyle(
-        fontFamily = _rubikFontFamily,
-        fontWeight = FontWeight.Medium,
-        fontSize = 15.sp,
-        lineHeight = 24.sp
-    ),
-
-    bodySmall = TextStyle(
-        fontFamily = _rubikFontFamily,
-        fontWeight = FontWeight.Medium,
-        fontSize = 13.sp,
-        lineHeight = 24.sp
-    ),
-
-    //Title => ExtraBold
-    titleLarge = TextStyle(
-        fontFamily = _rubikFontFamily,
-        fontWeight = FontWeight.ExtraBold,
-        fontSize = 30.sp,
-        lineHeight = 24.sp
     ),
 
     titleMedium = TextStyle(
         fontFamily = _rubikFontFamily,
-        fontWeight = FontWeight.ExtraBold,
-        fontSize = 30.sp,
+        fontSize = 16.sp,
         lineHeight = 24.sp
-    ),
-
-    titleSmall = TextStyle(
-        fontFamily = _rubikFontFamily,
-        fontWeight = FontWeight.ExtraBold,
-        fontSize = 20.sp,
-        lineHeight = 24.sp
-    ),
-
-//    //headline
-//    headlineLarge = TextStyle(
-//        fontFamily = _rubikFontFamily,
-//        fontSize = 24.sp,
-//        fontWeight = FontWeight.,
-//        lineHeight = 32.sp,
-//        letterSpacing = 0.5.sp
-//    ),
-//
-//    headlineMedium = TextStyle(
-//        fontFamily = _rubikFontFamily,
-//        fontSize = 14.sp,
-//        fontWeight = FontWeight.Bold,
-//        lineHeight = 20.sp,
-//    ),
-//
-//    labelMedium = TextStyle(
-//        fontFamily = _rubikFontFamily,
-//        fontSize = 12.sp,
-//        lineHeight = 16.sp
-//    )
+    )
 )

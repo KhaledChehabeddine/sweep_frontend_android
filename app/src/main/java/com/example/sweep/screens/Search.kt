@@ -29,7 +29,7 @@ fun SearchScreen(paddingValues: PaddingValues) {
             modifier = Modifier.padding(
                                     end = 20.dp,
                                     start = 20.dp,
-                                    top = 50.dp
+                                    top = 30.dp
                               )
         ) {
             item {
