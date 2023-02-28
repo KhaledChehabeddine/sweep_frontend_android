@@ -1,13 +1,11 @@
 package com.example.sweep.utilities.topbars
 
-import androidx.compose.material3.CenterAlignedTopAppBar
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.sweep.ui.theme.SweepTheme
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBarAccount() {
     CenterAlignedTopAppBar(

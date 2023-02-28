@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
             SweepTheme {
                 Surface(
                     color = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier.fillMaxSize()
                 ) {
                     MainScreen()
                 }
@@ -33,11 +33,12 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalPagerApi::class)
+@OptIn(ExperimentalPagerApi::class)
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
     val pagerState = rememberPagerState()
+
     Scaffold(
         bottomBar = {
             BottomBar(

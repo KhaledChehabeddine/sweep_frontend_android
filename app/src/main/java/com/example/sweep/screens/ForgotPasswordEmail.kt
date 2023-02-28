@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.dp
 import com.example.sweep.ui.theme.SweepTheme
 
 @Composable
-fun ForgotPasswordEmail(paddingValues: PaddingValues) {
+fun ForgotPasswordEmail() {
     IconButton(
         modifier = Modifier.padding(top=20.dp),
         onClick = {}
@@ -53,7 +53,7 @@ fun ForgotPasswordEmail(paddingValues: PaddingValues) {
                 modifier = Modifier
                     .width(300.dp)
             )
-            inputFieldsEmail()
+            InputFieldsEmail()
 
             Button(
                 onClick = {}
@@ -74,7 +74,7 @@ fun ForgotPasswordEmail(paddingValues: PaddingValues) {
 
 @Composable
 
-fun inputFieldsEmail(){
+fun InputFieldsEmail(){
     val inputValue = remember {
         mutableStateOf("")
     }
@@ -103,6 +103,6 @@ fun inputFieldsEmail(){
 @Composable
 private fun Preview() {
     SweepTheme {
-        ForgotPasswordEmail(PaddingValues())
+        ForgotPasswordEmail()
     }
 }

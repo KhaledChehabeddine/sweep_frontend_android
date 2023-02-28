@@ -9,6 +9,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.sweep.data.notificationIcon
 import com.example.sweep.ui.theme.SweepTheme
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBarHome() {
     CenterAlignedTopAppBar(
