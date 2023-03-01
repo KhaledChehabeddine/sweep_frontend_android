@@ -48,20 +48,19 @@ fun MainScreen() {
                 navController.navigate(route = bottomNavbarItem.route)
             }
         },
-        content = { paddingValues ->
-            Content(
-                navController = navController,
-                paddingValues = paddingValues,
-                pagerState = pagerState
-            )
-        },
         topBar = {
             TopBar(
                 navController = navController,
                 pagerState = pagerState
             )
         }
-    )
+    ) { paddingValues ->
+        Content(
+            navController = navController,
+            paddingValues = paddingValues,
+            pagerState = pagerState
+        )
+    }
 }
 
 @Preview(showBackground = true)

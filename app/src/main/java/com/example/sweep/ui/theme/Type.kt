@@ -119,5 +119,11 @@ val Typography = Typography(
         fontFamily = _rubikFontFamily,
         fontSize = 16.sp,
         lineHeight = 24.sp
+    ),
+
+    titleLarge = TextStyle(
+        fontFamily = _rubikFontFamily,
+        fontSize = 20.sp,
+        fontWeight = FontWeight.Medium
     )
 )

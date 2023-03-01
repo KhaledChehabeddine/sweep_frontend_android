@@ -22,9 +22,7 @@ fun TopBar(
         composable(route = "home") {
             TopBarHome()
         }
-        composable(route = "search") {
-            TopBarSearch()
-        }
+        composable(route = "search") { }
         composable(route = "sweep") {
             TopBarSweep()
         }
