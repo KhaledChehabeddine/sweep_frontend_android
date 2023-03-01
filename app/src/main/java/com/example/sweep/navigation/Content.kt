@@ -26,7 +26,7 @@ fun Content(
             HomeScreen(paddingValues = paddingValues)
         }
         composable(route = "search") {
-            SearchScreen(paddingValues = paddingValues)
+            SearchScreen()
         }
         composable(route = "sweep") {
             SweepScreen(paddingValues = paddingValues)
