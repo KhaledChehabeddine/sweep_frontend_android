@@ -43,7 +43,7 @@ fun ForgotPasswordEmail() {
             Text(
                 "Forgot Password?",
                 color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.displayLarge,
+                style = MaterialTheme.typography.displaySmall,
             )
 
             Text(
