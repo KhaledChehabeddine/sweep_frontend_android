@@ -21,9 +21,11 @@ fun TopBarHome() {
                         /* TODO */
                     }
                 ) {
-                    BadgedBox(badge = {
-                        Badge()
-                    }) {
+                    BadgedBox(
+                        badge = {
+                            Badge()
+                        }
+                    ) {
                         Icon(
                             contentDescription = "Notifications",
                             imageVector = Icons.Outlined.Notifications
