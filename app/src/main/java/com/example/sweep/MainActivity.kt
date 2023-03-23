@@ -9,11 +9,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
-import com.example.sweep.ui.theme.SweepTheme
 import com.example.sweep.data.bottomNavbarItems
 import com.example.sweep.navigation.BottomBar
 import com.example.sweep.navigation.Content
 import com.example.sweep.navigation.TopBar
+import com.example.sweep.ui.theme.SweepTheme
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.rememberPagerState
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
