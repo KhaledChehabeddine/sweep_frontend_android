@@ -10,13 +10,16 @@ import com.example.sweep.screens.history.HistoryScreen
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
+import com.google.accompanist.systemuicontroller.SystemUiController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun Content(
     navController: NavHostController,
     paddingValues: PaddingValues = PaddingValues(),
-    pagerState: PagerState = rememberPagerState()
+    pagerState: PagerState = rememberPagerState(),
+    systemUiController: SystemUiController = rememberSystemUiController()
 ) {
     NavHost(
         navController = navController,
@@ -26,7 +29,7 @@ fun Content(
             HomeScreen(paddingValues = paddingValues)
         }
         composable(route = "search") {
-            SearchScreen()
+            SearchScreen(systemUiController = systemUiController)
         }
         composable(route = "sweep") {
             SweepScreen(paddingValues = paddingValues)

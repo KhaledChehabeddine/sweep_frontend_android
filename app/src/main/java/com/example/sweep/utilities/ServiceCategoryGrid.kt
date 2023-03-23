@@ -33,11 +33,16 @@ fun ServiceCategoryGrid() {
             Box(
                 modifier = Modifier.height(105.dp)
                                    .clip(RoundedCornerShape(percent = 8))
-                                   .background(color = MaterialTheme.colorScheme.secondaryContainer)
+                                   .background(
+                                       color = if (serviceCategory.active) MaterialTheme.colorScheme.secondaryContainer
+                                               else MaterialTheme.colorScheme.tertiaryContainer,
+                                   )
                                    .clickable(
-                                       indication = rememberRipple(
-                                           color = MaterialTheme.colorScheme.onSecondaryContainer
-                                       ),
+                                       indication = if (serviceCategory.active)
+                                                        rememberRipple(
+                                                            color = MaterialTheme.colorScheme.onSecondaryContainer
+                                                        )
+                                                    else null,
                                        interactionSource = remember {
                                            MutableInteractionSource()
                                        }
@@ -65,7 +70,8 @@ fun ServiceCategoryGrid() {
                                 contentDescription = serviceCategory.name,
                                 imageVector = serviceCategory.icon,
                                 modifier = Modifier.size(size = 30.dp),
-                                tint = MaterialTheme.colorScheme.onSecondary
+                                tint = if (serviceCategory.active) MaterialTheme.colorScheme.onSecondary
+                                       else MaterialTheme.colorScheme.tertiary
                             )
                         }
                     }

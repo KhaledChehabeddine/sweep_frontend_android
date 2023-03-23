@@ -65,7 +65,7 @@ private val _lightColorPalette = lightColorScheme(
 
     tertiary = cool_gray400,
     onTertiary = emerald300,
-    tertiaryContainer = cool_gray300,
+    tertiaryContainer = cool_gray200,
     onTertiaryContainer = md_theme_light_onTertiaryContainer,
 
     background = blue50,
@@ -76,7 +76,7 @@ private val _lightColorPalette = lightColorScheme(
     surfaceVariant = md_theme_light_surfaceVariant,
     onSurfaceVariant = blue_gray400,
     surfaceTint = md_theme_light_surfaceTint,
-    inverseSurface = transparent_black,
+    inverseSurface = md_theme_light_inverseSurface,
     inverseOnSurface = md_theme_light_inverseOnSurface,
 
     error = md_theme_light_error,
