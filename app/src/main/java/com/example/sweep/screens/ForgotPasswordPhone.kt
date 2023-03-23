@@ -43,7 +43,7 @@ fun ForgotPasswordPhone() {
             Text(
                 "Forgot Password?",
                 color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.displayLarge,
+                style = MaterialTheme.typography.displaySmall,
             )
 
             Text(
