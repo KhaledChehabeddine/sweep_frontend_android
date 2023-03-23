@@ -16,6 +16,7 @@ import com.example.sweep.navigation.Content
 import com.example.sweep.navigation.TopBar
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.rememberPagerState
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,11 +34,13 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+// Scaffolds are used to easily create basic Material Design layouts, with a bottomBar, topBar and content section
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun MainScreen() {
     val navController = rememberNavController()
     val pagerState = rememberPagerState()
+    val systemUiController = rememberSystemUiController()
 
     Scaffold(
         bottomBar = {
@@ -58,7 +61,8 @@ fun MainScreen() {
         Content(
             navController = navController,
             paddingValues = paddingValues,
-            pagerState = pagerState
+            pagerState = pagerState,
+            systemUiController = systemUiController
         )
     }
 }

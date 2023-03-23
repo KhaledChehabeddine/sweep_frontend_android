@@ -48,7 +48,7 @@ fun HomeScreen(paddingValues: PaddingValues) {
                                                        MutableInteractionSource()
                                                    }
                                                ) {
-
+                                                   /* TODO */
                                                }
                         ) {
 
@@ -59,66 +59,91 @@ fun HomeScreen(paddingValues: PaddingValues) {
                     }
                 }
                 Spacer(modifier = Modifier.height(height = 20.dp))
-                Column(modifier = Modifier.background(color = MaterialTheme.colorScheme.onBackground)
-                                          .fillMaxWidth()) {
+                Column(
+                    modifier = Modifier.background(color = MaterialTheme.colorScheme.onBackground)
+                                       .fillMaxWidth()
+                ) {
                     for (i in 1..2) {
-                        Row(modifier = Modifier.padding(
-                                bottom = 10.dp,
-                                end = 20.dp,
-                                start = 20.dp,
-                                top = 20.dp
-                        )) {
-                            Box(
-                                modifier = Modifier.size(
-                                    height = 24.dp,
-                                    width = 240.dp
-                                ).background(
-                                    color = MaterialTheme.colorScheme.tertiary,
-                                    shape = CircleShape
+                        Column(
+                            modifier = Modifier.clickable(
+                                                    indication = rememberRipple(
+                                                        color = MaterialTheme.colorScheme.tertiary
+                                                    ),
+                                                    interactionSource = remember {
+                                                        MutableInteractionSource()
+                                                    }
+                                               ) {
+                                                    /* TODO */
+                                               }
+                        ) {
+                            Row(
+                                modifier = Modifier.padding(
+                                                        bottom = 10.dp,
+                                                        end = 20.dp,
+                                                        start = 20.dp,
+                                                        top = 20.dp
+                                                   )
+                            ) {
+                                Box(
+                                    modifier = Modifier.size(
+                                                            height = 24.dp,
+                                                            width = 240.dp
+                                                       )
+                                                       .background(
+                                                           color = MaterialTheme.colorScheme.tertiary,
+                                                           shape = CircleShape
+                                                       )
                                 )
-                            )
-                        }
-                        Row(modifier = Modifier.padding(
-                                bottom = 20.dp,
-                                end = 20.dp,
-                                start = 20.dp
-                        )) {
-                            Box(
-                                modifier = Modifier.size(
-                                    height = 12.dp,
-                                    width = 360.dp
-                                ).background(
-                                    color = MaterialTheme.colorScheme.tertiaryContainer,
-                                    shape = CircleShape
+                            }
+                            Row(
+                                modifier = Modifier.padding(
+                                                        bottom = 20.dp,
+                                                        end = 20.dp,
+                                                        start = 20.dp
+                                                   )
+                            ) {
+                                Box(
+                                    modifier = Modifier.size(
+                                                            height = 12.dp,
+                                                            width = 360.dp
+                                                       )
+                                                       .background(
+                                                           color = MaterialTheme.colorScheme.tertiaryContainer,
+                                                           shape = CircleShape
+                                                       )
                                 )
-                            )
-                        }
-                        LazyRow(modifier = Modifier.padding(
-                                    bottom = 30.dp,
-                                    start = 20.dp
-                        )) {
-                            item {
-                                for (j in 1..3) {
-                                    Box(modifier = Modifier.size(
-                                                                height = 160.dp,
-                                                                width = 250.dp
-                                                          ).padding(end = 20.dp)
-                                                           .clip(RoundedCornerShape(percent = 8))
-                                                           .background(
-                                                               color = MaterialTheme.colorScheme.secondaryContainer
-                                                           )
-                                                           .clickable(
-                                                               indication = rememberRipple(
-                                                                   color = MaterialTheme.colorScheme
-                                                                                        .onSecondaryContainer
-                                                               ),
-                                                               interactionSource = remember {
-                                                                     MutableInteractionSource()
+                            }
+                            LazyRow(
+                                modifier = Modifier.padding(
+                                                        bottom = 30.dp,
+                                                        start = 20.dp
+                                                   )
+                            ) {
+                                item {
+                                    for (j in 1..3) {
+                                        Box(
+                                            modifier = Modifier.size(
+                                                                    height = 160.dp,
+                                                                    width = 250.dp
+                                                               )
+                                                               .padding(end = 20.dp)
+                                                               .clip(RoundedCornerShape(percent = 8))
+                                                               .background(
+                                                                   color = MaterialTheme.colorScheme.secondaryContainer
+                                                               )
+                                                               .clickable(
+                                                                   indication = rememberRipple(
+                                                                       color = MaterialTheme.colorScheme
+                                                                                            .onSecondaryContainer
+                                                                   ),
+                                                                   interactionSource = remember {
+                                                                       MutableInteractionSource()
+                                                                   }
+                                                               ) {
+                                                                    /* TODO */
                                                                }
-                                                           ) {
-                                                                /* TODO */
-                                                           }
-                                    )
+                                        )
+                                    }
                                 }
                             }
                         }
