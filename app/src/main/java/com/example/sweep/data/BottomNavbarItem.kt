@@ -3,6 +3,7 @@ package com.example.sweep.data
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.*
 import androidx.compose.ui.graphics.vector.ImageVector
+import com.example.sweep.R.drawable.ic_launcher_sweep_logo
 
 data class BottomNavbarItem(
     val icon: ImageVector? = null,
@@ -23,7 +24,7 @@ val bottomNavbarItems = listOf(
         route = "search"
     ),
     BottomNavbarItem(
-        id = com.example.sweep.R.drawable.ic_launcher_sweep_logo,
+        id = ic_launcher_sweep_logo,
         name = "Sweep",
         route = "sweep"
     ),

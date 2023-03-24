@@ -24,26 +24,29 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     buildFeatures {
         compose true
     }
+
     composeOptions {
         kotlinCompilerExtensionVersion '1.4.3'
     }
+
     packagingOptions {
         resources {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+
     kotlinOptions {
         allWarningsAsErrors = false
-        freeCompilerArgs += [
-                '-opt-in=androidx.compose.material3.ExperimentalMaterial3Api'
-        ]
+        freeCompilerArgs += ['-opt-in=androidx.compose.material3.ExperimentalMaterial3Api']
     }
 }
 
@@ -53,7 +56,6 @@ ktlint {
     android = true
     disabledRules = ['no-wildcard-imports']
     ignoreFailures = false
-//    lineLength = 120
     reporters {
         reporter 'checkstyle'
         reporter 'plain'
