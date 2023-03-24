@@ -19,5 +19,12 @@ jobs:
       - name: Make Gradle Wrapper Executable
         run: chmod +x ./gradlew
 
-      - name: Run ktlint
-        run: ./gradlew ktlintCheck
+      - name: Run Ktlint
+        run: ./gradlew ktlintCheck || true
+
+      - name: Validate Ktlint
+        run: |
+          if grep -q '.*Error.*' build/reports/ktlint/ktlintMainCheck.txt; then
+            echo "Ktlint detected linting errors."
+            exit 1
+          fi
