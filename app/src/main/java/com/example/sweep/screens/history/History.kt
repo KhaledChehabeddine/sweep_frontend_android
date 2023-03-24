@@ -39,17 +39,16 @@ fun HistoryScreen(
 fun DisplayHistoryTabItems() {
     Row(
         modifier = Modifier.fillMaxWidth()
-                           .background(MaterialTheme.colorScheme.onBackground)
-                           .clickable(
-                               indication = rememberRipple(
-                                   color = MaterialTheme.colorScheme.onSecondaryContainer
-                               ),
-                               interactionSource = remember {
-                                   MutableInteractionSource()
-                               }
-                           ) {
-
-                           }.padding(all = 20.dp)
+            .background(MaterialTheme.colorScheme.onBackground)
+            .clickable(
+                indication = rememberRipple(
+                    color = MaterialTheme.colorScheme.onSecondaryContainer
+                ),
+                interactionSource = remember {
+                    MutableInteractionSource()
+                }
+            ) {
+            }.padding(all = 20.dp)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -58,65 +57,61 @@ fun DisplayHistoryTabItems() {
         ) {
             Box(
                 modifier = Modifier.size(size = 80.dp)
-                                   .clip(shape = CircleShape)
-                                   .background(color = MaterialTheme.colorScheme.secondaryContainer)
+                    .clip(shape = CircleShape)
+                    .background(color = MaterialTheme.colorScheme.secondaryContainer)
             ) {
-
             }
             Box(
                 modifier = Modifier.size(
-                                        height = 10.dp,
-                                        width = 20.dp
-                                   )
-                                   .clip(shape = CircleShape)
-                                   .background(color = MaterialTheme.colorScheme.onTertiary)
+                    height = 10.dp,
+                    width = 20.dp
+                )
+                    .clip(shape = CircleShape)
+                    .background(color = MaterialTheme.colorScheme.onTertiary)
             ) {
-
             }
         }
         Spacer(modifier = Modifier.padding(all = 5.dp))
         Column {
             Box(
                 modifier = Modifier.size(
-                                        height = 10.dp,
-                                        width = 175.dp
-                                   )
-                                   .clip(shape = CircleShape)
-                                   .background(color = MaterialTheme.colorScheme.secondary)
+                    height = 10.dp,
+                    width = 175.dp
+                )
+                    .clip(shape = CircleShape)
+                    .background(color = MaterialTheme.colorScheme.secondary)
             ) {
-
             }
             Spacer(modifier = Modifier.height(height = 5.dp))
             Box(
                 modifier = Modifier.height(height = 14.dp)
-                                   .fillMaxWidth()
-                                   .clip(shape = CircleShape)
-                                   .background(color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    .fillMaxWidth()
+                    .clip(shape = CircleShape)
+                    .background(color = MaterialTheme.colorScheme.onSurfaceVariant)
             ) {
-
             }
             Spacer(modifier = Modifier.height(height = 20.dp))
             for (j in 0..1) {
                 if (j != 0) Spacer(modifier = Modifier.height(height = 5.dp))
                 Box(
                     modifier = Modifier.height(height = 12.dp)
-                                       .fillMaxWidth()
-                                       .clip(shape = CircleShape)
-                                       .background(color = MaterialTheme.colorScheme.tertiaryContainer)
+                        .fillMaxWidth()
+                        .clip(shape = CircleShape)
+                        .background(
+                            color = MaterialTheme.colorScheme.tertiaryContainer
+                        )
                 ) {
-
                 }
             }
             Spacer(modifier = Modifier.height(height = 5.dp))
             Box(
                 modifier = Modifier.size(
-                                        height = 12.dp,
-                                        width = 100.dp
-                                   )
-                                   .clip(shape = CircleShape)
-                                   .background(color = MaterialTheme.colorScheme.tertiaryContainer)
+                    height = 12.dp,
+                    width = 100.dp
+                )
+                    .clip(shape = CircleShape)
+                    .background(color = MaterialTheme.colorScheme.tertiaryContainer)
             ) {
-
             }
         }
     }

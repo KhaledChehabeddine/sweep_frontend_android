@@ -32,10 +32,10 @@ fun SearchScreen(systemUiController: SystemUiController) {
 
         LazyColumn(
             modifier = Modifier.padding(
-                                    end = 20.dp,
-                                    start = 20.dp,
-                                    top = 90.dp
-                              )
+                end = 20.dp,
+                start = 20.dp,
+                top = 90.dp
+            )
         ) {
             item {
                 Text(
@@ -50,20 +50,22 @@ fun SearchScreen(systemUiController: SystemUiController) {
                             if (i != 0) Spacer(modifier = Modifier.padding(start = 10.dp))
                             Box(
                                 modifier = Modifier.size(
-                                                        height = 40.dp,
-                                                        width = 100.dp
-                                                  ).clip(RoundedCornerShape(size = 10.dp))
-                                                   .background(color = MaterialTheme.colorScheme.secondaryContainer)
-                                                   .clickable(
-                                                       indication = rememberRipple(
-                                                           color = MaterialTheme.colorScheme.onSecondaryContainer
-                                                       ),
-                                                       interactionSource = remember {
-                                                           MutableInteractionSource()
-                                                       }
-                                                   ) {
-                                                       /* TODO */
-                                                   }
+                                    height = 40.dp,
+                                    width = 100.dp
+                                ).clip(RoundedCornerShape(size = 10.dp))
+                                    .background(
+                                        color = MaterialTheme.colorScheme.secondaryContainer
+                                    )
+                                    .clickable(
+                                        indication = rememberRipple(
+                                            color = MaterialTheme.colorScheme.onSecondaryContainer
+                                        ),
+                                        interactionSource = remember {
+                                            MutableInteractionSource()
+                                        }
+                                    ) {
+                                        /* TODO */
+                                    }
                             )
                         }
                     }
@@ -83,41 +85,45 @@ fun SearchScreen(systemUiController: SystemUiController) {
                             for (j in 0..1)
                                 Column(
                                     modifier = Modifier.fillMaxWidth()
-                                                       .weight(1f)
+                                        .weight(1f)
 
                                 ) {
                                     Box(
                                         modifier = Modifier.height(100.dp)
-                                                           .fillMaxWidth()
-                                                           .clip(RoundedCornerShape(10.dp))
-                                                           .background(
-                                                               color = MaterialTheme.colorScheme.secondaryContainer
-                                                           )
-                                                           .clickable(
-                                                               indication = rememberRipple(
-                                                                   color = MaterialTheme.colorScheme
-                                                                                        .onSecondaryContainer
-                                                               ),
-                                                               interactionSource = remember {
-                                                                   MutableInteractionSource()
-                                                               }
-                                                           ) {
-                                                                /* TODO */
-                                                           }
+                                            .fillMaxWidth()
+                                            .clip(RoundedCornerShape(10.dp))
+                                            .background(
+                                                color = MaterialTheme.colorScheme.secondaryContainer
+                                            )
+                                            .clickable(
+                                                indication = rememberRipple(
+                                                    color = MaterialTheme.colorScheme
+                                                        .onSecondaryContainer
+                                                ),
+                                                interactionSource = remember {
+                                                    MutableInteractionSource()
+                                                }
+                                            ) {
+                                                /* TODO */
+                                            }
                                     )
                                     Spacer(modifier = Modifier.height(height = 10.dp))
                                     Box(
                                         modifier = Modifier.height(height = 16.dp)
-                                                           .fillMaxWidth()
-                                                           .clip(CircleShape)
-                                                           .background(color = MaterialTheme.colorScheme.tertiary)
+                                            .fillMaxWidth()
+                                            .clip(CircleShape)
+                                            .background(
+                                                color = MaterialTheme.colorScheme.tertiary
+                                            )
                                     )
                                     Spacer(modifier = Modifier.height(height = 5.dp))
                                     Box(
                                         modifier = Modifier.height(height = 10.dp)
-                                                           .fillMaxWidth(fraction = 0.5f)
-                                                           .clip(CircleShape)
-                                                           .background(color = MaterialTheme.colorScheme.tertiaryContainer)
+                                            .fillMaxWidth(fraction = 0.5f)
+                                            .clip(CircleShape)
+                                            .background(
+                                                color = MaterialTheme.colorScheme.tertiaryContainer
+                                            )
                                     )
                                     Spacer(modifier = Modifier.height(height = 15.dp))
                                 }

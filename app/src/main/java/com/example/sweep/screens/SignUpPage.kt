@@ -21,14 +21,13 @@ fun SignUpPage() {
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxSize()
-        ,
 
     ) {
         val img = com.example.sweep.R.drawable.ic_launcher_sweep_logo
         Column(
             verticalArrangement = Arrangement.spacedBy(20.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ){
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             Icon(
                 painter = painterResource(id = img),
                 contentDescription = "logo",
@@ -36,15 +35,16 @@ fun SignUpPage() {
                 tint = MaterialTheme.colorScheme.primary
             )
 
-            Text("Welcome to Sweep!",
+            Text(
+                "Welcome to Sweep!",
                 color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.displaySmall,
-                )
+                style = MaterialTheme.typography.displaySmall
+            )
 
             Surface(
                 modifier = Modifier.clip(RoundedCornerShape(10.dp)),
-                shadowElevation = 10.dp,
-            ){
+                shadowElevation = 10.dp
+            ) {
                 SignUp()
             }
         }
@@ -52,13 +52,12 @@ fun SignUpPage() {
 }
 
 @Composable
-fun SignUp(){
-
-    val username =  remember {
+fun SignUp() {
+    val username = remember {
         mutableStateOf("")
     }
 
-    val password =  remember {
+    val password = remember {
         mutableStateOf("")
     }
 
@@ -76,9 +75,9 @@ fun SignUp(){
                 username.value = it
             },
             label = {
-                    Text("Username")
+                Text("Username")
             },
-            singleLine = true,
+            singleLine = true
         )
 
         OutlinedTextField(
@@ -89,7 +88,7 @@ fun SignUp(){
             label = {
                 Text("Email")
             },
-            singleLine = true,
+            singleLine = true
         )
 
         OutlinedTextField(
@@ -103,21 +102,23 @@ fun SignUp(){
             singleLine = true,
             visualTransformation = if (passwordVisible) {
                 VisualTransformation.None
-            } else PasswordVisualTransformation(),
+            } else {
+                PasswordVisualTransformation()
+            }
         )
 
         Button(
             onClick = {},
-            modifier = Modifier.padding(10.dp),
+            modifier = Modifier.padding(10.dp)
         ) {
             Text(text = "Submit")
         }
 
-        Text("Already have an Account?",
+        Text(
+            "Already have an Account?",
             color = MaterialTheme.colorScheme.primary,
-            style = MaterialTheme.typography.titleSmall,
+            style = MaterialTheme.typography.titleSmall
         )
-
     }
 }
 

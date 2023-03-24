@@ -17,10 +17,9 @@ fun ProfileSetupScreen() {
     Column(
         verticalArrangement = Arrangement.spacedBy(15.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier.fillMaxSize(),
-    ){
-
-        Spacer(modifier = Modifier.height(50.dp));
+        modifier = Modifier.fillMaxSize()
+    ) {
+        Spacer(modifier = Modifier.height(50.dp))
 
         Icon(
             Icons.Default.AccountCircle,
@@ -33,13 +32,11 @@ fun ProfileSetupScreen() {
         LastName()
         DOB()
         DropdownMenu()
-
     }
-
 }
 
 @Composable
-fun Name(){
+fun Name() {
     val name_ = remember {
         mutableStateOf("")
     }
@@ -51,13 +48,13 @@ fun Name(){
         label = {
             Text("Last Name")
         },
-        singleLine = true,
+        singleLine = true
 
     )
 }
 
 @Composable
-fun LastName(){
+fun LastName() {
     val Lastname = remember {
         mutableStateOf("")
     }
@@ -69,13 +66,13 @@ fun LastName(){
         label = {
             Text("First Name")
         },
-        singleLine = true,
+        singleLine = true
 
-        )
+    )
 }
 
 @Composable
-fun DOB(){
+fun DOB() {
     val DOB = remember {
         mutableStateOf("")
     }
@@ -87,9 +84,9 @@ fun DOB(){
         label = {
             Text("Date of Birth")
         },
-        singleLine = true,
+        singleLine = true
 
-        )
+    )
 }
 
 @OptIn(ExperimentalMaterialApi::class)
@@ -114,7 +111,7 @@ fun DropdownMenu() {
                 ExposedDropdownMenuDefaults.TrailingIcon(
                     expanded = expanded
                 )
-            },
+            }
 //            colors = ExposedDropdownMenuDefaults.textFieldColors()
         )
         ExposedDropdownMenu(
@@ -130,7 +127,7 @@ fun DropdownMenu() {
                         selectedOptionText = selectionOption
                         expanded = false
                     },
-                    text = {selectedOptionText}
+                    text = { selectedOptionText }
                 )
 //                {
 //                    Text(text = selectionOption)
@@ -139,9 +136,6 @@ fun DropdownMenu() {
         }
     }
 }
-
-
-
 
 @Preview(showBackground = true)
 @Composable

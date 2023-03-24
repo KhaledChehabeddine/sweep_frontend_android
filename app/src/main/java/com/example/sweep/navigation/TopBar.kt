@@ -34,7 +34,9 @@ fun TopBar(
         }
         composable(route = "sweep") {
             TopBarSweep()
-            systemUiController.setStatusBarColor(color = MaterialTheme.colorScheme.onSecondaryContainer)
+            systemUiController.setStatusBarColor(
+                color = MaterialTheme.colorScheme.onSecondaryContainer
+            )
         }
         composable(route = "history") {
             TopBarHistory(pagerState = pagerState)

@@ -24,7 +24,7 @@ fun BottomBar(
                     item.icon?.let {
                         Icon(
                             contentDescription = item.name,
-                            imageVector = it,
+                            imageVector = it
                         )
                     } ?: run {
                         Icon(

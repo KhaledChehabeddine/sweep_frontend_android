@@ -32,23 +32,28 @@ fun ServiceCategoryGrid() {
         items(serviceCategories) { serviceCategory ->
             Box(
                 modifier = Modifier.height(105.dp)
-                                   .clip(RoundedCornerShape(percent = 8))
-                                   .background(
-                                       color = if (serviceCategory.active) MaterialTheme.colorScheme.secondaryContainer
-                                               else MaterialTheme.colorScheme.tertiaryContainer,
-                                   )
-                                   .clickable(
-                                       indication = if (serviceCategory.active)
-                                                        rememberRipple(
-                                                            color = MaterialTheme.colorScheme.onSecondaryContainer
-                                                        )
-                                                    else null,
-                                       interactionSource = remember {
-                                           MutableInteractionSource()
-                                       }
-                                   ) {
-                                        /* TODO */
-                                   }
+                    .clip(RoundedCornerShape(percent = 8))
+                    .background(
+                        color = if (serviceCategory.active) {
+                            MaterialTheme.colorScheme.secondaryContainer
+                        } else {
+                            MaterialTheme.colorScheme.tertiaryContainer
+                        }
+                    )
+                    .clickable(
+                        indication = if (serviceCategory.active) {
+                            rememberRipple(
+                                color = MaterialTheme.colorScheme.onSecondaryContainer
+                            )
+                        } else {
+                            null
+                        },
+                        interactionSource = remember {
+                            MutableInteractionSource()
+                        }
+                    ) {
+                        /* TODO */
+                    }
             ) {
                 Column(
                     modifier = Modifier.fillMaxSize(),
@@ -61,24 +66,27 @@ fun ServiceCategoryGrid() {
                         Box(
                             contentAlignment = Alignment.Center,
                             modifier = Modifier.size(size = 50.dp)
-                                               .background(
-                                                   color = MaterialTheme.colorScheme.onBackground,
-                                                   shape = CircleShape
-                                               )
+                                .background(
+                                    color = MaterialTheme.colorScheme.onBackground,
+                                    shape = CircleShape
+                                )
                         ) {
                             Icon(
                                 contentDescription = serviceCategory.name,
                                 imageVector = serviceCategory.icon,
                                 modifier = Modifier.size(size = 30.dp),
-                                tint = if (serviceCategory.active) MaterialTheme.colorScheme.onSecondary
-                                       else MaterialTheme.colorScheme.tertiary
+                                tint = if (serviceCategory.active) {
+                                    MaterialTheme.colorScheme.onSecondary
+                                } else {
+                                    MaterialTheme.colorScheme.tertiary
+                                }
                             )
                         }
                     }
                     Row(
                         horizontalArrangement = Arrangement.Center,
                         modifier = Modifier.fillMaxWidth()
-                                           .padding(top = 10.dp)
+                            .padding(top = 10.dp)
                     ) {
                         Text(
                             color = MaterialTheme.colorScheme.onSurface,

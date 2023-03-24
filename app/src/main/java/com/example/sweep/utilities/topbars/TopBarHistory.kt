@@ -39,7 +39,7 @@ fun TopBarHistory(pagerState: PagerState = rememberPagerState()) {
                             )
                         },
                         selected = pagerState.currentPage == index,
-                        unselectedContentColor = MaterialTheme.colorScheme.onSurface,
+                        unselectedContentColor = MaterialTheme.colorScheme.onSurface
                     )
                 }
             }

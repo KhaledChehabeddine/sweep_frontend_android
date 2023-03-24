@@ -1,8 +1,7 @@
 plugins {
-    //noinspection GroovyAssignabilityCheck
     id 'com.android.application'
-    //noinspection GroovyAssignabilityCheck
     id 'org.jetbrains.kotlin.android'
+    id "org.jlleitschuh.gradle.ktlint" version "11.3.1"
 }
 
 android {
@@ -45,6 +44,20 @@ android {
         freeCompilerArgs += [
                 '-opt-in=androidx.compose.material3.ExperimentalMaterial3Api'
         ]
+    }
+}
+
+tasks.getByPath('preBuild').dependsOn('ktlintFormat')
+
+ktlint {
+    android = true
+    disabledRules = ['no-wildcard-imports']
+    ignoreFailures = false
+//    lineLength = 120
+    reporters {
+        reporter 'checkstyle'
+        reporter 'plain'
+        reporter 'sarif'
     }
 }
 

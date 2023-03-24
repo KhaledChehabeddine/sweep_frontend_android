@@ -11,7 +11,7 @@ fun TopBarAccount() {
     CenterAlignedTopAppBar(
         actions = { },
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.background,
+            containerColor = MaterialTheme.colorScheme.background
         ),
         navigationIcon = { },
         title = {

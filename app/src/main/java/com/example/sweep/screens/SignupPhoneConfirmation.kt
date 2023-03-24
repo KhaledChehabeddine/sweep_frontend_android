@@ -16,19 +16,18 @@ fun PhoneVerification() {
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxSize()
-        ,
-        ){
+    ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(10.dp),
             horizontalAlignment = Alignment.CenterHorizontally
-        ){
-
+        ) {
             PhoneNumberField()
 
             Button(
                 onClick = {}
-            ){
-                Text("Send Code",
+            ) {
+                Text(
+                    "Send Code",
                     textAlign = TextAlign.Center,
                     color = MaterialTheme.colorScheme.background,
                     style = MaterialTheme.typography.bodyMedium,
@@ -38,17 +37,17 @@ fun PhoneVerification() {
             }
 
             VerificationCode()
-            Text("Already have an Account?",
+            Text(
+                "Already have an Account?",
                 color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.bodyMedium)
+                style = MaterialTheme.typography.bodyMedium
+            )
         }
     }
-
-
 }
 
 @Composable
-fun PhoneNumberField(){
+fun PhoneNumberField() {
     val phoneNumber = remember {
         mutableStateOf("")
     }
@@ -62,11 +61,10 @@ fun PhoneNumberField(){
             Text("Phone Number")
         },
 
-        singleLine = true,
+        singleLine = true
 
-        )
+    )
 }
-
 
 @Preview(showBackground = true)
 @Composable

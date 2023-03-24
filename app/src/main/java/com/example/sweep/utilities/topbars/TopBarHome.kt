@@ -14,9 +14,11 @@ import com.example.sweep.ui.theme.SweepTheme
 fun TopBarHome() {
     CenterAlignedTopAppBar(
         actions = {
-            if (notificationIcon.badgeCount > 0)
+            if (notificationIcon.badgeCount > 0) {
                 IconButton(
-                    colors = IconButtonDefaults.iconButtonColors(contentColor = MaterialTheme.colorScheme.onSurface),
+                    colors = IconButtonDefaults.iconButtonColors(
+                        contentColor = MaterialTheme.colorScheme.onSurface
+                    ),
                     onClick = {
                         /* TODO */
                     }
@@ -32,9 +34,11 @@ fun TopBarHome() {
                         )
                     }
                 }
-            else
+            } else {
                 IconButton(
-                    colors = IconButtonDefaults.iconButtonColors(contentColor = MaterialTheme.colorScheme.onSurface),
+                    colors = IconButtonDefaults.iconButtonColors(
+                        contentColor = MaterialTheme.colorScheme.onSurface
+                    ),
                     onClick = {
                         /* TODO */
                     }
@@ -44,20 +48,23 @@ fun TopBarHome() {
                         imageVector = Icons.Outlined.Notifications
                     )
                 }
+            }
         },
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.background
         ),
         navigationIcon = {
             IconButton(
-                colors = IconButtonDefaults.iconButtonColors(contentColor = MaterialTheme.colorScheme.onSurface),
+                colors = IconButtonDefaults.iconButtonColors(
+                    contentColor = MaterialTheme.colorScheme.onSurface
+                ),
                 onClick = {
                     /* TODO */
                 }
             ) {
                 Icon(
                     contentDescription = "Menu",
-                    imageVector = Icons.Outlined.Menu,
+                    imageVector = Icons.Outlined.Menu
                 )
             }
         },
