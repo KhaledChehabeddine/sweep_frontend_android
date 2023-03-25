@@ -11,7 +11,7 @@ fun TopBarSweep() {
     CenterAlignedTopAppBar(
         actions = { },
         colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-          containerColor = MaterialTheme.colorScheme.onSecondaryContainer
+            containerColor = MaterialTheme.colorScheme.onSecondaryContainer
         ),
         navigationIcon = { },
         title = {

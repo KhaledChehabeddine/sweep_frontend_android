@@ -17,16 +17,16 @@ fun PastReservations(paddingValues: PaddingValues) {
     Surface(
         color = MaterialTheme.colorScheme.background,
         modifier = Modifier.fillMaxSize()
-                           .padding(paddingValues = paddingValues)
+            .padding(paddingValues = paddingValues)
     ) {
-       LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
-           item {
-               for (i in 0..10) {
-                   DisplayHistoryTabItems()
-                   if (i != 10) Spacer(modifier = Modifier.height(height = 20.dp))
-               }
-           }
-       }
+        LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
+            item {
+                for (i in 0..10) {
+                    DisplayHistoryTabItems()
+                    if (i != 10) Spacer(modifier = Modifier.height(height = 20.dp))
+                }
+            }
+        }
     }
 }
 

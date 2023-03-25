@@ -25,33 +25,34 @@ fun HomeScreen(paddingValues: PaddingValues) {
     Surface(
         color = MaterialTheme.colorScheme.background,
         modifier = Modifier.fillMaxSize()
-                           .padding(paddingValues = paddingValues)
+            .padding(paddingValues = paddingValues)
     ) {
         LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
             item {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
                     modifier = Modifier.background(color = MaterialTheme.colorScheme.onBackground)
-                                       .padding(all = 20.dp)
+                        .padding(all = 20.dp)
                 ) {
                     Row {
                         Box(
                             modifier = Modifier.height(height = 225.dp)
-                                               .fillMaxWidth()
-                                               .clip(RoundedCornerShape(percent = 8))
-                                               .background(color = MaterialTheme.colorScheme.secondaryContainer)
-                                               .clickable(
-                                                   indication = rememberRipple(
-                                                       color = MaterialTheme.colorScheme.onSecondaryContainer
-                                                   ),
-                                                   interactionSource = remember {
-                                                       MutableInteractionSource()
-                                                   }
-                                               ) {
-                                                   /* TODO */
-                                               }
+                                .fillMaxWidth()
+                                .clip(RoundedCornerShape(percent = 8))
+                                .background(
+                                    color = MaterialTheme.colorScheme.secondaryContainer
+                                )
+                                .clickable(
+                                    indication = rememberRipple(
+                                        color = MaterialTheme.colorScheme.onSecondaryContainer
+                                    ),
+                                    interactionSource = remember {
+                                        MutableInteractionSource()
+                                    }
+                                ) {
+                                    /* TODO */
+                                }
                         ) {
-
                         }
                     }
                     Row(modifier = Modifier.padding(top = 20.dp)) {
@@ -61,87 +62,89 @@ fun HomeScreen(paddingValues: PaddingValues) {
                 Spacer(modifier = Modifier.height(height = 20.dp))
                 Column(
                     modifier = Modifier.background(color = MaterialTheme.colorScheme.onBackground)
-                                       .fillMaxWidth()
+                        .fillMaxWidth()
                 ) {
                     for (i in 1..2) {
                         Column(
                             modifier = Modifier.clickable(
-                                                    indication = rememberRipple(
-                                                        color = MaterialTheme.colorScheme.tertiary
-                                                    ),
-                                                    interactionSource = remember {
-                                                        MutableInteractionSource()
-                                                    }
-                                               ) {
-                                                    /* TODO */
-                                               }
+                                indication = rememberRipple(
+                                    color = MaterialTheme.colorScheme.tertiary
+                                ),
+                                interactionSource = remember {
+                                    MutableInteractionSource()
+                                }
+                            ) {
+                                /* TODO */
+                            }
                         ) {
                             Row(
                                 modifier = Modifier.padding(
-                                                        bottom = 10.dp,
-                                                        end = 20.dp,
-                                                        start = 20.dp,
-                                                        top = 20.dp
-                                                   )
+                                    bottom = 10.dp,
+                                    end = 20.dp,
+                                    start = 20.dp,
+                                    top = 20.dp
+                                )
                             ) {
                                 Box(
                                     modifier = Modifier.size(
-                                                            height = 24.dp,
-                                                            width = 240.dp
-                                                       )
-                                                       .background(
-                                                           color = MaterialTheme.colorScheme.tertiary,
-                                                           shape = CircleShape
-                                                       )
+                                        height = 24.dp,
+                                        width = 240.dp
+                                    )
+                                        .background(
+                                            color = MaterialTheme.colorScheme.tertiary,
+                                            shape = CircleShape
+                                        )
                                 )
                             }
                             Row(
                                 modifier = Modifier.padding(
-                                                        bottom = 20.dp,
-                                                        end = 20.dp,
-                                                        start = 20.dp
-                                                   )
+                                    bottom = 20.dp,
+                                    end = 20.dp,
+                                    start = 20.dp
+                                )
                             ) {
                                 Box(
                                     modifier = Modifier.size(
-                                                            height = 12.dp,
-                                                            width = 360.dp
-                                                       )
-                                                       .background(
-                                                           color = MaterialTheme.colorScheme.tertiaryContainer,
-                                                           shape = CircleShape
-                                                       )
+                                        height = 12.dp,
+                                        width = 360.dp
+                                    )
+                                        .background(
+                                            color = MaterialTheme.colorScheme.tertiaryContainer,
+                                            shape = CircleShape
+                                        )
                                 )
                             }
                             LazyRow(
                                 modifier = Modifier.padding(
-                                                        bottom = 30.dp,
-                                                        start = 20.dp
-                                                   )
+                                    bottom = 30.dp,
+                                    start = 20.dp
+                                )
                             ) {
                                 item {
                                     for (j in 1..3) {
                                         Box(
                                             modifier = Modifier.size(
-                                                                    height = 160.dp,
-                                                                    width = 250.dp
-                                                               )
-                                                               .padding(end = 20.dp)
-                                                               .clip(RoundedCornerShape(percent = 8))
-                                                               .background(
-                                                                   color = MaterialTheme.colorScheme.secondaryContainer
-                                                               )
-                                                               .clickable(
-                                                                   indication = rememberRipple(
-                                                                       color = MaterialTheme.colorScheme
-                                                                                            .onSecondaryContainer
-                                                                   ),
-                                                                   interactionSource = remember {
-                                                                       MutableInteractionSource()
-                                                                   }
-                                                               ) {
-                                                                    /* TODO */
-                                                               }
+                                                height = 160.dp,
+                                                width = 250.dp
+                                            )
+                                                .padding(end = 20.dp)
+                                                .clip(
+                                                    RoundedCornerShape(percent = 8)
+                                                )
+                                                .background(
+                                                    color = MaterialTheme.colorScheme.secondaryContainer
+                                                )
+                                                .clickable(
+                                                    indication = rememberRipple(
+                                                        color = MaterialTheme.colorScheme
+                                                            .onSecondaryContainer
+                                                    ),
+                                                    interactionSource = remember {
+                                                        MutableInteractionSource()
+                                                    }
+                                                ) {
+                                                    /* TODO */
+                                                }
                                         )
                                     }
                                 }

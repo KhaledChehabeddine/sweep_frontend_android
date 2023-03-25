@@ -43,17 +43,20 @@ fun SweepSearchBar(systemUiController: SystemUiController) {
     val focusManager = LocalFocusManager.current
 
     systemUiController.setStatusBarColor(
-        color = if (isActive.value) MaterialTheme.colorScheme.secondaryContainer
-                else MaterialTheme.colorScheme.background
+        color = if (isActive.value) {
+            MaterialTheme.colorScheme.secondaryContainer
+        } else {
+            MaterialTheme.colorScheme.background
+        }
     )
 
     Row(
         horizontalArrangement = Arrangement.Center,
         modifier = Modifier.fillMaxWidth()
-                           .zIndex(zIndex = 1f)
-                           .semantics {
-                               isContainer = true
-                           }
+            .zIndex(zIndex = 1f)
+            .semantics {
+                isContainer = true
+            }
     ) {
         SearchBar(
             active = isActive.value,
@@ -61,7 +64,7 @@ fun SweepSearchBar(systemUiController: SystemUiController) {
                 containerColor = MaterialTheme.colorScheme.secondaryContainer
             ),
             leadingIcon = {
-                if (isActive.value)
+                if (isActive.value) {
                     IconButton(
                         colors = IconButtonDefaults.iconButtonColors(
                             contentColor = MaterialTheme.colorScheme.onSurface
@@ -72,10 +75,10 @@ fun SweepSearchBar(systemUiController: SystemUiController) {
                     ) {
                         Icon(
                             contentDescription = "Arrow back",
-                            imageVector = Icons.Default.ArrowBack,
+                            imageVector = Icons.Default.ArrowBack
                         )
                     }
-                else
+                } else {
                     IconButton(
                         colors = IconButtonDefaults.iconButtonColors(
                             contentColor = MaterialTheme.colorScheme.onSurface
@@ -86,9 +89,10 @@ fun SweepSearchBar(systemUiController: SystemUiController) {
                     ) {
                         Icon(
                             contentDescription = "Search",
-                            imageVector = Icons.Default.Search,
+                            imageVector = Icons.Default.Search
                         )
                     }
+                }
             },
             onQueryChange = { query ->
                 searchQuery.value = query
@@ -110,7 +114,7 @@ fun SweepSearchBar(systemUiController: SystemUiController) {
             },
             query = searchQuery.value,
             trailingIcon = {
-                if (isActive.value)
+                if (isActive.value) {
                     IconButton(
                         colors = IconButtonDefaults.iconButtonColors(
                             contentColor = MaterialTheme.colorScheme.onSurface
@@ -125,10 +129,10 @@ fun SweepSearchBar(systemUiController: SystemUiController) {
                     ) {
                         Icon(
                             contentDescription = "Close",
-                            imageVector = Icons.Default.Close,
+                            imageVector = Icons.Default.Close
                         )
                     }
-                else
+                } else {
                     IconButton(
                         colors = IconButtonDefaults.iconButtonColors(
                             contentColor = MaterialTheme.colorScheme.onSurface
@@ -142,6 +146,7 @@ fun SweepSearchBar(systemUiController: SystemUiController) {
                             imageVector = Icons.Outlined.Mic
                         )
                     }
+                }
             }
         ) {
             LazyColumn(
@@ -162,10 +167,10 @@ fun SweepSearchBar(systemUiController: SystemUiController) {
                             )
                         },
                         modifier = Modifier.clickable {
-                                                searchQuery.value = resultText
-                                                focusManager.clearFocus()
-                                                isActive.value = false
-                                           },
+                            searchQuery.value = resultText
+                            focusManager.clearFocus()
+                            isActive.value = false
+                        },
                         text = {
                             Text(text = "Additional info")
                         }

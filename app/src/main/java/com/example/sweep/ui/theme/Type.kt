@@ -12,12 +12,12 @@ import com.example.sweep.R
 private val _rubikFontFamily = FontFamily(
     Font(
         resId = R.font.rubik_light,
-        weight = FontWeight.Light,
+        weight = FontWeight.Light
     ),
     Font(
         resId = R.font.rubik_light_italic,
         style = FontStyle.Italic,
-        weight = FontWeight.Light,
+        weight = FontWeight.Light
     ),
 
     Font(resId = R.font.rubik_regular),
@@ -29,52 +29,52 @@ private val _rubikFontFamily = FontFamily(
 
     Font(
         resId = R.font.rubik_medium,
-        weight = FontWeight.Medium,
+        weight = FontWeight.Medium
     ),
     Font(
         resId = R.font.rubik_medium_italic,
         style = FontStyle.Italic,
-        weight = FontWeight.Medium,
+        weight = FontWeight.Medium
     ),
 
     Font(
         resId = R.font.rubik_semi_bold,
-        weight = FontWeight.SemiBold,
+        weight = FontWeight.SemiBold
     ),
     Font(
         resId = R.font.rubik_semi_bold_italic,
         style = FontStyle.Italic,
-        weight = FontWeight.SemiBold,
+        weight = FontWeight.SemiBold
     ),
 
     Font(
         resId = R.font.rubik_bold,
-        weight = FontWeight.Bold,
+        weight = FontWeight.Bold
     ),
     Font(
         resId = R.font.rubik_bold_italic,
         style = FontStyle.Italic,
-        weight = FontWeight.Bold,
+        weight = FontWeight.Bold
     ),
 
     Font(
         resId = R.font.rubik_extra_bold,
-        weight = FontWeight.ExtraBold,
+        weight = FontWeight.ExtraBold
     ),
     Font(
         resId = R.font.rubik_extra_bold_italic,
         style = FontStyle.Italic,
-        weight = FontWeight.ExtraBold,
+        weight = FontWeight.ExtraBold
     ),
 
     Font(
         resId = R.font.rubik_black,
-        weight = FontWeight.Black,
+        weight = FontWeight.Black
     ),
     Font(
         resId = R.font.rubik_black_italic,
         style = FontStyle.Italic,
-        weight = FontWeight.Black,
+        weight = FontWeight.Black
     )
 )
 
@@ -106,7 +106,7 @@ val Typography = Typography(
         fontFamily = _rubikFontFamily,
         fontSize = 14.sp,
         fontWeight = FontWeight.Bold,
-        lineHeight = 20.sp,
+        lineHeight = 20.sp
     ),
 
     labelMedium = TextStyle(

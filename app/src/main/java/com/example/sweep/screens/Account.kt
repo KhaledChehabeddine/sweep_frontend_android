@@ -24,21 +24,24 @@ fun AccountScreen(paddingValues: PaddingValues) {
     Surface(
         color = MaterialTheme.colorScheme.background,
         modifier = Modifier.fillMaxSize()
-                           .padding(paddingValues = paddingValues)
+            .padding(paddingValues = paddingValues)
     ) {
         LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
             item {
                 Row {
-                    Box(modifier = Modifier.height(height = 150.dp)
-                                           .fillMaxWidth()
-                                           .padding(all = 20.dp)
-                                           .clip(RoundedCornerShape(percent = 8))
-                                           .background(color = MaterialTheme.colorScheme.onBackground)
+                    Box(
+                        modifier = Modifier.height(height = 150.dp)
+                            .fillMaxWidth()
+                            .padding(all = 20.dp)
+                            .clip(RoundedCornerShape(percent = 8))
+                            .background(
+                                color = MaterialTheme.colorScheme.onBackground
+                            )
                     ) {
                         Row(
                             horizontalArrangement = Arrangement.SpaceBetween,
                             modifier = Modifier.fillMaxWidth()
-                                               .padding(horizontal = 20.dp)
+                                .padding(horizontal = 20.dp)
                         ) {
                             accountCategories.forEach { accountCategory ->
                                 Column(
@@ -48,19 +51,18 @@ fun AccountScreen(paddingValues: PaddingValues) {
                                     Box(
                                         contentAlignment = Alignment.Center,
                                         modifier = Modifier.size(size = 60.dp)
-                                                           .clip(RoundedCornerShape(percent = 16))
-                                                           .background(
-                                                                color = MaterialTheme.colorScheme.background
-                                                          ).clickable(
-                                                            indication = rememberRipple(
-                                                                color = MaterialTheme.colorScheme.secondary
-                                                            ),
-                                                            interactionSource = remember {
-                                                                MutableInteractionSource()
-                                                            }
-                                                          ) {
-
-                                                          }
+                                            .clip(RoundedCornerShape(percent = 16))
+                                            .background(
+                                                color = MaterialTheme.colorScheme.background
+                                            ).clickable(
+                                                indication = rememberRipple(
+                                                    color = MaterialTheme.colorScheme.secondary
+                                                ),
+                                                interactionSource = remember {
+                                                    MutableInteractionSource()
+                                                }
+                                            ) {
+                                            }
                                     ) {
                                         Icon(
                                             contentDescription = accountCategory.name,
@@ -72,7 +74,7 @@ fun AccountScreen(paddingValues: PaddingValues) {
                                     Row(
                                         horizontalArrangement = Arrangement.Center,
                                         modifier = Modifier.width(width = 60.dp)
-                                                           .padding(top = 5.dp)
+                                            .padding(top = 5.dp)
                                     ) {
                                         Text(
                                             color = MaterialTheme.colorScheme.onSurface,
@@ -86,11 +88,14 @@ fun AccountScreen(paddingValues: PaddingValues) {
                     }
                 }
                 Row {
-                    Box(modifier = Modifier.height(height = 278.dp)
-                                           .fillMaxWidth()
-                                           .padding(all = 20.dp)
-                                           .clip(RoundedCornerShape(percent = 8))
-                                           .background(color = MaterialTheme.colorScheme.onBackground)
+                    Box(
+                        modifier = Modifier.height(height = 278.dp)
+                            .fillMaxWidth()
+                            .padding(all = 20.dp)
+                            .clip(RoundedCornerShape(percent = 8))
+                            .background(
+                                color = MaterialTheme.colorScheme.onBackground
+                            )
                     ) {
                         Column(modifier = Modifier.padding(all = 20.dp)) {
                             Row {
@@ -105,11 +110,14 @@ fun AccountScreen(paddingValues: PaddingValues) {
                     }
                 }
                 Row {
-                    Box(modifier = Modifier.height(height = 233.dp)
-                                           .fillMaxWidth()
-                                           .padding(all = 20.dp)
-                                           .clip(RoundedCornerShape(percent = 8))
-                                           .background(color = MaterialTheme.colorScheme.onBackground)
+                    Box(
+                        modifier = Modifier.height(height = 233.dp)
+                            .fillMaxWidth()
+                            .padding(all = 20.dp)
+                            .clip(RoundedCornerShape(percent = 8))
+                            .background(
+                                color = MaterialTheme.colorScheme.onBackground
+                            )
                     ) {
                         Column(modifier = Modifier.padding(all = 20.dp)) {
                             Row {
@@ -124,11 +132,14 @@ fun AccountScreen(paddingValues: PaddingValues) {
                     }
                 }
                 Row {
-                    Box(modifier = Modifier.height(height = 233.dp)
-                                           .fillMaxWidth()
-                                           .padding(all = 20.dp)
-                                           .clip(RoundedCornerShape(percent = 8))
-                                           .background(color = MaterialTheme.colorScheme.onBackground)
+                    Box(
+                        modifier = Modifier.height(height = 233.dp)
+                            .fillMaxWidth()
+                            .padding(all = 20.dp)
+                            .clip(RoundedCornerShape(percent = 8))
+                            .background(
+                                color = MaterialTheme.colorScheme.onBackground
+                            )
                     ) {
                         Column(modifier = Modifier.padding(all = 20.dp)) {
                             Row {
@@ -150,17 +161,17 @@ fun AccountScreen(paddingValues: PaddingValues) {
 @Composable
 private fun DisplaySubCategory(subCategories: List<SubCategory>) {
     subCategories.forEach { subCategory ->
-        Row(modifier = Modifier.fillMaxWidth()
-                               .clickable(
-                                    indication = rememberRipple(
-                                        color = MaterialTheme.colorScheme.primaryContainer
-                                    ),
-                                    interactionSource = remember {
-                                        MutableInteractionSource()
-                                    }
-                               ) {
-
-                               }
+        Row(
+            modifier = Modifier.fillMaxWidth()
+                .clickable(
+                    indication = rememberRipple(
+                        color = MaterialTheme.colorScheme.primaryContainer
+                    ),
+                    interactionSource = remember {
+                        MutableInteractionSource()
+                    }
+                ) {
+                }
         ) {
             Row(
                 modifier = Modifier.padding(vertical = 10.dp),

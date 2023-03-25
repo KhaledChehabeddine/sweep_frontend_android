@@ -15,9 +15,9 @@ import com.example.sweep.ui.theme.SweepTheme
 @Composable
 fun VerificationEmail() {
     IconButton(
-        modifier = Modifier.padding(top=20.dp),
+        modifier = Modifier.padding(top = 20.dp),
         onClick = {}
-    ){
+    ) {
         Icon(
             Icons.Default.ArrowBack,
             contentDescription = "",
@@ -27,35 +27,34 @@ fun VerificationEmail() {
         )
     }
 
-
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxSize()
-        ,
 
-        ) {
+    ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(10.dp),
             horizontalAlignment = Alignment.CenterHorizontally
-        ){
+        ) {
             Text(
                 "Verification Code",
                 color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.displayLarge,
+                style = MaterialTheme.typography.displayLarge
             )
 
             Text(
                 "Verification code was sent by Email.",
                 color = MaterialTheme.colorScheme.tertiary,
-                style = MaterialTheme.typography.bodySmall,
+                style = MaterialTheme.typography.bodySmall
             )
             VerificationCode()
 
             Button(
                 onClick = {}
-            ){
-                Text("Confirm",
+            ) {
+                Text(
+                    "Confirm",
                     textAlign = TextAlign.Center,
                     color = MaterialTheme.colorScheme.background,
                     style = MaterialTheme.typography.bodyMedium,
@@ -66,23 +65,22 @@ fun VerificationEmail() {
 
             Button(
                 onClick = {}
-            ){
-                Text("Resend Code",
+            ) {
+                Text(
+                    "Resend Code",
                     textAlign = TextAlign.Center,
                     color = MaterialTheme.colorScheme.background,
                     style = MaterialTheme.typography.bodyMedium,
                     modifier = Modifier
-                        .width(100.dp))
+                        .width(100.dp)
+                )
             }
-
         }
-
     }
 }
 
 @Composable
-
-fun VerificationCode(){
+fun VerificationCode() {
     val inputValue = remember {
         mutableStateOf("")
     }
@@ -95,11 +93,10 @@ fun VerificationCode(){
             Text("Code")
         },
 
-        singleLine = true,
+        singleLine = true
 
     )
 }
-
 
 @Preview(showBackground = true)
 @Composable

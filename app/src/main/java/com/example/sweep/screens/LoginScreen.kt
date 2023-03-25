@@ -21,14 +21,13 @@ fun LoginPage() {
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxSize()
-        ,
 
-        ) {
+    ) {
         val img = com.example.sweep.R.drawable.ic_launcher_sweep_logo
         Column(
             verticalArrangement = Arrangement.spacedBy(20.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ){
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
             Icon(
                 painter = painterResource(id = img),
                 contentDescription = "logo",
@@ -36,15 +35,16 @@ fun LoginPage() {
                 tint = MaterialTheme.colorScheme.primary
             )
 
-            Text("Hello! Welcome Back",
+            Text(
+                "Hello! Welcome Back",
                 color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.displaySmall,
+                style = MaterialTheme.typography.displaySmall
             )
 
             Surface(
                 modifier = Modifier.clip(RoundedCornerShape(10.dp)),
-                shadowElevation = 10.dp,
-            ){
+                shadowElevation = 10.dp
+            ) {
                 Login()
             }
         }
@@ -52,13 +52,12 @@ fun LoginPage() {
 }
 
 @Composable
-fun Login(){
-
-    val username =  remember {
+fun Login() {
+    val username = remember {
         mutableStateOf("")
     }
 
-    val password =  remember {
+    val password = remember {
         mutableStateOf("")
     }
 
@@ -78,7 +77,7 @@ fun Login(){
             label = {
                 Text("Username")
             },
-            singleLine = true,
+            singleLine = true
         )
 
         OutlinedTextField(
@@ -92,21 +91,23 @@ fun Login(){
             singleLine = true,
             visualTransformation = if (passwordVisible) {
                 VisualTransformation.None
-            } else PasswordVisualTransformation(),
+            } else {
+                PasswordVisualTransformation()
+            }
         )
 
         Button(
             onClick = {},
-            modifier = Modifier.padding(10.dp),
+            modifier = Modifier.padding(10.dp)
         ) {
             Text(text = "Submit")
         }
 
-        Text("Don't Have an Account? Create one here!",
+        Text(
+            "Don't Have an Account? Create one here!",
             color = MaterialTheme.colorScheme.primary,
-            style = MaterialTheme.typography.titleSmall,
+            style = MaterialTheme.typography.titleSmall
         )
-
     }
 }
 

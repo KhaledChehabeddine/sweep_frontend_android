@@ -16,9 +16,9 @@ import com.example.sweep.ui.theme.SweepTheme
 @Composable
 fun ForgotPasswordPhone() {
     IconButton(
-        modifier = Modifier.padding(top=20.dp),
+        modifier = Modifier.padding(top = 20.dp),
         onClick = {}
-    ){
+    ) {
         Icon(
             Icons.Default.ArrowBack,
             contentDescription = "",
@@ -28,22 +28,20 @@ fun ForgotPasswordPhone() {
         )
     }
 
-
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
             .fillMaxSize()
-        ,
 
-        ) {
+    ) {
         Column(
             verticalArrangement = Arrangement.spacedBy(10.dp),
             horizontalAlignment = Alignment.CenterHorizontally
-        ){
+        ) {
             Text(
                 "Forgot Password?",
                 color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.displaySmall,
+                style = MaterialTheme.typography.displaySmall
             )
 
             Text(
@@ -57,8 +55,9 @@ fun ForgotPasswordPhone() {
 
             Button(
                 onClick = {}
-            ){
-                Text("Send Code",
+            ) {
+                Text(
+                    "Send Code",
                     textAlign = TextAlign.Center,
                     color = MaterialTheme.colorScheme.background,
                     style = MaterialTheme.typography.bodyMedium,
@@ -66,15 +65,12 @@ fun ForgotPasswordPhone() {
                         .width(100.dp)
                 )
             }
-
         }
-
     }
 }
 
 @Composable
-
-fun InputFieldsPhone(){
+fun InputFieldsPhone() {
     val inputValue = remember {
         mutableStateOf("")
     }
@@ -94,10 +90,9 @@ fun InputFieldsPhone(){
                 modifier = Modifier
                     .size(25.dp)
             )
-        },
+        }
     )
 }
-
 
 @Preview(showBackground = true)
 @Composable

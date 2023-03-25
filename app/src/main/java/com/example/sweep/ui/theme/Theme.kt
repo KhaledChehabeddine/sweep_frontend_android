@@ -48,7 +48,7 @@ private val _darkColorPalette = darkColorScheme(
     onError = md_theme_dark_onError,
     onErrorContainer = md_theme_dark_onErrorContainer,
 
-    outline = md_theme_dark_outline,
+    outline = md_theme_dark_outline
 )
 
 private val _lightColorPalette = lightColorScheme(
@@ -84,7 +84,7 @@ private val _lightColorPalette = lightColorScheme(
     errorContainer = md_theme_light_errorContainer,
     onErrorContainer = md_theme_light_onErrorContainer,
 
-    outline = md_theme_light_outline,
+    outline = md_theme_light_outline
 )
 
 @Composable

@@ -15,18 +15,18 @@ fun SweepScreen(paddingValues: PaddingValues) {
     Surface(
         color = MaterialTheme.colorScheme.background,
         modifier = Modifier.fillMaxSize()
-                           .padding(paddingValues = paddingValues)
+            .padding(paddingValues = paddingValues)
     ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier.padding(horizontal = 20.dp)
         ) {
             Row(modifier = Modifier.padding(vertical = 20.dp)) {
-               Text(
-                   color = MaterialTheme.colorScheme.onSurface,
-                   text = "Feel unsafe? Hire a Sweeper, hand-selected and verified employees from Sweep!",
-                   style = MaterialTheme.typography.bodyMedium
-               )
+                Text(
+                    color = MaterialTheme.colorScheme.onSurface,
+                    text = "Feel unsafe? Hire a Sweeper, hand-selected and verified employees from Sweep!",
+                    style = MaterialTheme.typography.bodyMedium
+                )
             }
             Row(modifier = Modifier.padding(top = 20.dp)) {
                 ServiceCategoryGrid()

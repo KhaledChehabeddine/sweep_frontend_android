@@ -17,7 +17,7 @@ fun FutureReservations(paddingValues: PaddingValues) {
     Surface(
         color = MaterialTheme.colorScheme.background,
         modifier = Modifier.fillMaxSize()
-                           .padding(paddingValues = paddingValues)
+            .padding(paddingValues = paddingValues)
     ) {
         LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
             item {
