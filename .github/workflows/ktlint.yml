@@ -3,7 +3,7 @@ name: Ktlint
 on: [ push ]
 
 jobs:
-  build:
+  ktlint:
     runs-on: ubuntu-latest
 
     steps:
