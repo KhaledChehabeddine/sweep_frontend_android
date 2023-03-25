@@ -84,7 +84,6 @@ dependencies {
 tasks.getByPath('preBuild').dependsOn('ktlintFormat')
 
 ktlint {
-    additionalEditorconfigFile = file('.editorconfig')
     android = true
     disabledRules = ['no-wildcard-imports', 'trailing-comma-on-call-site']
     ignoreFailures = false
