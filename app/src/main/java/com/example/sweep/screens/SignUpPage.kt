@@ -3,7 +3,10 @@ package com.example.sweep.screens
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,8 +22,7 @@ import com.example.sweep.ui.theme.SweepTheme
 fun SignUpPage() {
     Box(
         contentAlignment = Alignment.Center,
-        modifier = Modifier
-            .fillMaxSize()
+        modifier = Modifier.fillMaxSize()
 
     ) {
         val img = com.example.sweep.R.drawable.ic_launcher_sweep_logo

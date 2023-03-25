@@ -5,7 +5,10 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.sweep.utilities.topbars.*
+import com.example.sweep.utilities.topbars.TopBarAccount
+import com.example.sweep.utilities.topbars.TopBarHistory
+import com.example.sweep.utilities.topbars.TopBarHome
+import com.example.sweep.utilities.topbars.TopBarSweep
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
@@ -19,8 +22,6 @@ fun TopBar(
     pagerState: PagerState = rememberPagerState(),
     systemUiController: SystemUiController = rememberSystemUiController()
 ) {
-//    val systemUiController = rememberSystemUiController()
-
     NavHost(
         navController = navController,
         startDestination = "home"

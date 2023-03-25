@@ -9,7 +9,9 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ripple.rememberRipple
-import androidx.compose.material3.*
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
@@ -21,7 +23,10 @@ import com.example.sweep.utilities.SweepSearchBar
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
-// SweepSearchBar() added to the content of Scaffold, because when expanded, it becomes bigger than the topBar
+/*
+ * SweepSearchBar() added to the content of Scaffold, because when expanded it becomes bigger than the topBar and
+ * causes visual bugs
+ */
 @Composable
 fun SearchScreen(systemUiController: SystemUiController) {
     Surface(
@@ -52,7 +57,8 @@ fun SearchScreen(systemUiController: SystemUiController) {
                                 modifier = Modifier.size(
                                     height = 40.dp,
                                     width = 100.dp
-                                ).clip(RoundedCornerShape(size = 10.dp))
+                                )
+                                    .clip(RoundedCornerShape(size = 10.dp))
                                     .background(
                                         color = MaterialTheme.colorScheme.secondaryContainer
                                     )

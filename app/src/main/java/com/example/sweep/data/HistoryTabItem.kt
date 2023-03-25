@@ -1,6 +1,6 @@
 package com.example.sweep.data
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import com.example.sweep.screens.history.tabs.FutureReservations
 import com.example.sweep.screens.history.tabs.PastReservations

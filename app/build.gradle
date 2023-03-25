@@ -50,19 +50,6 @@ android {
     }
 }
 
-tasks.getByPath('preBuild').dependsOn('ktlintFormat')
-
-ktlint {
-    android = true
-    disabledRules = ['no-wildcard-imports']
-    ignoreFailures = false
-    reporters {
-        reporter 'checkstyle'
-        reporter 'plain'
-        reporter 'sarif'
-    }
-}
-
 dependencies {
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
@@ -92,4 +79,17 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 
     testImplementation 'junit:junit:4.13.2'
+}
+
+tasks.getByPath('preBuild').dependsOn('ktlintFormat')
+
+ktlint {
+    android = true
+    disabledRules = ['no-wildcard-imports', 'trailing-comma-on-call-site']
+    ignoreFailures = false
+    reporters {
+        reporter 'checkstyle'
+        reporter 'plain'
+        reporter 'sarif'
+    }
 }
