@@ -10,11 +10,6 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16.x'
-
       - name: Setup Java JDK
         uses: actions/setup-java@v3
         with:
@@ -22,7 +17,7 @@ jobs:
           java-version: '17'
 
       - name: Cache Gradle
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           path: ~/.gradle/caches
