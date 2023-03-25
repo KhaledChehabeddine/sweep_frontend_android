@@ -17,6 +17,7 @@ jobs:
           java-version: '17'
 
       - name: Cache Gradle
+        node-version: '16'
         uses: actions/cache@v2
         with:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
