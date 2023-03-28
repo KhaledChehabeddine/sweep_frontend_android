@@ -45,7 +45,7 @@ fun AccountScreen(paddingValues: PaddingValues) {
                             modifier = Modifier.fillMaxWidth()
                                 .padding(horizontal = 20.dp)
                         ) {
-                            accountMainCategory.mainCategoryItems.forEach { accountMainCategoryItem ->
+                            accountMainCategory.accountMainCategoryItems.forEach { accountMainCategoryItem ->
                                 Column(
                                     modifier = Modifier.fillMaxHeight(),
                                     verticalArrangement = Arrangement.Center
@@ -110,7 +110,7 @@ fun AccountScreen(paddingValues: PaddingValues) {
                                         )
                                     }
                                     Spacer(modifier = Modifier.height(height = 5.dp))
-                                    DisplaySubCategory(subCategory = accountSubCategory)
+                                    DisplaySubCategory(accountSubCategory = accountSubCategory)
                                 }
                             }
                         }
@@ -122,9 +122,9 @@ fun AccountScreen(paddingValues: PaddingValues) {
 }
 
 @Composable
-private fun DisplaySubCategory(subCategory: AccountSubCategory) {
-    var subCategorySize = subCategory.subCategoryItems.size
-    subCategory.subCategoryItems.forEach { subCategoryItem ->
+private fun DisplaySubCategory(accountSubCategory: AccountSubCategory) {
+    var subCategorySize = accountSubCategory.accountSubCategoryItems.size
+    accountSubCategory.accountSubCategoryItems.forEach { accountSubCategoryItem ->
         Row(
             modifier = Modifier.fillMaxWidth()
                 .clickable(
@@ -142,8 +142,8 @@ private fun DisplaySubCategory(subCategory: AccountSubCategory) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
-                    contentDescription = subCategoryItem.name,
-                    imageVector = subCategoryItem.icon,
+                    contentDescription = accountSubCategoryItem.name,
+                    imageVector = accountSubCategoryItem.icon,
                     tint = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
@@ -151,7 +151,7 @@ private fun DisplaySubCategory(subCategory: AccountSubCategory) {
                     fontWeight = FontWeight.Medium,
                     modifier = Modifier.padding(start = 10.dp),
                     style = MaterialTheme.typography.headlineMedium,
-                    text = subCategoryItem.name
+                    text = accountSubCategoryItem.name
                 )
             }
         }

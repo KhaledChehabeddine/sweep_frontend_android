@@ -19,12 +19,12 @@ data class AccountSubCategory(
     @SerialName("category")
     val category: String,
     @SerialName("sub_category_items")
-    val subCategoryItems: List<AccountSubCategoryItem>
+    val accountSubCategoryItems: List<AccountSubCategoryItem>
 )
 
 val accountDetailsCategory = AccountSubCategory(
     category = "Account Details",
-    subCategoryItems = listOf(
+    accountSubCategoryItems = listOf(
         AccountSubCategoryItem(
             icon = Icons.Outlined.LocationOn,
             name = "Addresses"
@@ -46,7 +46,7 @@ val accountDetailsCategory = AccountSubCategory(
 
 val financesCategories = AccountSubCategory(
     category = "Finances",
-    subCategoryItems = listOf(
+    accountSubCategoryItems = listOf(
         AccountSubCategoryItem(
             icon = Icons.Outlined.Add,
             name = "Add Funds"
@@ -64,7 +64,7 @@ val financesCategories = AccountSubCategory(
 
 val helpCenterCategories = AccountSubCategory(
     category = "Help Center",
-    subCategoryItems = listOf(
+    accountSubCategoryItems = listOf(
         AccountSubCategoryItem(
             icon = Icons.Outlined.HelpOutline,
             name = "FAQ"

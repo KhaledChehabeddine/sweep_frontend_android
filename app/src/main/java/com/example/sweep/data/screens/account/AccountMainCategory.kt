@@ -11,11 +11,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class AccountMainCategory(
     @SerialName("category")
-    val mainCategoryItems: List<AccountMainCategoryItem>
+    val accountMainCategoryItems: List<AccountMainCategoryItem>
 )
 
 val accountMainCategory = AccountMainCategory(
-    mainCategoryItems = listOf(
+    accountMainCategoryItems = listOf(
         AccountMainCategoryItem(
             icon = Icons.Outlined.Language,
             name = "Language"
