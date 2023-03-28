@@ -16,7 +16,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.example.sweep.data.*
+import com.example.sweep.data.screens.account.AccountSubCategory
+import com.example.sweep.data.screens.account.accountMainCategory
+import com.example.sweep.data.screens.account.accountSubCategories
 import com.example.sweep.ui.theme.SweepTheme
 
 @Composable
@@ -43,7 +45,7 @@ fun AccountScreen(paddingValues: PaddingValues) {
                             modifier = Modifier.fillMaxWidth()
                                 .padding(horizontal = 20.dp)
                         ) {
-                            accountCategories.forEach { accountCategory ->
+                            accountMainCategory.mainCategoryItems.forEach { accountMainCategoryItem ->
                                 Column(
                                     modifier = Modifier.fillMaxHeight(),
                                     verticalArrangement = Arrangement.Center
@@ -65,8 +67,8 @@ fun AccountScreen(paddingValues: PaddingValues) {
                                             }
                                     ) {
                                         Icon(
-                                            contentDescription = accountCategory.name,
-                                            imageVector = accountCategory.icon,
+                                            contentDescription = accountMainCategoryItem.name,
+                                            imageVector = accountMainCategoryItem.icon,
                                             tint = MaterialTheme.colorScheme.onSurface,
                                             modifier = Modifier.size(size = 40.dp)
                                         )
@@ -79,7 +81,7 @@ fun AccountScreen(paddingValues: PaddingValues) {
                                         Text(
                                             color = MaterialTheme.colorScheme.onSurface,
                                             style = MaterialTheme.typography.displayMedium,
-                                            text = accountCategory.name
+                                            text = accountMainCategoryItem.name
                                         )
                                     }
                                 }
@@ -87,69 +89,30 @@ fun AccountScreen(paddingValues: PaddingValues) {
                         }
                     }
                 }
-                Row {
-                    Box(
-                        modifier = Modifier.height(height = 278.dp)
-                            .fillMaxWidth()
-                            .padding(all = 20.dp)
-                            .clip(RoundedCornerShape(percent = 8))
-                            .background(
-                                color = MaterialTheme.colorScheme.onBackground
-                            )
-                    ) {
-                        Column(modifier = Modifier.padding(all = 20.dp)) {
-                            Row {
-                                Text(
-                                    color = MaterialTheme.colorScheme.onSurface,
-                                    style = MaterialTheme.typography.headlineMedium,
-                                    text = "Account Details"
-                                )
+                accountSubCategories.forEach { accountSubCategory ->
+                    Row {
+                        BoxWithConstraints {
+                            Box(
+                                modifier = Modifier.height(height = maxHeight)
+                                    .fillMaxWidth()
+                                    .padding(all = 20.dp)
+                                    .clip(RoundedCornerShape(percent = 8))
+                                    .background(
+                                        color = MaterialTheme.colorScheme.onBackground
+                                    )
+                            ) {
+                                Column(modifier = Modifier.padding(all = 20.dp)) {
+                                    Row {
+                                        Text(
+                                            color = MaterialTheme.colorScheme.onSurface,
+                                            style = MaterialTheme.typography.headlineMedium,
+                                            text = accountSubCategory.category
+                                        )
+                                    }
+                                    Spacer(modifier = Modifier.height(height = 5.dp))
+                                    DisplaySubCategory(subCategory = accountSubCategory)
+                                }
                             }
-                            DisplaySubCategory(subCategories = accountDetailsCategories)
-                        }
-                    }
-                }
-                Row {
-                    Box(
-                        modifier = Modifier.height(height = 233.dp)
-                            .fillMaxWidth()
-                            .padding(all = 20.dp)
-                            .clip(RoundedCornerShape(percent = 8))
-                            .background(
-                                color = MaterialTheme.colorScheme.onBackground
-                            )
-                    ) {
-                        Column(modifier = Modifier.padding(all = 20.dp)) {
-                            Row {
-                                Text(
-                                    color = MaterialTheme.colorScheme.onSurface,
-                                    style = MaterialTheme.typography.headlineMedium,
-                                    text = "Finances"
-                                )
-                            }
-                            DisplaySubCategory(subCategories = financesCategories)
-                        }
-                    }
-                }
-                Row {
-                    Box(
-                        modifier = Modifier.height(height = 233.dp)
-                            .fillMaxWidth()
-                            .padding(all = 20.dp)
-                            .clip(RoundedCornerShape(percent = 8))
-                            .background(
-                                color = MaterialTheme.colorScheme.onBackground
-                            )
-                    ) {
-                        Column(modifier = Modifier.padding(all = 20.dp)) {
-                            Row {
-                                Text(
-                                    color = MaterialTheme.colorScheme.onSurface,
-                                    style = MaterialTheme.typography.headlineMedium,
-                                    text = "Help Center"
-                                )
-                            }
-                            DisplaySubCategory(subCategories = helpCenterCategories)
                         }
                     }
                 }
@@ -159,8 +122,9 @@ fun AccountScreen(paddingValues: PaddingValues) {
 }
 
 @Composable
-private fun DisplaySubCategory(subCategories: List<SubCategory>) {
-    subCategories.forEach { subCategory ->
+private fun DisplaySubCategory(subCategory: AccountSubCategory) {
+    var subCategorySize = subCategory.subCategoryItems.size
+    subCategory.subCategoryItems.forEach { subCategoryItem ->
         Row(
             modifier = Modifier.fillMaxWidth()
                 .clickable(
@@ -178,8 +142,8 @@ private fun DisplaySubCategory(subCategories: List<SubCategory>) {
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Icon(
-                    contentDescription = subCategory.name,
-                    imageVector = subCategory.icon,
+                    contentDescription = subCategoryItem.name,
+                    imageVector = subCategoryItem.icon,
                     tint = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
@@ -187,11 +151,11 @@ private fun DisplaySubCategory(subCategories: List<SubCategory>) {
                     fontWeight = FontWeight.Medium,
                     modifier = Modifier.padding(start = 10.dp),
                     style = MaterialTheme.typography.headlineMedium,
-                    text = subCategory.name
+                    text = subCategoryItem.name
                 )
             }
         }
-        if (!subCategory.isLast) Divider()
+        if (--subCategorySize != 0) Divider()
     }
 }
 
