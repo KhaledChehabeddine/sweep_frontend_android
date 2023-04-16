@@ -4,27 +4,73 @@ import io.ktor.client.HttpClient
 import io.ktor.client.statement.*
 
 class ApiClient(
-    baseEndpoint: String,
-    baseUrl: String,
-    httpClient: HttpClient
+  baseEndpoint: String,
+  httpClient: HttpClient
 ) : ApiClientBase(
-    baseEndpoint = baseEndpoint,
-    baseUrl = baseUrl,
-    httpClient = httpClient
+  baseEndpoint = baseEndpoint,
+  httpClient = httpClient
 ) {
-    suspend fun createUser(data: Any): HttpResponse {
-        return this.post(data = data, url = "/user/create")
-    }
+  suspend fun createAccountCategory(data: String): HttpResponse {
+    return this.post(data = data, url = "/account_category/create")
+  }
 
-    suspend fun readUser(email: String): HttpResponse {
-        return this.get(url = "/user/read/$email")
-    }
+  suspend fun readAccountCategories(): HttpResponse {
+    return this.get(url = "/account_category/read")
+  }
 
-    suspend fun updateUser(data: Any, email: String): HttpResponse {
-        return this.put(data = data, url = "/user/update/$email")
-    }
+  suspend fun readAccountCategoryByName(name: String): HttpResponse {
+    return this.get(url = "/account_category/read/name/$name")
+  }
 
-    suspend fun deleteUser(email: String): HttpResponse {
-        return this.delete(url = "/user/delete/$email")
-    }
+  suspend fun updateAccountCategoryByName(data: String, name: String): HttpResponse {
+    return this.put(data = data, url = "/account_category/update/name/$name")
+  }
+
+  suspend fun deleteAccountCategoryByName(name: String): HttpResponse {
+    return this.delete(url = "/account_category/delete/name/$name")
+  }
+
+  suspend fun createAccountCategoryItem(data: String): HttpResponse {
+    return this.post(data = data, url = "/account_category_item/create")
+  }
+
+  suspend fun readAccountCategoryItems(): HttpResponse {
+    return this.get(url = "/account_category_item/read")
+  }
+
+  suspend fun readAccountCategoryItemById(id: String): HttpResponse {
+    return this.get(url = "/account_category_item/read/id/$id")
+  }
+
+  suspend fun readAccountCategoryItemsByAccountCategoryName(accountCategoryName: String): HttpResponse {
+    return this.get(url = "/account_category_item/read/account_category_name/$accountCategoryName")
+  }
+
+  suspend fun updateAccountCategoryItemById(data: String, id: String): HttpResponse {
+    return this.put(data = data, url = "/account_category_item/update/id/$id")
+  }
+
+  suspend fun deleteAccountCategoryItemById(id: String): HttpResponse {
+    return this.delete(url = "/account_category_item/delete/id/$id")
+  }
+
+  suspend fun createUser(data: String): HttpResponse {
+    return this.post(data = data, url = "/user/create")
+  }
+
+  suspend fun readUsers(): HttpResponse {
+    return this.get(url = "/user/read")
+  }
+
+  suspend fun readUserByEmail(email: String): HttpResponse {
+    return this.get(url = "/user/read/email/$email")
+  }
+
+  suspend fun updateUserByEmail(data: String, email: String): HttpResponse {
+    return this.put(data = data, url = "/user/update/email/$email")
+  }
+
+  suspend fun deleteUserByEmail(email: String): HttpResponse {
+    return this.delete(url = "/user/delete/email/$email")
+  }
 }

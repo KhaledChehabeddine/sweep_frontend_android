@@ -14,75 +14,75 @@ import com.example.sweep.ui.theme.SweepTheme
 
 @Composable
 fun VerificationPhone() {
-    IconButton(
-        modifier = Modifier.padding(top = 20.dp),
+  IconButton(
+    modifier = Modifier.padding(top = 20.dp),
+    onClick = {}
+  ) {
+    Icon(
+      Icons.Default.ArrowBack,
+      contentDescription = "",
+      modifier = Modifier
+        .size(50.dp),
+      tint = MaterialTheme.colorScheme.primary
+    )
+  }
+
+  Box(
+    contentAlignment = Alignment.Center,
+    modifier = Modifier
+      .fillMaxSize()
+
+  ) {
+    Column(
+      verticalArrangement = Arrangement.spacedBy(10.dp),
+      horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+      Text(
+        "Verification Code",
+        color = MaterialTheme.colorScheme.primary,
+        style = MaterialTheme.typography.displayLarge
+      )
+
+      Text(
+        "Verification code was sent by Phone.",
+        color = MaterialTheme.colorScheme.tertiary,
+        style = MaterialTheme.typography.bodySmall
+      )
+      VerificationCode()
+
+      Button(
         onClick = {}
-    ) {
-        Icon(
-            Icons.Default.ArrowBack,
-            contentDescription = "",
-            modifier = Modifier
-                .size(50.dp),
-            tint = MaterialTheme.colorScheme.primary
+      ) {
+        Text(
+          "Confirm",
+          textAlign = TextAlign.Center,
+          color = MaterialTheme.colorScheme.background,
+          style = MaterialTheme.typography.bodyMedium,
+          modifier = Modifier
+            .width(100.dp)
         )
+      }
+
+      Button(
+        onClick = {}
+      ) {
+        Text(
+          "Resend Code",
+          textAlign = TextAlign.Center,
+          color = MaterialTheme.colorScheme.background,
+          style = MaterialTheme.typography.bodyMedium,
+          modifier = Modifier
+            .width(100.dp)
+        )
+      }
     }
-
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier
-            .fillMaxSize()
-
-    ) {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(10.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                "Verification Code",
-                color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.displayLarge
-            )
-
-            Text(
-                "Verification code was sent by Phone.",
-                color = MaterialTheme.colorScheme.tertiary,
-                style = MaterialTheme.typography.bodySmall
-            )
-            VerificationCode()
-
-            Button(
-                onClick = {}
-            ) {
-                Text(
-                    "Confirm",
-                    textAlign = TextAlign.Center,
-                    color = MaterialTheme.colorScheme.background,
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier
-                        .width(100.dp)
-                )
-            }
-
-            Button(
-                onClick = {}
-            ) {
-                Text(
-                    "Resend Code",
-                    textAlign = TextAlign.Center,
-                    color = MaterialTheme.colorScheme.background,
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier
-                        .width(100.dp)
-                )
-            }
-        }
-    }
+  }
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {
-    SweepTheme {
-        VerificationPhone()
-    }
+  SweepTheme {
+    VerificationPhone()
+  }
 }

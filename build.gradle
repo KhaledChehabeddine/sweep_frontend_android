@@ -5,14 +5,15 @@ buildscript {
     }
 
     ext {
-        compose_version = "1.4.0-rc01"
+        coil_version = "2.3.0"
+        compose_version = "1.4.0"
         compose_pager_version = "0.28.0"
         ktor_version = "2.2.4"
     }
 }
 
 plugins {
-    id "com.android.application" version "7.3.1" apply false
-    id "com.android.library" version "7.3.1" apply false
+    id "com.android.application" version '7.4.1' apply false
+    id "com.android.library" version '7.4.1' apply false
     id "org.jetbrains.kotlin.android" version "1.8.10" apply false
 }

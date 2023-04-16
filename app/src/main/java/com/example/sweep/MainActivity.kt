@@ -21,58 +21,58 @@ import com.google.accompanist.pager.rememberPagerState
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 class MainActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent {
-            SweepTheme {
-                Surface(
-                    color = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    MainScreen()
-                }
-            }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContent {
+      SweepTheme {
+        Surface(
+          color = MaterialTheme.colorScheme.primary,
+          modifier = Modifier.fillMaxSize()
+        ) {
+          MainScreen()
         }
+      }
     }
+  }
 }
 
 // Scaffolds are used to easily create basic Material Design layouts, with a bottomBar, topBar and content section
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun MainScreen() {
-    val navController = rememberNavController()
-    val pagerState = rememberPagerState()
-    val systemUiController = rememberSystemUiController()
+  val navController = rememberNavController()
+  val pagerState = rememberPagerState()
+  val systemUiController = rememberSystemUiController()
 
-    Scaffold(
-        bottomBar = {
-            BottomBar(
-                items = bottomNavbarItems,
-                navController = navController
-            ) { bottomNavbarItem ->
-                navController.navigate(route = bottomNavbarItem.route)
-            }
-        },
-        topBar = {
-            TopBar(
-                navController = navController,
-                pagerState = pagerState
-            )
-        }
-    ) { paddingValues ->
-        Content(
-            navController = navController,
-            paddingValues = paddingValues,
-            pagerState = pagerState,
-            systemUiController = systemUiController
-        )
+  Scaffold(
+    bottomBar = {
+      BottomBar(
+        items = bottomNavbarItems,
+        navController = navController
+      ) { bottomNavbarItem ->
+        navController.navigate(route = bottomNavbarItem.route)
+      }
+    },
+    topBar = {
+      TopBar(
+        navController = navController,
+        pagerState = pagerState
+      )
     }
+  ) { paddingValues ->
+    Content(
+      navController = navController,
+      paddingValues = paddingValues,
+      pagerState = pagerState,
+      systemUiController = systemUiController
+    )
+  }
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {
-    SweepTheme {
-        MainScreen()
-    }
+  SweepTheme {
+    MainScreen()
+  }
 }

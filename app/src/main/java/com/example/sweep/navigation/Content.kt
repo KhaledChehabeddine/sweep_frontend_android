@@ -19,32 +19,32 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun Content(
-    navController: NavHostController,
-    paddingValues: PaddingValues = PaddingValues(),
-    pagerState: PagerState = rememberPagerState(),
-    systemUiController: SystemUiController = rememberSystemUiController()
+  navController: NavHostController,
+  paddingValues: PaddingValues = PaddingValues(),
+  pagerState: PagerState = rememberPagerState(),
+  systemUiController: SystemUiController = rememberSystemUiController()
 ) {
-    NavHost(
-        navController = navController,
-        startDestination = "home"
-    ) {
-        composable(route = "home") {
-            HomeScreen(paddingValues = paddingValues)
-        }
-        composable(route = "search") {
-            SearchScreen(systemUiController = systemUiController)
-        }
-        composable(route = "sweep") {
-            SweepScreen(paddingValues = paddingValues)
-        }
-        composable(route = "history") {
-            HistoryScreen(
-                paddingValues = paddingValues,
-                pagerState = pagerState
-            )
-        }
-        composable(route = "account") {
-            AccountScreen(paddingValues = paddingValues)
-        }
+  NavHost(
+    navController = navController,
+    startDestination = "home"
+  ) {
+    composable(route = "home") {
+      HomeScreen(paddingValues = paddingValues)
     }
+    composable(route = "search") {
+      SearchScreen(systemUiController = systemUiController)
+    }
+    composable(route = "sweep") {
+      SweepScreen(paddingValues = paddingValues)
+    }
+    composable(route = "history") {
+      HistoryScreen(
+        paddingValues = paddingValues,
+        pagerState = pagerState
+      )
+    }
+    composable(route = "account") {
+      AccountScreen(paddingValues = paddingValues)
+    }
+  }
 }
