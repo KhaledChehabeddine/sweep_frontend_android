@@ -14,33 +14,33 @@ import com.example.sweep.utilities.ServiceCategoryGrid
 
 @Composable
 fun SweepScreen(paddingValues: PaddingValues) {
-    Surface(
-        color = MaterialTheme.colorScheme.background,
-        modifier = Modifier.fillMaxSize()
-            .padding(paddingValues = paddingValues)
+  Surface(
+    color = MaterialTheme.colorScheme.background,
+    modifier = Modifier.fillMaxSize()
+      .padding(paddingValues = paddingValues)
+  ) {
+    Column(
+      horizontalAlignment = Alignment.CenterHorizontally,
+      modifier = Modifier.padding(horizontal = 20.dp)
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            modifier = Modifier.padding(horizontal = 20.dp)
-        ) {
-            Row(modifier = Modifier.padding(vertical = 20.dp)) {
-                Text(
-                    color = MaterialTheme.colorScheme.onSurface,
-                    text = "Feel unsafe? Hire a Sweeper, hand-selected and verified employees from Sweep!",
-                    style = MaterialTheme.typography.bodyMedium
-                )
-            }
-            Row(modifier = Modifier.padding(top = 20.dp)) {
-                ServiceCategoryGrid()
-            }
-        }
+      Row(modifier = Modifier.padding(vertical = 20.dp)) {
+        Text(
+          color = MaterialTheme.colorScheme.onSurface,
+          text = "Feel unsafe? Hire a Sweeper, hand-selected and verified employees from Sweep!",
+          style = MaterialTheme.typography.bodyMedium
+        )
+      }
+      Row(modifier = Modifier.padding(top = 20.dp)) {
+        ServiceCategoryGrid()
+      }
     }
+  }
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {
-    SweepTheme {
-        SweepScreen(paddingValues = PaddingValues())
-    }
+  SweepTheme {
+    SweepScreen(paddingValues = PaddingValues())
+  }
 }

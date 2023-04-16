@@ -8,25 +8,25 @@ import com.example.sweep.ui.theme.SweepTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBarAccount() {
-    CenterAlignedTopAppBar(
-        actions = { },
-        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.background
-        ),
-        navigationIcon = { },
-        title = {
-            Text(
-                style = MaterialTheme.typography.headlineLarge,
-                text = "Jamil Shoujah"
-            )
-        }
-    )
+  CenterAlignedTopAppBar(
+    actions = { },
+    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+      containerColor = MaterialTheme.colorScheme.background
+    ),
+    navigationIcon = { },
+    title = {
+      Text(
+        style = MaterialTheme.typography.headlineLarge,
+        text = "Jamil Shoujah"
+      )
+    }
+  )
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {
-    SweepTheme {
-        TopBarAccount()
-    }
+  SweepTheme {
+    TopBarAccount()
+  }
 }

@@ -29,121 +29,121 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
  */
 @Composable
 fun SearchScreen(systemUiController: SystemUiController) {
-    Surface(
-        color = MaterialTheme.colorScheme.background,
-        modifier = Modifier.fillMaxSize()
+  Surface(
+    color = MaterialTheme.colorScheme.background,
+    modifier = Modifier.fillMaxSize()
+  ) {
+    SweepSearchBar(systemUiController = systemUiController)
+
+    LazyColumn(
+      modifier = Modifier.padding(
+        end = 20.dp,
+        start = 20.dp,
+        top = 90.dp
+      )
     ) {
-        SweepSearchBar(systemUiController = systemUiController)
-
-        LazyColumn(
-            modifier = Modifier.padding(
-                end = 20.dp,
-                start = 20.dp,
-                top = 90.dp
-            )
-        ) {
-            item {
-                Text(
-                    color = MaterialTheme.colorScheme.onSurface,
-                    style = MaterialTheme.typography.titleLarge,
-                    text = "Recent Searches"
+      item {
+        Text(
+          color = MaterialTheme.colorScheme.onSurface,
+          style = MaterialTheme.typography.titleLarge,
+          text = "Recent Searches"
+        )
+        Spacer(modifier = Modifier.height(height = 10.dp))
+        LazyRow {
+          item {
+            for (i in 0..5) {
+              if (i != 0) Spacer(modifier = Modifier.padding(start = 10.dp))
+              Box(
+                modifier = Modifier.size(
+                  height = 40.dp,
+                  width = 100.dp
                 )
-                Spacer(modifier = Modifier.height(height = 10.dp))
-                LazyRow {
-                    item {
-                        for (i in 0..5) {
-                            if (i != 0) Spacer(modifier = Modifier.padding(start = 10.dp))
-                            Box(
-                                modifier = Modifier.size(
-                                    height = 40.dp,
-                                    width = 100.dp
-                                )
-                                    .clip(RoundedCornerShape(size = 10.dp))
-                                    .background(
-                                        color = MaterialTheme.colorScheme.secondaryContainer
-                                    )
-                                    .clickable(
-                                        indication = rememberRipple(
-                                            color = MaterialTheme.colorScheme.onSecondaryContainer
-                                        ),
-                                        interactionSource = remember {
-                                            MutableInteractionSource()
-                                        }
-                                    ) {
-                                        /* TODO */
-                                    }
-                            )
-                        }
+                  .clip(RoundedCornerShape(size = 10.dp))
+                  .background(
+                    color = MaterialTheme.colorScheme.secondaryContainer
+                  )
+                  .clickable(
+                    indication = rememberRipple(
+                      color = MaterialTheme.colorScheme.onSecondaryContainer
+                    ),
+                    interactionSource = remember {
+                      MutableInteractionSource()
                     }
-                }
-                Spacer(modifier = Modifier.height(height = 20.dp))
-                Text(
-                    color = MaterialTheme.colorScheme.onSurface,
-                    style = MaterialTheme.typography.titleLarge,
-                    text = "Categories"
-                )
-                Spacer(modifier = Modifier.height(height = 15.dp))
-                Column {
-                    for (i in 0..9)
-                        Row(
-                            horizontalArrangement = Arrangement.spacedBy(space = 10.dp)
-                        ) {
-                            for (j in 0..1)
-                                Column(
-                                    modifier = Modifier.fillMaxWidth()
-                                        .weight(1f)
+                  ) {
+                    /* TODO */
+                  }
+              )
+            }
+          }
+        }
+        Spacer(modifier = Modifier.height(height = 20.dp))
+        Text(
+          color = MaterialTheme.colorScheme.onSurface,
+          style = MaterialTheme.typography.titleLarge,
+          text = "Categories"
+        )
+        Spacer(modifier = Modifier.height(height = 15.dp))
+        Column {
+          for (i in 0..9)
+            Row(
+              horizontalArrangement = Arrangement.spacedBy(space = 10.dp)
+            ) {
+              for (j in 0..1)
+                Column(
+                  modifier = Modifier.fillMaxWidth()
+                    .weight(1f)
 
-                                ) {
-                                    Box(
-                                        modifier = Modifier.height(100.dp)
-                                            .fillMaxWidth()
-                                            .clip(RoundedCornerShape(10.dp))
-                                            .background(
-                                                color = MaterialTheme.colorScheme.secondaryContainer
-                                            )
-                                            .clickable(
-                                                indication = rememberRipple(
-                                                    color = MaterialTheme.colorScheme
-                                                        .onSecondaryContainer
-                                                ),
-                                                interactionSource = remember {
-                                                    MutableInteractionSource()
-                                                }
-                                            ) {
-                                                /* TODO */
-                                            }
-                                    )
-                                    Spacer(modifier = Modifier.height(height = 10.dp))
-                                    Box(
-                                        modifier = Modifier.height(height = 16.dp)
-                                            .fillMaxWidth()
-                                            .clip(CircleShape)
-                                            .background(
-                                                color = MaterialTheme.colorScheme.tertiary
-                                            )
-                                    )
-                                    Spacer(modifier = Modifier.height(height = 5.dp))
-                                    Box(
-                                        modifier = Modifier.height(height = 10.dp)
-                                            .fillMaxWidth(fraction = 0.5f)
-                                            .clip(CircleShape)
-                                            .background(
-                                                color = MaterialTheme.colorScheme.tertiaryContainer
-                                            )
-                                    )
-                                    Spacer(modifier = Modifier.height(height = 15.dp))
-                                }
+                ) {
+                  Box(
+                    modifier = Modifier.height(100.dp)
+                      .fillMaxWidth()
+                      .clip(RoundedCornerShape(10.dp))
+                      .background(
+                        color = MaterialTheme.colorScheme.secondaryContainer
+                      )
+                      .clickable(
+                        indication = rememberRipple(
+                          color = MaterialTheme.colorScheme
+                            .onSecondaryContainer
+                        ),
+                        interactionSource = remember {
+                          MutableInteractionSource()
                         }
+                      ) {
+                        /* TODO */
+                      }
+                  )
+                  Spacer(modifier = Modifier.height(height = 10.dp))
+                  Box(
+                    modifier = Modifier.height(height = 16.dp)
+                      .fillMaxWidth()
+                      .clip(CircleShape)
+                      .background(
+                        color = MaterialTheme.colorScheme.tertiary
+                      )
+                  )
+                  Spacer(modifier = Modifier.height(height = 5.dp))
+                  Box(
+                    modifier = Modifier.height(height = 10.dp)
+                      .fillMaxWidth(fraction = 0.5f)
+                      .clip(CircleShape)
+                      .background(
+                        color = MaterialTheme.colorScheme.tertiaryContainer
+                      )
+                  )
+                  Spacer(modifier = Modifier.height(height = 15.dp))
                 }
             }
         }
+      }
     }
+  }
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {
-    SweepTheme {
-        SearchScreen(systemUiController = rememberSystemUiController())
-    }
+  SweepTheme {
+    SearchScreen(systemUiController = rememberSystemUiController())
+  }
 }

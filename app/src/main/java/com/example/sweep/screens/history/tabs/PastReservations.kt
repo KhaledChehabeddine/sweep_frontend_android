@@ -14,26 +14,26 @@ import com.example.sweep.ui.theme.SweepTheme
 
 @Composable
 fun PastReservations(paddingValues: PaddingValues) {
-    Surface(
-        color = MaterialTheme.colorScheme.background,
-        modifier = Modifier.fillMaxSize()
-            .padding(paddingValues = paddingValues)
-    ) {
-        LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
-            item {
-                for (i in 0..10) {
-                    DisplayHistoryTabItems()
-                    if (i != 10) Spacer(modifier = Modifier.height(height = 20.dp))
-                }
-            }
+  Surface(
+    color = MaterialTheme.colorScheme.background,
+    modifier = Modifier.fillMaxSize()
+      .padding(paddingValues = paddingValues)
+  ) {
+    LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
+      item {
+        for (i in 0..10) {
+          DisplayHistoryTabItems()
+          if (i != 10) Spacer(modifier = Modifier.height(height = 20.dp))
         }
+      }
     }
+  }
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {
-    SweepTheme {
-        PastReservations(paddingValues = PaddingValues())
-    }
+  SweepTheme {
+    PastReservations(paddingValues = PaddingValues())
+  }
 }

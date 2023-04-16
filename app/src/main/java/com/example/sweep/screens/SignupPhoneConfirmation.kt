@@ -12,64 +12,64 @@ import com.example.sweep.ui.theme.SweepTheme
 
 @Composable
 fun PhoneVerification() {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier
-            .fillMaxSize()
+  Box(
+    contentAlignment = Alignment.Center,
+    modifier = Modifier
+      .fillMaxSize()
+  ) {
+    Column(
+      verticalArrangement = Arrangement.spacedBy(10.dp),
+      horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(10.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            PhoneNumberField()
+      PhoneNumberField()
 
-            Button(
-                onClick = {}
-            ) {
-                Text(
-                    "Send Code",
-                    textAlign = TextAlign.Center,
-                    color = MaterialTheme.colorScheme.background,
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier
-                        .width(100.dp)
-                )
-            }
+      Button(
+        onClick = {}
+      ) {
+        Text(
+          "Send Code",
+          textAlign = TextAlign.Center,
+          color = MaterialTheme.colorScheme.background,
+          style = MaterialTheme.typography.bodyMedium,
+          modifier = Modifier
+            .width(100.dp)
+        )
+      }
 
-            VerificationCode()
-            Text(
-                "Already have an Account?",
-                color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.bodyMedium
-            )
-        }
+      VerificationCode()
+      Text(
+        "Already have an Account?",
+        color = MaterialTheme.colorScheme.primary,
+        style = MaterialTheme.typography.bodyMedium
+      )
     }
+  }
 }
 
 @Composable
 fun PhoneNumberField() {
-    val phoneNumber = remember {
-        mutableStateOf("")
-    }
+  val phoneNumber = remember {
+    mutableStateOf("")
+  }
 
-    OutlinedTextField(
-        value = phoneNumber.value,
-        onValueChange = {
-            phoneNumber.value = it
-        },
-        label = {
-            Text("Phone Number")
-        },
+  OutlinedTextField(
+    value = phoneNumber.value,
+    onValueChange = {
+      phoneNumber.value = it
+    },
+    label = {
+      Text("Phone Number")
+    },
 
-        singleLine = true
+    singleLine = true
 
-    )
+  )
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {
-    SweepTheme {
-        PhoneVerification()
-    }
+  SweepTheme {
+    PhoneVerification()
+  }
 }

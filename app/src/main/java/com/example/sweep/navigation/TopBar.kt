@@ -18,34 +18,34 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun TopBar(
-    navController: NavHostController,
-    pagerState: PagerState = rememberPagerState(),
-    systemUiController: SystemUiController = rememberSystemUiController()
+  navController: NavHostController,
+  pagerState: PagerState = rememberPagerState(),
+  systemUiController: SystemUiController = rememberSystemUiController()
 ) {
-    NavHost(
-        navController = navController,
-        startDestination = "home"
-    ) {
-        composable(route = "home") {
-            TopBarHome()
-            systemUiController.setStatusBarColor(color = MaterialTheme.colorScheme.background)
-        }
-        composable(route = "search") {
-            systemUiController.setStatusBarColor(color = MaterialTheme.colorScheme.background)
-        }
-        composable(route = "sweep") {
-            TopBarSweep()
-            systemUiController.setStatusBarColor(
-                color = MaterialTheme.colorScheme.onSecondaryContainer
-            )
-        }
-        composable(route = "history") {
-            TopBarHistory(pagerState = pagerState)
-            systemUiController.setStatusBarColor(color = MaterialTheme.colorScheme.background)
-        }
-        composable(route = "account") {
-            TopBarAccount()
-            systemUiController.setStatusBarColor(color = MaterialTheme.colorScheme.background)
-        }
+  NavHost(
+    navController = navController,
+    startDestination = "home"
+  ) {
+    composable(route = "home") {
+      TopBarHome()
+      systemUiController.setStatusBarColor(color = MaterialTheme.colorScheme.background)
     }
+    composable(route = "search") {
+      systemUiController.setStatusBarColor(color = MaterialTheme.colorScheme.background)
+    }
+    composable(route = "sweep") {
+      TopBarSweep()
+      systemUiController.setStatusBarColor(
+        color = MaterialTheme.colorScheme.onSecondaryContainer
+      )
+    }
+    composable(route = "history") {
+      TopBarHistory(pagerState = pagerState)
+      systemUiController.setStatusBarColor(color = MaterialTheme.colorScheme.background)
+    }
+    composable(route = "account") {
+      TopBarAccount()
+      systemUiController.setStatusBarColor(color = MaterialTheme.colorScheme.background)
+    }
+  }
 }

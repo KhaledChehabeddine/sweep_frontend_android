@@ -9,36 +9,36 @@ import com.example.sweep.data.BottomNavbarItem
 
 @Composable
 fun BottomBar(
-    items: List<BottomNavbarItem>,
-    navController: NavController,
-    onItemClick: (BottomNavbarItem) -> Unit
+  items: List<BottomNavbarItem>,
+  navController: NavController,
+  onItemClick: (BottomNavbarItem) -> Unit
 ) {
-    val backStackEntry = navController.currentBackStackEntryAsState()
-    NavigationBar(containerColor = MaterialTheme.colorScheme.background) {
-        items.forEach { item ->
-            NavigationBarItem(
-                colors = NavigationBarItemDefaults.colors(
-                    unselectedTextColor = MaterialTheme.colorScheme.onSurface
-                ),
-                icon = {
-                    item.icon?.let {
-                        Icon(
-                            contentDescription = item.name,
-                            imageVector = it
-                        )
-                    } ?: Icon(
-                        painter = painterResource(id = item.id!!),
-                        contentDescription = item.name
-                    )
-                },
-                label = {
-                    Text(text = item.name)
-                },
-                onClick = {
-                    onItemClick(item)
-                },
-                selected = item.route == backStackEntry.value?.destination?.route
+  val backStackEntry = navController.currentBackStackEntryAsState()
+  NavigationBar(containerColor = MaterialTheme.colorScheme.background) {
+    items.forEach { item ->
+      NavigationBarItem(
+        colors = NavigationBarItemDefaults.colors(
+          unselectedTextColor = MaterialTheme.colorScheme.onSurface
+        ),
+        icon = {
+          item.icon?.let {
+            Icon(
+              contentDescription = item.name,
+              imageVector = it
             )
-        }
+          } ?: Icon(
+            painter = painterResource(id = item.id!!),
+            contentDescription = item.name
+          )
+        },
+        label = {
+          Text(text = item.name)
+        },
+        onClick = {
+          onItemClick(item)
+        },
+        selected = item.route == backStackEntry.value?.destination?.route
+      )
     }
+  }
 }

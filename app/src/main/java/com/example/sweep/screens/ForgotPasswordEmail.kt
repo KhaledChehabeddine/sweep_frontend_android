@@ -15,89 +15,89 @@ import com.example.sweep.ui.theme.SweepTheme
 
 @Composable
 fun ForgotPasswordEmail() {
-    IconButton(
-        modifier = Modifier.padding(top = 20.dp),
-        onClick = {}
-    ) {
-        Icon(
-            Icons.Default.ArrowBack,
-            contentDescription = "",
-            modifier = Modifier
-                .size(50.dp),
-            tint = MaterialTheme.colorScheme.primary
-        )
-    }
+  IconButton(
+    modifier = Modifier.padding(top = 20.dp),
+    onClick = {}
+  ) {
+    Icon(
+      Icons.Default.ArrowBack,
+      contentDescription = "",
+      modifier = Modifier
+        .size(50.dp),
+      tint = MaterialTheme.colorScheme.primary
+    )
+  }
 
-    Box(
-        contentAlignment = Alignment.Center,
+  Box(
+    contentAlignment = Alignment.Center,
+    modifier = Modifier
+      .fillMaxSize()
+
+  ) {
+    Column(
+      verticalArrangement = Arrangement.spacedBy(10.dp),
+      horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+      Text(
+        "Forgot Password?",
+        color = MaterialTheme.colorScheme.primary,
+        style = MaterialTheme.typography.displaySmall
+      )
+
+      Text(
+        "You can receive the verification code via email to reset your password.",
+        color = MaterialTheme.colorScheme.tertiary,
+        style = MaterialTheme.typography.bodySmall,
         modifier = Modifier
-            .fillMaxSize()
+          .width(300.dp)
+      )
+      InputFieldsEmail()
 
-    ) {
-        Column(
-            verticalArrangement = Arrangement.spacedBy(10.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                "Forgot Password?",
-                color = MaterialTheme.colorScheme.primary,
-                style = MaterialTheme.typography.displaySmall
-            )
-
-            Text(
-                "You can receive the verification code via email to reset your password.",
-                color = MaterialTheme.colorScheme.tertiary,
-                style = MaterialTheme.typography.bodySmall,
-                modifier = Modifier
-                    .width(300.dp)
-            )
-            InputFieldsEmail()
-
-            Button(
-                onClick = {}
-            ) {
-                Text(
-                    "Send Code",
-                    textAlign = TextAlign.Center,
-                    color = MaterialTheme.colorScheme.background,
-                    style = MaterialTheme.typography.bodyMedium,
-                    modifier = Modifier
-                        .width(100.dp)
-                )
-            }
-        }
+      Button(
+        onClick = {}
+      ) {
+        Text(
+          "Send Code",
+          textAlign = TextAlign.Center,
+          color = MaterialTheme.colorScheme.background,
+          style = MaterialTheme.typography.bodyMedium,
+          modifier = Modifier
+            .width(100.dp)
+        )
+      }
     }
+  }
 }
 
 @Composable
 fun InputFieldsEmail() {
-    val inputValue = remember {
-        mutableStateOf("")
+  val inputValue = remember {
+    mutableStateOf("")
+  }
+  OutlinedTextField(
+    value = inputValue.value,
+    onValueChange = {
+      inputValue.value = it
+    },
+    label = {
+      Text("Email")
+    },
+    singleLine = true,
+    leadingIcon = {
+      Icon(
+        Icons.Default.Email,
+        contentDescription = "",
+        modifier = Modifier
+          .size(25.dp)
+      )
     }
-    OutlinedTextField(
-        value = inputValue.value,
-        onValueChange = {
-            inputValue.value = it
-        },
-        label = {
-            Text("Email")
-        },
-        singleLine = true,
-        leadingIcon = {
-            Icon(
-                Icons.Default.Email,
-                contentDescription = "",
-                modifier = Modifier
-                    .size(25.dp)
-            )
-        }
-    )
+  )
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {
-    SweepTheme {
-        ForgotPasswordEmail()
-    }
+  SweepTheme {
+    ForgotPasswordEmail()
+  }
 }

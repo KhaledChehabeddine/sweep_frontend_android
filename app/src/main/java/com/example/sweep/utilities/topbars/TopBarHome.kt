@@ -12,70 +12,70 @@ import com.example.sweep.ui.theme.SweepTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBarHome() {
-    CenterAlignedTopAppBar(
-        actions = {
-            if (notificationIcon.badgeCount > 0) {
-                IconButton(
-                    colors = IconButtonDefaults.iconButtonColors(
-                        contentColor = MaterialTheme.colorScheme.onSurface
-                    ),
-                    onClick = {
-                        /* TODO */
-                    }
-                ) {
-                    BadgedBox(
-                        badge = {
-                            Badge()
-                        }
-                    ) {
-                        Icon(
-                            contentDescription = "Notifications",
-                            imageVector = Icons.Outlined.Notifications
-                        )
-                    }
-                }
-            } else {
-                IconButton(
-                    colors = IconButtonDefaults.iconButtonColors(
-                        contentColor = MaterialTheme.colorScheme.onSurface
-                    ),
-                    onClick = {
-                        /* TODO */
-                    }
-                ) {
-                    Icon(
-                        contentDescription = "Notifications",
-                        imageVector = Icons.Outlined.Notifications
-                    )
-                }
+  CenterAlignedTopAppBar(
+    actions = {
+      if (notificationIcon.badgeCount > 0) {
+        IconButton(
+          colors = IconButtonDefaults.iconButtonColors(
+            contentColor = MaterialTheme.colorScheme.onSurface
+          ),
+          onClick = {
+            /* TODO */
+          }
+        ) {
+          BadgedBox(
+            badge = {
+              Badge()
             }
-        },
-        colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-            containerColor = MaterialTheme.colorScheme.background
+          ) {
+            Icon(
+              contentDescription = "Notifications",
+              imageVector = Icons.Outlined.Notifications
+            )
+          }
+        }
+      } else {
+        IconButton(
+          colors = IconButtonDefaults.iconButtonColors(
+            contentColor = MaterialTheme.colorScheme.onSurface
+          ),
+          onClick = {
+            /* TODO */
+          }
+        ) {
+          Icon(
+            contentDescription = "Notifications",
+            imageVector = Icons.Outlined.Notifications
+          )
+        }
+      }
+    },
+    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
+      containerColor = MaterialTheme.colorScheme.background
+    ),
+    navigationIcon = {
+      IconButton(
+        colors = IconButtonDefaults.iconButtonColors(
+          contentColor = MaterialTheme.colorScheme.onSurface
         ),
-        navigationIcon = {
-            IconButton(
-                colors = IconButtonDefaults.iconButtonColors(
-                    contentColor = MaterialTheme.colorScheme.onSurface
-                ),
-                onClick = {
-                    /* TODO */
-                }
-            ) {
-                Icon(
-                    contentDescription = "Menu",
-                    imageVector = Icons.Outlined.Menu
-                )
-            }
-        },
-        title = { }
-    )
+        onClick = {
+          /* TODO */
+        }
+      ) {
+        Icon(
+          contentDescription = "Menu",
+          imageVector = Icons.Outlined.Menu
+        )
+      }
+    },
+    title = { }
+  )
 }
 
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {
-    SweepTheme {
-        TopBarHome()
-    }
+  SweepTheme {
+    TopBarHome()
+  }
 }

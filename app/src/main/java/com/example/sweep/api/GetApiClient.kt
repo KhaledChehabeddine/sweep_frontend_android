@@ -1,36 +1,44 @@
 package com.example.sweep.api
 
 import io.ktor.client.*
+import io.ktor.client.engine.android.*
 import io.ktor.client.plugins.*
 import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.client.plugins.logging.*
+import io.ktor.http.*
 import io.ktor.serialization.kotlinx.json.*
 
+// val BASE_ENDPOINT = System.getenv("BASE_ENDPOINT")?.toString()!!
+// val BASE_URL =
+//    if (System.getenv("IS_PRODUCTION").toBoolean()) {
+//        System.getenv("PRODUCTION_BASE_URL")?.toString()!!
+//    } else {
+//        System.getenv("DEVELOPMENT_BASE_URL")?.toString()!!
+//    }
+
+// TODO: Change this to use environment variables
 const val BASE_ENDPOINT = "/api/v1/sweep"
-const val BASE_URL = "https://3hhwvlu6vagdogrz4lvcro6r6e0fvumx.lambda-url.eu-north-1.on.aws"
+const val BASE_URL = "10.0.2.2"
 
 private var apiClient: ApiClient? = null
 
 fun getApiClient(): ApiClient {
-    if (apiClient == null) {
-        apiClient = ApiClient(
-            baseEndpoint = BASE_ENDPOINT,
-            baseUrl = BASE_URL,
-            httpClient = HttpClient {
-                install(ContentNegotiation) {
-                    json()
-                }
-
-                install(HttpTimeout) {
-                    requestTimeoutMillis = 30000
-                }
-
-                install(Logging) {
-                    level = LogLevel.ALL
-                    logger = Logger.DEFAULT
-                }
-            }
-        )
-    }
-    return apiClient!!
+  if (apiClient == null) {
+    apiClient = ApiClient(
+      baseEndpoint = BASE_ENDPOINT,
+      httpClient = HttpClient(Android) {
+        install(ContentNegotiation) {
+          json()
+        }
+        defaultRequest {
+          host = BASE_URL
+          port = 5000
+          url {
+            protocol = URLProtocol.HTTP
+          }
+        }
+        engine { }
+      }
+    )
+  }
+  return apiClient!!
 }
