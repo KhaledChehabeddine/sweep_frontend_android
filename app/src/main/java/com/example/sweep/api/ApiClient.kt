@@ -14,20 +14,20 @@ class ApiClient(
     return this.post(data = data, url = "/account_category/create")
   }
 
+  suspend fun readAccountCategoryById(id: String): HttpResponse {
+    return this.get(url = "/account_category/read/id/$id")
+  }
+
   suspend fun readAccountCategories(): HttpResponse {
     return this.get(url = "/account_category/read")
   }
 
-  suspend fun readAccountCategoryByName(name: String): HttpResponse {
-    return this.get(url = "/account_category/read/name/$name")
+  suspend fun updateAccountCategoryById(data: String, id: String): HttpResponse {
+    return this.put(data = data, url = "/account_category/update/id/$id")
   }
 
-  suspend fun updateAccountCategoryByName(data: String, name: String): HttpResponse {
-    return this.put(data = data, url = "/account_category/update/name/$name")
-  }
-
-  suspend fun deleteAccountCategoryByName(name: String): HttpResponse {
-    return this.delete(url = "/account_category/delete/name/$name")
+  suspend fun deleteAccountCategoryById(id: String): HttpResponse {
+    return this.delete(url = "/account_category/delete/id/$id")
   }
 
   suspend fun createAccountCategoryItem(data: String): HttpResponse {
@@ -58,19 +58,19 @@ class ApiClient(
     return this.post(data = data, url = "/user/create")
   }
 
+  suspend fun readUserById(id: String): HttpResponse {
+    return this.get(url = "/user/read/id/$id")
+  }
+
   suspend fun readUsers(): HttpResponse {
     return this.get(url = "/user/read")
   }
 
-  suspend fun readUserByEmail(email: String): HttpResponse {
-    return this.get(url = "/user/read/email/$email")
+  suspend fun updateUserById(data: String, id: String): HttpResponse {
+    return this.put(data = data, url = "/user/update/id/$id")
   }
 
-  suspend fun updateUserByEmail(data: String, email: String): HttpResponse {
-    return this.put(data = data, url = "/user/update/email/$email")
-  }
-
-  suspend fun deleteUserByEmail(email: String): HttpResponse {
-    return this.delete(url = "/user/delete/email/$email")
+  suspend fun deleteUserById(id: String): HttpResponse {
+    return this.delete(url = "/user/delete/id/$id")
   }
 }
