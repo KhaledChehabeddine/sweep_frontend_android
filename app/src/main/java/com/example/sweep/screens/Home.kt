@@ -26,12 +26,12 @@ import com.example.sweep.components.ServiceCategoryGrid
 import com.example.sweep.context.homeContext
 import com.example.sweep.context.utilityContext
 import com.example.sweep.data.ApiResponse
-import com.example.sweep.data.screens.home.HomeFeatureItemResponse
-import com.example.sweep.data.screens.home.HomeMainFeatureItemResponse
-import com.example.sweep.data.screens.home.HomeSubFeature
 import com.example.sweep.data.components.Category
 import com.example.sweep.data.components.ServiceCategoryResponse
 import com.example.sweep.data.components.ServiceItemResponse
+import com.example.sweep.data.screens.home.HomeFeatureItemResponse
+import com.example.sweep.data.screens.home.HomeMainFeatureItemResponse
+import com.example.sweep.data.screens.home.HomeSubFeature
 import com.example.sweep.screens.loading.HomeLoading
 import com.example.sweep.ui.theme.SweepTheme
 import io.ktor.client.statement.*

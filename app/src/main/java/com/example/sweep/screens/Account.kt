@@ -28,8 +28,8 @@ import com.example.sweep.context.accountContext
 import com.example.sweep.data.ApiResponse
 import com.example.sweep.data.screens.account.AccountCategory
 import com.example.sweep.data.screens.account.AccountCategoryItemResponse
-import com.example.sweep.screens.loading.AccountLoading
 import com.example.sweep.functions.svgS3UrlToPainter
+import com.example.sweep.screens.loading.AccountLoading
 import io.ktor.client.statement.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
