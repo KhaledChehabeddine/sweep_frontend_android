@@ -1,5 +1,6 @@
 package com.example.sweep.screens
 
+import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -28,13 +29,14 @@ import com.example.sweep.context.accountContext
 import com.example.sweep.data.ApiResponse
 import com.example.sweep.data.screens.account.AccountCategory
 import com.example.sweep.data.screens.account.AccountCategoryItemResponse
-import com.example.sweep.utilities.functions.svgS3UrlToPainter
+import com.example.sweep.screens.loading.AccountLoading
+import com.example.sweep.functions.svgS3UrlToPainter
 import io.ktor.client.statement.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
 @Composable
-fun AccountScreen(paddingValues: PaddingValues) {
+fun Account(paddingValues: PaddingValues) {
   var rememberAccountCategories: List<AccountCategory> by remember {
     mutableStateOf(value = accountContext.accountCategories)
   }
@@ -67,10 +69,13 @@ fun AccountScreen(paddingValues: PaddingValues) {
     accountContext.accountContextCollected = true
   }
 
-  if (rememberAccountContextCollected) {
+  if (!rememberAccountContextCollected) {
+    AccountLoading(paddingValues = paddingValues)
+  } else {
     Surface(
       color = MaterialTheme.colorScheme.background,
-      modifier = Modifier.fillMaxSize()
+      modifier = Modifier
+        .fillMaxSize()
         .padding(paddingValues = paddingValues)
     ) {
       LazyColumn(horizontalAlignment = Alignment.CenterHorizontally) {
@@ -78,53 +83,60 @@ fun AccountScreen(paddingValues: PaddingValues) {
           Row {
             BoxWithConstraints {
               Box(
-                modifier = Modifier.height(height = maxHeight)
+                modifier = Modifier
+                  .height(height = maxHeight)
                   .fillMaxWidth()
                   .padding(all = 20.dp)
-                  .clip(RoundedCornerShape(percent = 8))
+                  .clip(MaterialTheme.shapes.small)
                   .background(color = MaterialTheme.colorScheme.onBackground)
               ) {
                 Row(
                   horizontalArrangement = Arrangement.SpaceBetween,
-                  modifier = Modifier.fillMaxWidth()
+                  modifier = Modifier
+                    .fillMaxWidth()
                     .padding(
                       horizontal = 20.dp,
                       vertical = 10.dp
                     )
                 ) {
-                  rememberAccountCategoryItemResponsesByCategory[0].forEach { accountCategoryItemResponse ->
+                  rememberAccountCategoryItemResponsesByCategory[0].forEach { accountMainCategoryItemResponse ->
                     Column(
                       modifier = Modifier.fillMaxHeight(),
                       verticalArrangement = Arrangement.Center
                     ) {
-                      Box(
-                        contentAlignment = Alignment.Center,
-                        modifier = Modifier.size(size = 60.dp)
-                          .clip(RoundedCornerShape(percent = 16))
-                          .background(color = MaterialTheme.colorScheme.background)
-                          .clickable(
-                            indication = rememberRipple(color = MaterialTheme.colorScheme.secondary),
-                            interactionSource = remember {
-                              MutableInteractionSource()
+                      Row {
+                        Box(
+                          contentAlignment = Alignment.Center,
+                          modifier = Modifier
+                            .size(size = 60.dp)
+                            .clip(MaterialTheme.shapes.small)
+                            .background(color = MaterialTheme.colorScheme.background)
+                            .clickable(
+                              indication = rememberRipple(color = MaterialTheme.colorScheme.secondary),
+                              interactionSource = remember {
+                                MutableInteractionSource()
+                              }
+                            ) {
                             }
-                          ) {
-                          }
-                      ) {
-                        Image(
-                          contentDescription = accountCategoryItemResponse.name,
-                          modifier = Modifier.size(size = 40.dp),
-                          painter = svgS3UrlToPainter(url = accountCategoryItemResponse.imageUrl)
-                        )
+                        ) {
+                          Log.d("Account", accountMainCategoryItemResponse.imageUrl)
+                          Image(
+                            contentDescription = accountMainCategoryItemResponse.name,
+                            modifier = Modifier.size(size = 40.dp),
+                            painter = svgS3UrlToPainter(url = accountMainCategoryItemResponse.imageUrl)
+                          )
+                        }
                       }
                       Row(
                         horizontalArrangement = Arrangement.Center,
-                        modifier = Modifier.width(width = 60.dp)
+                        modifier = Modifier
+                          .width(width = 60.dp)
                           .padding(top = 5.dp)
                       ) {
                         Text(
                           color = MaterialTheme.colorScheme.onSurface,
                           style = MaterialTheme.typography.displayMedium,
-                          text = accountCategoryItemResponse.name
+                          text = accountMainCategoryItemResponse.name
                         )
                       }
                     }
@@ -133,11 +145,12 @@ fun AccountScreen(paddingValues: PaddingValues) {
               }
             }
           }
-          for (index in (1 until rememberAccountCategoryItemResponsesByCategory.size)) {
+          for (index in 1 until rememberAccountCategoryItemResponsesByCategory.size) {
             Row {
               BoxWithConstraints {
                 Box(
-                  modifier = Modifier.height(height = maxHeight)
+                  modifier = Modifier
+                    .height(height = maxHeight)
                     .fillMaxWidth()
                     .padding(all = 20.dp)
                     .clip(RoundedCornerShape(percent = 8))
@@ -168,7 +181,8 @@ fun AccountScreen(paddingValues: PaddingValues) {
 private fun SubCategory(accountCategoryItemResponses: List<AccountCategoryItemResponse>) {
   accountCategoryItemResponses.forEachIndexed { index, accountCategoryItemResponse ->
     Row(
-      modifier = Modifier.fillMaxWidth()
+      modifier = Modifier
+        .fillMaxWidth()
         .clickable(
           indication = rememberRipple(color = MaterialTheme.colorScheme.primaryContainer),
           interactionSource = remember {

@@ -5,8 +5,8 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.sweep.screens.AccountScreen
-import com.example.sweep.screens.HomeScreen
+import com.example.sweep.screens.Account
+import com.example.sweep.screens.Home
 import com.example.sweep.screens.SearchScreen
 import com.example.sweep.screens.SweepScreen
 import com.example.sweep.screens.history.HistoryScreen
@@ -29,7 +29,7 @@ fun Content(
     startDestination = "home"
   ) {
     composable(route = "home") {
-      HomeScreen(paddingValues = paddingValues)
+      Home(paddingValues = paddingValues)
     }
     composable(route = "search") {
       SearchScreen(systemUiController = systemUiController)
@@ -44,7 +44,7 @@ fun Content(
       )
     }
     composable(route = "account") {
-      AccountScreen(paddingValues = paddingValues)
+      Account(paddingValues = paddingValues)
     }
   }
 }

@@ -9,7 +9,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.sweep.R
 
-private val _rubikFontFamily = FontFamily(
+private val rubikFontFamily = FontFamily(
   Font(
     resId = R.font.rubik_light,
     weight = FontWeight.Light
@@ -81,21 +81,21 @@ private val _rubikFontFamily = FontFamily(
 // Set of Material typography styles to start with
 val Typography = Typography(
   bodyMedium = TextStyle(
-    fontFamily = _rubikFontFamily,
+    fontFamily = rubikFontFamily,
     fontWeight = FontWeight.Medium,
     fontSize = 16.sp,
     lineHeight = 24.sp
   ),
 
   displayMedium = TextStyle(
-    fontFamily = _rubikFontFamily,
+    fontFamily = rubikFontFamily,
     fontWeight = FontWeight.Medium,
     fontSize = 12.sp,
     lineHeight = 16.sp
   ),
 
   headlineLarge = TextStyle(
-    fontFamily = _rubikFontFamily,
+    fontFamily = rubikFontFamily,
     fontSize = 24.sp,
     fontWeight = FontWeight.Bold,
     lineHeight = 32.sp,
@@ -103,26 +103,26 @@ val Typography = Typography(
   ),
 
   headlineMedium = TextStyle(
-    fontFamily = _rubikFontFamily,
+    fontFamily = rubikFontFamily,
     fontSize = 14.sp,
     fontWeight = FontWeight.Bold,
     lineHeight = 20.sp
   ),
 
   labelMedium = TextStyle(
-    fontFamily = _rubikFontFamily,
+    fontFamily = rubikFontFamily,
     fontSize = 12.sp,
     lineHeight = 16.sp
   ),
 
   titleMedium = TextStyle(
-    fontFamily = _rubikFontFamily,
+    fontFamily = rubikFontFamily,
     fontSize = 16.sp,
     lineHeight = 24.sp
   ),
 
   titleLarge = TextStyle(
-    fontFamily = _rubikFontFamily,
+    fontFamily = rubikFontFamily,
     fontSize = 20.sp,
     fontWeight = FontWeight.Medium
   )

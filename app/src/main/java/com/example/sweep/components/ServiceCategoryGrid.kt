@@ -1,4 +1,4 @@
-package com.example.sweep.utilities
+package com.example.sweep.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -7,15 +7,12 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.sweep.data.serviceCategories
@@ -25,26 +22,26 @@ import com.example.sweep.ui.theme.SweepTheme
 fun ServiceCategoryGrid() {
   LazyVerticalGrid(
     columns = GridCells.Fixed(count = 4),
-    horizontalArrangement = Arrangement.spacedBy(10.dp),
-    modifier = Modifier.height(height = 220.dp),
-    verticalArrangement = Arrangement.spacedBy(10.dp)
+    horizontalArrangement = Arrangement.spacedBy(space = 10.dp),
+    modifier = Modifier.height(height = 210.dp),
+    userScrollEnabled = false,
+    verticalArrangement = Arrangement.spacedBy(space = 10.dp)
   ) {
     items(serviceCategories) { serviceCategory ->
       Box(
-        modifier = Modifier.height(105.dp)
-          .clip(RoundedCornerShape(percent = 8))
+        modifier = Modifier
+          .height(height = 100.dp)
           .background(
             color = if (serviceCategory.active) {
               MaterialTheme.colorScheme.secondaryContainer
             } else {
               MaterialTheme.colorScheme.tertiaryContainer
-            }
+            },
+            shape = MaterialTheme.shapes.small
           )
           .clickable(
             indication = if (serviceCategory.active) {
-              rememberRipple(
-                color = MaterialTheme.colorScheme.onSecondaryContainer
-              )
+              rememberRipple(color = MaterialTheme.colorScheme.onSecondaryContainer)
             } else {
               null
             },
@@ -65,10 +62,11 @@ fun ServiceCategoryGrid() {
           ) {
             Box(
               contentAlignment = Alignment.Center,
-              modifier = Modifier.size(size = 50.dp)
+              modifier = Modifier
+                .size(size = 50.dp)
                 .background(
                   color = MaterialTheme.colorScheme.onBackground,
-                  shape = CircleShape
+                  shape = MaterialTheme.shapes.extraLarge
                 )
             ) {
               Icon(
@@ -85,7 +83,8 @@ fun ServiceCategoryGrid() {
           }
           Row(
             horizontalArrangement = Arrangement.Center,
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier
+              .fillMaxWidth()
               .padding(top = 10.dp)
           ) {
             Text(

@@ -1,4 +1,4 @@
-package com.example.sweep.utilities.topbars
+package com.example.sweep.components.topbars
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Menu

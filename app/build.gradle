@@ -72,11 +72,11 @@ dependencies {
     implementation "androidx.navigation:navigation-compose:2.6.0-alpha08"
     // AWS SDK Support
     implementation "aws.sdk.kotlin:s3:0.17.5-beta"
-    // Pager (Tabs) Support
-    implementation "com.google.accompanist:accompanist-pager:$compose_pager_version"
-    implementation "com.google.accompanist:accompanist-pager-indicators:$compose_pager_version"
     // Accompanist Support
-    implementation "com.google.accompanist:accompanist-systemuicontroller:0.30.0"
+    implementation "com.google.accompanist:accompanist-pager:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-pager-indicators:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-placeholder-material:$accompanist_version"
+    implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
     // Coil Support
     implementation "io.coil-kt:coil-compose:$coil_version"
     implementation "io.coil-kt:coil-svg:$coil_version"
