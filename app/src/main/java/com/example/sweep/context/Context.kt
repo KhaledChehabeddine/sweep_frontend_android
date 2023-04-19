@@ -1,7 +1,22 @@
 package com.example.sweep.context
 
 val accountContext = AccountContext(
-  accountContextCollected = false,
   accountCategories = emptyList(),
-  accountCategoryItemResponsesByCategory = emptyList()
+  accountCategoryItemResponsesByCategory = emptyList(),
+  accountContextCollected = false
+)
+
+val homeContext = HomeContext(
+  homeContextCollected = false,
+  homeFeatureItemResponses = emptyList(),
+  homeMainFeatureItemResponses = emptyList(),
+  homeSubFeatures = emptyList()
+)
+
+val utilityContext = UtilityContext(
+  categories = emptyList(),
+  reviews = emptyList(),
+  serviceCategoryResponses = emptyList(),
+  serviceItemResponses = emptyList(),
+  utilityContextCollected = false
 )

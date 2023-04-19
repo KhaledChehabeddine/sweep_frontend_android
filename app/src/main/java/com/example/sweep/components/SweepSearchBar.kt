@@ -1,4 +1,4 @@
-package com.example.sweep.utilities
+package com.example.sweep.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

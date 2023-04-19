@@ -1,4 +1,4 @@
-package com.example.sweep.utilities.functions
+package com.example.sweep.functions
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.painter.Painter

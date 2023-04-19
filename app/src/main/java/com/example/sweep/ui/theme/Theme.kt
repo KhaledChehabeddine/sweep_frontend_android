@@ -11,7 +11,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-private val _darkColorPalette = darkColorScheme(
+private val darkColorPalette = darkColorScheme(
   primary = md_theme_dark_primary,
   onPrimary = md_theme_dark_onPrimary,
   primaryContainer = md_theme_dark_primaryContainer,
@@ -47,7 +47,7 @@ private val _darkColorPalette = darkColorScheme(
   outline = md_theme_dark_outline
 )
 
-private val _lightColorPalette = lightColorScheme(
+private val lightColorPalette = lightColorScheme(
   primary = md_theme_light_primary,
   onPrimary = md_theme_light_onPrimary,
   primaryContainer = blue200,
@@ -86,7 +86,6 @@ private val _lightColorPalette = lightColorScheme(
 @Composable
 fun SweepTheme(
   darkTheme: Boolean = isSystemInDarkTheme(),
-  // Dynamic color is available on Android 12+
   dynamicColor: Boolean = false,
   content: @Composable () -> Unit
 ) {
@@ -95,8 +94,8 @@ fun SweepTheme(
       val context = LocalContext.current
       if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
     }
-    darkTheme -> _darkColorPalette
-    else -> _lightColorPalette
+    darkTheme -> darkColorPalette
+    else -> lightColorPalette
   }
 
   val view = LocalView.current
