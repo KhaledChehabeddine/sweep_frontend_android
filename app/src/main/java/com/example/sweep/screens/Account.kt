@@ -1,6 +1,5 @@
 package com.example.sweep.screens
 
-import android.util.Log
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -119,7 +118,6 @@ fun Account(paddingValues: PaddingValues) {
                             ) {
                             }
                         ) {
-                          Log.d("Account", accountMainCategoryItemResponse.imageUrl)
                           Image(
                             contentDescription = accountMainCategoryItemResponse.name,
                             modifier = Modifier.size(size = 40.dp),
