@@ -23,8 +23,8 @@ data class HomeFeatureItemResponse(
   val rating: Float,
   @SerialName("review_ids")
   val reviewIds: List<String>,
-  @SerialName("service_id")
-  val serviceId: String,
+  @SerialName("service_item_ids")
+  val serviceItemIds: List<String>,
   @SerialName("title")
   val title: String
 )

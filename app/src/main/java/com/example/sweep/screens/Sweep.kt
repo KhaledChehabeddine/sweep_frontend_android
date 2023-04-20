@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.sweep.components.ServiceCategoryGrid
+import com.example.sweep.context.utilityContext
 import com.example.sweep.ui.theme.SweepTheme
 
 @Composable
@@ -31,7 +32,7 @@ fun SweepScreen(paddingValues: PaddingValues) {
         )
       }
       Row(modifier = Modifier.padding(top = 20.dp)) {
-        ServiceCategoryGrid()
+        ServiceCategoryGrid(serviceCategoryResponses = utilityContext.serviceCategoryResponses)
       }
     }
   }

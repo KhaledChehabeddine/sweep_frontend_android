@@ -5,8 +5,8 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class HomeSubFeature(
-  @SerialName("home_sub_feature_item_ids")
-  val homeSubFeatureItemIds: List<String>,
+  @SerialName("home_feature_item_ids")
+  val homeFeatureItemIds: List<String>,
   @SerialName("_id")
   val id: String,
   @SerialName("subtitle")

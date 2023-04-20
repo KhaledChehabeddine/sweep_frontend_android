@@ -21,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.sweep.api.getApiClient
@@ -119,6 +120,7 @@ fun Account(paddingValues: PaddingValues) {
                             }
                         ) {
                           Image(
+                            colorFilter = ColorFilter.tint(color = MaterialTheme.colorScheme.onSurface),
                             contentDescription = accountMainCategoryItemResponse.name,
                             modifier = Modifier.size(size = 40.dp),
                             painter = svgS3UrlToPainter(url = accountMainCategoryItemResponse.imageUrl)
@@ -194,6 +196,7 @@ private fun SubCategory(accountCategoryItemResponses: List<AccountCategoryItemRe
         verticalAlignment = Alignment.CenterVertically
       ) {
         Image(
+          colorFilter = ColorFilter.tint(color = MaterialTheme.colorScheme.onSurface),
           contentDescription = accountCategoryItemResponse.name,
           modifier = Modifier.size(size = 24.dp),
           painter = svgS3UrlToPainter(url = accountCategoryItemResponse.imageUrl)
