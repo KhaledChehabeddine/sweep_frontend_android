@@ -1,16 +1,16 @@
 package com.example.sweep.components.topbars
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.pager.PagerState
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.sweep.data.historyTabItems
 import com.example.sweep.ui.theme.SweepTheme
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.PagerState
-import com.google.accompanist.pager.rememberPagerState
 import kotlinx.coroutines.launch
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalPagerApi::class)
+@OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun TopBarHistory(pagerState: PagerState = rememberPagerState()) {
   CenterAlignedTopAppBar(
@@ -47,7 +47,7 @@ fun TopBarHistory(pagerState: PagerState = rememberPagerState()) {
   )
 }
 
-@OptIn(ExperimentalPagerApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Preview(showBackground = true)
 @Composable
 private fun Preview() {

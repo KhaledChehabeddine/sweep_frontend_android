@@ -1,22 +1,22 @@
 package com.example.sweep.navigation
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.pager.PagerState
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.sweep.screens.Account
-import com.example.sweep.screens.Home
 import com.example.sweep.screens.SearchScreen
 import com.example.sweep.screens.SweepScreen
+import com.example.sweep.screens.account.Account
 import com.example.sweep.screens.history.HistoryScreen
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.PagerState
-import com.google.accompanist.pager.rememberPagerState
+import com.example.sweep.screens.home.Home
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
-@OptIn(ExperimentalPagerApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Content(
   navController: NavHostController,

@@ -4,19 +4,15 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class HomeMainFeatureItem(
+data class HomeMainFeaturePromotionResponse(
   @SerialName("file_path")
   val filePath: String,
   @SerialName("_id")
   val id: String,
   @SerialName("image_url")
   val imageUrl: String,
-  @SerialName("promotion_home_feature_item_ids")
-  val promotionHomeFeatureItemIds: List<String>,
-  @SerialName("reward_amount")
-  val rewardAmount: Float,
-  @SerialName("reward_code")
-  val rewardCode: String,
-  @SerialName("type")
-  val type: String
+  @SerialName("service_firm_ids")
+  val serviceFirmIds: List<String>,
+  @SerialName("service_worker_ids")
+  val serviceWorkerIds: List<String>
 )

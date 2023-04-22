@@ -4,5 +4,5 @@ import com.example.sweep.data.components.ServiceCategoryResponse
 
 data class ServiceCategoryResponseContext(
   var contextCollected: Boolean,
-  var serviceCategoryResponses: List<ServiceCategoryResponse>,
+  var serviceCategoryResponses: List<ServiceCategoryResponse>
 )

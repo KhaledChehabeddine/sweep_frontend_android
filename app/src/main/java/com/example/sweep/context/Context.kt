@@ -1,57 +1,42 @@
 package com.example.sweep.context
 
-import com.example.sweep.context.components.CategoryContext
-import com.example.sweep.context.components.ReviewContext
 import com.example.sweep.context.components.ServiceCategoryResponseContext
-import com.example.sweep.context.components.ServiceItemResponseContext
-import com.example.sweep.context.home.HomeFeatureItemResponseContext
-import com.example.sweep.context.home.HomeMainFeatureItemResponseContext
-import com.example.sweep.context.home.HomeSubFeatureContext
+import com.example.sweep.context.screens.account.AccountCategoryContext
+import com.example.sweep.context.screens.account.AccountCategoryItemResponseContext
+import com.example.sweep.context.screens.home.HomeMainFeaturePromotionResponseContext
+import com.example.sweep.context.screens.home.HomeMainFeatureRewardResponseContext
+import com.example.sweep.context.screens.home.HomeSubFeatureContext
 
-val accountContext = AccountContext(
-  accountCategories = emptyList(),
-  accountCategoryItemResponsesByCategory = emptyList(),
-  accountContextCollected = false
-)
-
-val categoryContext = CategoryContext(
-  categories = emptyList(),
+var accountCategoryContext = AccountCategoryContext(
   contextCollected = false,
-  serviceItemResponsesMapById = hashMapOf()
+  accountCategories = emptyList()
 )
 
-val homeFeatureItemResponseContext = HomeFeatureItemResponseContext(
-  categoriesMapById = hashMapOf(),
+var accountCategoryItemResponseContext = AccountCategoryItemResponseContext(
   contextCollected = false,
-  homeFeatureItemResponses = emptyList(),
-  reviewsMapById = hashMapOf(),
-  serviceItemResponsesMapById = hashMapOf()
+  accountCategoryItemResponsesMapByCategory = hashMapOf()
 )
 
-val homeMainFeatureItemResponseContext = HomeMainFeatureItemResponseContext(
+var homeMainFeaturePromotionResponseContext = HomeMainFeaturePromotionResponseContext(
   contextCollected = false,
-  homeMainFeatureItemResponses = emptyList(),
-  promotionHomeFeatureItemResponsesMapById = hashMapOf()
+  homeMainFeaturePromotionResponses = emptyList(),
+  serviceFirmResponsesMapById = hashMapOf(),
+  serviceWorkerResponsesMapById = hashMapOf()
 )
 
-val homeSubFeatureContext = HomeSubFeatureContext(
+var homeMainFeatureRewardResponseContext = HomeMainFeatureRewardResponseContext(
   contextCollected = false,
-  homeFeatureItemResponsesMapById = hashMapOf(),
-  homeSubFeatures = emptyList()
+  homeMainFeatureRewardResponses = emptyList()
 )
 
-val reviewContext = ReviewContext(
+var homeSubFeatureContext = HomeSubFeatureContext(
   contextCollected = false,
-  reviews = emptyList(),
-  serviceItemResponseMapById = hashMapOf()
+  homeSubFeatures = emptyList(),
+  serviceFirmResponsesMapById = hashMapOf(),
+  serviceWorkerResponsesMapById = hashMapOf()
 )
 
-val serviceCategoryResponseContext = ServiceCategoryResponseContext(
+var serviceCategoryResponseContext = ServiceCategoryResponseContext(
   contextCollected = false,
   serviceCategoryResponses = emptyList()
-)
-
-val serviceItemResponseContext = ServiceItemResponseContext(
-  contextCollected = false,
-  serviceItemResponses = emptyList()
 )

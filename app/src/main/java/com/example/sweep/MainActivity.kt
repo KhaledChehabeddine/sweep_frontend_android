@@ -3,7 +3,9 @@ package com.example.sweep
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
@@ -16,8 +18,6 @@ import com.example.sweep.navigation.BottomBar
 import com.example.sweep.navigation.Content
 import com.example.sweep.navigation.TopBar
 import com.example.sweep.ui.theme.SweepTheme
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.rememberPagerState
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 class MainActivity : ComponentActivity() {
@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
 }
 
 // Scaffolds are used to easily create basic Material Design layouts, with a bottomBar, topBar and content section
-@OptIn(ExperimentalPagerApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MainScreen() {
   val navController = rememberNavController()

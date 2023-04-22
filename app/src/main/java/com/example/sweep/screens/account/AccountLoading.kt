@@ -1,4 +1,4 @@
-package com.example.sweep.screens.loading
+package com.example.sweep.screens.account
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

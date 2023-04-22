@@ -1,5 +1,8 @@
 package com.example.sweep.navigation
 
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.pager.PagerState
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
@@ -9,13 +12,10 @@ import com.example.sweep.components.topbars.TopBarAccount
 import com.example.sweep.components.topbars.TopBarHistory
 import com.example.sweep.components.topbars.TopBarHome
 import com.example.sweep.components.topbars.TopBarSweep
-import com.google.accompanist.pager.ExperimentalPagerApi
-import com.google.accompanist.pager.PagerState
-import com.google.accompanist.pager.rememberPagerState
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
-@OptIn(ExperimentalPagerApi::class)
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TopBar(
   navController: NavHostController,
