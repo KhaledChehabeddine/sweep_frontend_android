@@ -1,5 +1,6 @@
 package com.example.sweep.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -13,13 +14,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
-import com.example.sweep.data.serviceCategories
-import com.example.sweep.ui.theme.SweepTheme
+import com.example.sweep.data.components.ServiceCategoryResponse
+import com.example.sweep.functions.svgS3UrlToPainter
 
 @Composable
-fun ServiceCategoryGrid() {
+fun ServiceCategoryGrid(serviceCategoryResponses: List<ServiceCategoryResponse>) {
   LazyVerticalGrid(
     columns = GridCells.Fixed(count = 4),
     horizontalArrangement = Arrangement.spacedBy(space = 10.dp),
@@ -27,20 +29,20 @@ fun ServiceCategoryGrid() {
     userScrollEnabled = false,
     verticalArrangement = Arrangement.spacedBy(space = 10.dp)
   ) {
-    items(serviceCategories) { serviceCategory ->
+    items(serviceCategoryResponses) { serviceCategoryResponse ->
       Box(
         modifier = Modifier
           .height(height = 100.dp)
+          .clip(shape = MaterialTheme.shapes.small)
           .background(
-            color = if (serviceCategory.active) {
+            color = if (serviceCategoryResponse.active) {
               MaterialTheme.colorScheme.secondaryContainer
             } else {
               MaterialTheme.colorScheme.tertiaryContainer
-            },
-            shape = MaterialTheme.shapes.small
+            }
           )
           .clickable(
-            indication = if (serviceCategory.active) {
+            indication = if (serviceCategoryResponse.active) {
               rememberRipple(color = MaterialTheme.colorScheme.onSecondaryContainer)
             } else {
               null
@@ -69,15 +71,17 @@ fun ServiceCategoryGrid() {
                   shape = MaterialTheme.shapes.extraLarge
                 )
             ) {
-              Icon(
-                contentDescription = serviceCategory.name,
-                imageVector = serviceCategory.icon,
+              Image(
+                colorFilter = ColorFilter.tint(
+                  color = if (serviceCategoryResponse.active) {
+                    MaterialTheme.colorScheme.onSecondary
+                  } else {
+                    MaterialTheme.colorScheme.tertiary
+                  }
+                ),
+                contentDescription = serviceCategoryResponse.name,
                 modifier = Modifier.size(size = 30.dp),
-                tint = if (serviceCategory.active) {
-                  MaterialTheme.colorScheme.onSecondary
-                } else {
-                  MaterialTheme.colorScheme.tertiary
-                }
+                painter = svgS3UrlToPainter(url = serviceCategoryResponse.imageUrl)
               )
             }
           }
@@ -89,20 +93,12 @@ fun ServiceCategoryGrid() {
           ) {
             Text(
               color = MaterialTheme.colorScheme.onSurface,
-              text = serviceCategory.name,
+              text = serviceCategoryResponse.name,
               style = MaterialTheme.typography.labelMedium
             )
           }
         }
       }
     }
-  }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun Preview() {
-  SweepTheme {
-    ServiceCategoryGrid()
   }
 }

@@ -1,22 +1,42 @@
 package com.example.sweep.context
 
-val accountContext = AccountContext(
-  accountCategories = emptyList(),
-  accountCategoryItemResponsesByCategory = emptyList(),
-  accountContextCollected = false
+import com.example.sweep.context.components.ServiceCategoryResponseContext
+import com.example.sweep.context.screens.account.AccountCategoryContext
+import com.example.sweep.context.screens.account.AccountCategoryItemResponseContext
+import com.example.sweep.context.screens.home.HomeMainFeaturePromotionResponseContext
+import com.example.sweep.context.screens.home.HomeMainFeatureRewardResponseContext
+import com.example.sweep.context.screens.home.HomeSubFeatureContext
+
+var accountCategoryContext = AccountCategoryContext(
+  contextCollected = false,
+  accountCategories = emptyList()
 )
 
-val homeContext = HomeContext(
-  homeContextCollected = false,
-  homeFeatureItemResponses = emptyList(),
-  homeMainFeatureItemResponses = emptyList(),
-  homeSubFeatures = emptyList()
+var accountCategoryItemResponseContext = AccountCategoryItemResponseContext(
+  contextCollected = false,
+  accountCategoryItemResponsesMapByCategory = hashMapOf()
 )
 
-val utilityContext = UtilityContext(
-  categories = emptyList(),
-  reviews = emptyList(),
-  serviceCategoryResponses = emptyList(),
-  serviceItemResponses = emptyList(),
-  utilityContextCollected = false
+var homeMainFeaturePromotionResponseContext = HomeMainFeaturePromotionResponseContext(
+  contextCollected = false,
+  homeMainFeaturePromotionResponses = emptyList(),
+  serviceFirmResponsesMapById = hashMapOf(),
+  serviceWorkerResponsesMapById = hashMapOf()
+)
+
+var homeMainFeatureRewardResponseContext = HomeMainFeatureRewardResponseContext(
+  contextCollected = false,
+  homeMainFeatureRewardResponses = emptyList()
+)
+
+var homeSubFeatureContext = HomeSubFeatureContext(
+  contextCollected = false,
+  homeSubFeatures = emptyList(),
+  serviceFirmResponsesMapById = hashMapOf(),
+  serviceWorkerResponsesMapById = hashMapOf()
+)
+
+var serviceCategoryResponseContext = ServiceCategoryResponseContext(
+  contextCollected = false,
+  serviceCategoryResponses = emptyList()
 )

@@ -114,6 +114,46 @@ class ApiClient(
     return this.delete(url = "/home_main_feature_item/delete/id/$id")
   }
 
+  suspend fun createHomeMainFeaturePromotion(data: String): HttpResponse {
+    return this.post(data = data, url = "/home_main_feature_promotion/create")
+  }
+
+  suspend fun readHomeMainFeaturePromotionById(id: String): HttpResponse {
+    return this.get(url = "/home_main_feature_promotion/read/id/$id")
+  }
+
+  suspend fun readHomeMainFeaturePromotions(): HttpResponse {
+    return this.get(url = "/home_main_feature_promotion/read")
+  }
+
+  suspend fun updateHomeMainFeaturePromotionById(data: String, id: String): HttpResponse {
+    return this.put(data = data, url = "/home_main_feature_promotion/update/id/$id")
+  }
+
+  suspend fun deleteHomeMainFeaturePromotionById(id: String): HttpResponse {
+    return this.delete(url = "/home_main_feature_promotion/delete/id/$id")
+  }
+
+  suspend fun createHomeMainFeatureReward(data: String): HttpResponse {
+    return this.post(data = data, url = "/home_main_feature_reward/create")
+  }
+
+  suspend fun readHomeMainFeatureRewardById(id: String): HttpResponse {
+    return this.get(url = "/home_main_feature_reward/read/id/$id")
+  }
+
+  suspend fun readHomeMainFeatureRewards(): HttpResponse {
+    return this.get(url = "/home_main_feature_reward/read")
+  }
+
+  suspend fun updateHomeMainFeatureRewardById(data: String, id: String): HttpResponse {
+    return this.put(data = data, url = "/home_main_feature_reward/update/id/$id")
+  }
+
+  suspend fun deleteHomeMainFeatureRewardById(id: String): HttpResponse {
+    return this.delete(url = "/home_main_feature_reward/delete/id/$id")
+  }
+
   suspend fun createHomeSubFeature(data: String): HttpResponse {
     return this.post(data = data, url = "/home_sub_feature/create")
   }
@@ -174,6 +214,26 @@ class ApiClient(
     return this.delete(url = "/service_category/delete/id/$id")
   }
 
+  suspend fun createServiceFirm(data: String): HttpResponse {
+    return this.post(data = data, url = "/service_firm/create")
+  }
+
+  suspend fun readServiceFirmById(id: String): HttpResponse {
+    return this.get(url = "/service_firm/read/id/$id")
+  }
+
+  suspend fun readServiceFirms(): HttpResponse {
+    return this.get(url = "/service_firm/read")
+  }
+
+  suspend fun updateServiceFirmById(data: String, id: String): HttpResponse {
+    return this.put(data = data, url = "/service_firm/update/id/$id")
+  }
+
+  suspend fun deleteServiceFirmById(id: String): HttpResponse {
+    return this.delete(url = "/service_firm/delete/id/$id")
+  }
+
   suspend fun createServiceItem(data: String): HttpResponse {
     return this.post(data = data, url = "/service_item/create")
   }
@@ -192,6 +252,26 @@ class ApiClient(
 
   suspend fun deleteServiceItemById(id: String): HttpResponse {
     return this.delete(url = "/service_item/delete/id/$id")
+  }
+
+  suspend fun createServiceWorker(data: String): HttpResponse {
+    return this.post(data = data, url = "/service_worker/create")
+  }
+
+  suspend fun readServiceWorkerById(id: String): HttpResponse {
+    return this.get(url = "/service_worker/read/id/$id")
+  }
+
+  suspend fun readServiceWorkers(): HttpResponse {
+    return this.get(url = "/service_worker/read")
+  }
+
+  suspend fun updateServiceWorkerById(data: String, id: String): HttpResponse {
+    return this.put(data = data, url = "/service_worker/update/id/$id")
+  }
+
+  suspend fun deleteServiceWorkerById(id: String): HttpResponse {
+    return this.delete(url = "/service_worker/delete/id/$id")
   }
 
   suspend fun createUser(data: String): HttpResponse {

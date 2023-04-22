@@ -9,6 +9,6 @@ data class Category(
   val id: String,
   @SerialName("name")
   val name: String,
-  @SerialName("service_ids")
-  val serviceIds: List<String>
+  @SerialName("service_item_ids")
+  val serviceItemIds: List<String>
 )

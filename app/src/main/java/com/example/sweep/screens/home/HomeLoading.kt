@@ -1,4 +1,4 @@
-package com.example.sweep.screens.loading
+package com.example.sweep.screens.home
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -6,11 +6,11 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.MaterialTheme
@@ -48,8 +48,8 @@ fun HomeLoading(paddingValues: PaddingValues) {
           Row {
             Box(
               modifier = Modifier
-                .height(height = 200.dp)
                 .fillMaxWidth()
+                .aspectRatio(ratio = 16f / 9f)
                 .placeholder(
                   color = MaterialTheme.colorScheme.secondaryContainer,
                   highlight = PlaceholderHighlight.shimmer(),
@@ -110,10 +110,8 @@ fun HomeLoading(paddingValues: PaddingValues) {
                   repeat(times = 3) {
                     Box(
                       modifier = Modifier
-                        .size(
-                          height = 150.dp,
-                          width = 250.dp
-                        )
+                        .height(height = 150.dp)
+                        .aspectRatio(ratio = 16f / 9f)
                         .padding(end = 20.dp)
                         .placeholder(
                           color = MaterialTheme.colorScheme.secondaryContainer,
