@@ -24,7 +24,7 @@ import com.example.sweep.data.components.ServiceCategoryResponse
 import com.example.sweep.data.screens.home.HomeMainFeaturePromotionResponse
 import com.example.sweep.data.screens.home.HomeMainFeatureRewardResponse
 import com.example.sweep.data.screens.home.HomeSubFeature
-import com.example.sweep.functions.coroutines.getServiceResponses
+import com.example.sweep.functions.coroutine.getServiceResponses
 import io.ktor.client.statement.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json

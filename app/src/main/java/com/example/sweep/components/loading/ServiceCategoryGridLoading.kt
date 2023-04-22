@@ -31,6 +31,7 @@ fun ServiceCategoryGridLoading() {
           .placeholder(
             color = MaterialTheme.colorScheme.secondaryContainer,
             highlight = PlaceholderHighlight.shimmer(),
+            shape = MaterialTheme.shapes.small,
             visible = true
           )
       )
