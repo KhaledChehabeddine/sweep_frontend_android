@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -106,7 +105,7 @@ fun AccountLoading(paddingValues: PaddingValues) {
                   .height(height = maxHeight)
                   .fillMaxWidth()
                   .padding(all = 20.dp)
-                  .clip(RoundedCornerShape(percent = 8))
+                  .clip(MaterialTheme.shapes.small)
                   .background(color = MaterialTheme.colorScheme.onBackground)
               ) {
                 Column(modifier = Modifier.padding(all = 20.dp)) {

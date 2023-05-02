@@ -18,6 +18,14 @@ class ApiClient(
     return this.get(url = "/account_category/read/id/$id")
   }
 
+  suspend fun readAccountCategoryByName(name: String): HttpResponse {
+    return this.get(url = "/account_category/read/name/$name")
+  }
+
+  suspend fun readAccountCategoriesExcludeName(name: String): HttpResponse {
+    return this.get(url = "/account_category/read/exclude/name/$name")
+  }
+
   suspend fun readAccountCategories(): HttpResponse {
     return this.get(url = "/account_category/read")
   }
@@ -30,88 +38,24 @@ class ApiClient(
     return this.delete(url = "/account_category/delete/id/$id")
   }
 
-  suspend fun createAccountCategoryItem(data: String): HttpResponse {
-    return this.post(data = data, url = "/account_category_item/create")
+  suspend fun createCompany(data: String): HttpResponse {
+    return this.post(data = data, url = "/company/create")
   }
 
-  suspend fun readAccountCategoryItems(): HttpResponse {
-    return this.get(url = "/account_category_item/read")
+  suspend fun readCompanyById(id: String): HttpResponse {
+    return this.get(url = "/company/read/id/$id")
   }
 
-  suspend fun readAccountCategoryItemById(id: String): HttpResponse {
-    return this.get(url = "/account_category_item/read/id/$id")
+  suspend fun readCompanies(): HttpResponse {
+    return this.get(url = "/company/read")
   }
 
-  suspend fun readAccountCategoryItemsByAccountCategoryName(accountCategoryName: String): HttpResponse {
-    return this.get(url = "/account_category_item/read/account_category_name/$accountCategoryName")
+  suspend fun updateCompanyById(data: String, id: String): HttpResponse {
+    return this.put(data = data, url = "/company/update/id/$id")
   }
 
-  suspend fun updateAccountCategoryItemById(data: String, id: String): HttpResponse {
-    return this.put(data = data, url = "/account_category_item/update/id/$id")
-  }
-
-  suspend fun deleteAccountCategoryItemById(id: String): HttpResponse {
-    return this.delete(url = "/account_category_item/delete/id/$id")
-  }
-
-  suspend fun createCategory(data: String): HttpResponse {
-    return this.post(data = data, url = "/category/create")
-  }
-
-  suspend fun readCategoryById(id: String): HttpResponse {
-    return this.get(url = "/category/read/id/$id")
-  }
-
-  suspend fun readCategories(): HttpResponse {
-    return this.get(url = "/category/read")
-  }
-
-  suspend fun updateCategoryById(data: String, id: String): HttpResponse {
-    return this.put(data = data, url = "/category/update/id/$id")
-  }
-
-  suspend fun deleteCategoryById(id: String): HttpResponse {
-    return this.delete(url = "/category/delete/id/$id")
-  }
-
-  suspend fun createHomeFeatureItem(data: String): HttpResponse {
-    return this.post(data = data, url = "/home_feature_item/create")
-  }
-
-  suspend fun readHomeFeatureItemById(id: String): HttpResponse {
-    return this.get(url = "/home_feature_item/read/id/$id")
-  }
-
-  suspend fun readHomeFeatureItems(): HttpResponse {
-    return this.get(url = "/home_feature_item/read")
-  }
-
-  suspend fun updateHomeFeatureItemById(data: String, id: String): HttpResponse {
-    return this.put(data = data, url = "/home_feature_item/update/id/$id")
-  }
-
-  suspend fun deleteHomeFeatureItemById(id: String): HttpResponse {
-    return this.delete(url = "/home_feature_item/delete/id/$id")
-  }
-
-  suspend fun createHomeMainFeatureItem(data: String): HttpResponse {
-    return this.post(data = data, url = "/home_main_feature_item/create")
-  }
-
-  suspend fun readHomeMainFeatureItemById(id: String): HttpResponse {
-    return this.get(url = "/home_main_feature_item/read/id/$id")
-  }
-
-  suspend fun readHomeMainFeatureItems(): HttpResponse {
-    return this.get(url = "/home_main_feature_item/read")
-  }
-
-  suspend fun updateHomeMainFeatureItemById(data: String, id: String): HttpResponse {
-    return this.put(data = data, url = "/home_main_feature_item/update/id/$id")
-  }
-
-  suspend fun deleteHomeMainFeatureItemById(id: String): HttpResponse {
-    return this.delete(url = "/home_main_feature_item/delete/id/$id")
+  suspend fun deleteCompanyById(id: String): HttpResponse {
+    return this.delete(url = "/company/delete/id/$id")
   }
 
   suspend fun createHomeMainFeaturePromotion(data: String): HttpResponse {
@@ -174,26 +118,6 @@ class ApiClient(
     return this.delete(url = "/home_sub_feature/delete/id/$id")
   }
 
-  suspend fun createReview(data: String): HttpResponse {
-    return this.post(data = data, url = "/review/create")
-  }
-
-  suspend fun readReviewById(id: String): HttpResponse {
-    return this.get(url = "/review/read/id/$id")
-  }
-
-  suspend fun readReviews(): HttpResponse {
-    return this.get(url = "/review/read")
-  }
-
-  suspend fun updateReviewById(data: String, id: String): HttpResponse {
-    return this.put(data = data, url = "/review/update/id/$id")
-  }
-
-  suspend fun deleteReviewById(id: String): HttpResponse {
-    return this.delete(url = "/review/delete/id/$id")
-  }
-
   suspend fun createServiceCategory(data: String): HttpResponse {
     return this.post(data = data, url = "/service_category/create")
   }
@@ -214,83 +138,23 @@ class ApiClient(
     return this.delete(url = "/service_category/delete/id/$id")
   }
 
-  suspend fun createServiceFirm(data: String): HttpResponse {
-    return this.post(data = data, url = "/service_firm/create")
+  suspend fun createWorker(data: String): HttpResponse {
+    return this.post(data = data, url = "/worker/create")
   }
 
-  suspend fun readServiceFirmById(id: String): HttpResponse {
-    return this.get(url = "/service_firm/read/id/$id")
+  suspend fun readWorkerById(id: String): HttpResponse {
+    return this.get(url = "/worker/read/id/$id")
   }
 
-  suspend fun readServiceFirms(): HttpResponse {
-    return this.get(url = "/service_firm/read")
+  suspend fun readWorkers(): HttpResponse {
+    return this.get(url = "/worker/read")
   }
 
-  suspend fun updateServiceFirmById(data: String, id: String): HttpResponse {
-    return this.put(data = data, url = "/service_firm/update/id/$id")
+  suspend fun updateWorkerById(data: String, id: String): HttpResponse {
+    return this.put(data = data, url = "/worker/update/id/$id")
   }
 
-  suspend fun deleteServiceFirmById(id: String): HttpResponse {
-    return this.delete(url = "/service_firm/delete/id/$id")
-  }
-
-  suspend fun createServiceItem(data: String): HttpResponse {
-    return this.post(data = data, url = "/service_item/create")
-  }
-
-  suspend fun readServiceItemById(id: String): HttpResponse {
-    return this.get(url = "/service_item/read/id/$id")
-  }
-
-  suspend fun readServiceItems(): HttpResponse {
-    return this.get(url = "/service_item/read")
-  }
-
-  suspend fun updateServiceItemById(data: String, id: String): HttpResponse {
-    return this.put(data = data, url = "/service_item/update/id/$id")
-  }
-
-  suspend fun deleteServiceItemById(id: String): HttpResponse {
-    return this.delete(url = "/service_item/delete/id/$id")
-  }
-
-  suspend fun createServiceWorker(data: String): HttpResponse {
-    return this.post(data = data, url = "/service_worker/create")
-  }
-
-  suspend fun readServiceWorkerById(id: String): HttpResponse {
-    return this.get(url = "/service_worker/read/id/$id")
-  }
-
-  suspend fun readServiceWorkers(): HttpResponse {
-    return this.get(url = "/service_worker/read")
-  }
-
-  suspend fun updateServiceWorkerById(data: String, id: String): HttpResponse {
-    return this.put(data = data, url = "/service_worker/update/id/$id")
-  }
-
-  suspend fun deleteServiceWorkerById(id: String): HttpResponse {
-    return this.delete(url = "/service_worker/delete/id/$id")
-  }
-
-  suspend fun createUser(data: String): HttpResponse {
-    return this.post(data = data, url = "/user/create")
-  }
-
-  suspend fun readUserById(id: String): HttpResponse {
-    return this.get(url = "/user/read/id/$id")
-  }
-
-  suspend fun readUsers(): HttpResponse {
-    return this.get(url = "/user/read")
-  }
-
-  suspend fun updateUserById(data: String, id: String): HttpResponse {
-    return this.put(data = data, url = "/user/update/id/$id")
-  }
-
-  suspend fun deleteUserById(id: String): HttpResponse {
-    return this.delete(url = "/user/delete/id/$id")
+  suspend fun deleteWorkerById(id: String): HttpResponse {
+    return this.delete(url = "/worker/delete/id/$id")
   }
 }

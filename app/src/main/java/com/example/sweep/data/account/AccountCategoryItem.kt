@@ -1,15 +1,11 @@
-package com.example.sweep.data.components
+package com.example.sweep.data.account
 
-import com.example.sweep.data.components.metadata.ServiceCategoryMetadata
+import com.example.sweep.data.account.metadata.AccountCategoryItemMetadata
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ServiceCategory(
-  @SerialName("active")
-  val active: Boolean,
-  @SerialName("_id")
-  val id: String,
+data class AccountCategoryItem(
   @SerialName("image")
   val image: String = "",
   @SerialName("image_path")
@@ -17,7 +13,7 @@ data class ServiceCategory(
   @SerialName("image_url")
   val imageUrl: String,
   @SerialName("metadata")
-  val metadata: ServiceCategoryMetadata,
+  val metadata: AccountCategoryItemMetadata,
   @SerialName("name")
   val name: String
 )

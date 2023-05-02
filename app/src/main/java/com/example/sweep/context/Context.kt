@@ -1,42 +1,37 @@
 package com.example.sweep.context
 
-import com.example.sweep.context.components.ServiceCategoryResponseContext
-import com.example.sweep.context.screens.account.AccountCategoryContext
-import com.example.sweep.context.screens.account.AccountCategoryItemResponseContext
-import com.example.sweep.context.screens.home.HomeMainFeaturePromotionResponseContext
-import com.example.sweep.context.screens.home.HomeMainFeatureRewardResponseContext
+import com.example.sweep.context.components.ServiceCategoryContext
+import com.example.sweep.context.screens.AccountCategoryContext
+import com.example.sweep.context.screens.home.HomeMainFeaturePromotionContext
+import com.example.sweep.context.screens.home.HomeMainFeatureRewardContext
 import com.example.sweep.context.screens.home.HomeSubFeatureContext
 
 var accountCategoryContext = AccountCategoryContext(
   contextCollected = false,
-  accountCategories = emptyList()
+  accountMainCategory = null,
+  accountSubCategories = emptyList()
 )
 
-var accountCategoryItemResponseContext = AccountCategoryItemResponseContext(
+var homeMainFeaturePromotionContext = HomeMainFeaturePromotionContext(
   contextCollected = false,
-  accountCategoryItemResponsesMapByCategory = hashMapOf()
+  companyContextsById = mapOf(),
+  homeMainFeaturePromotions = emptyList(),
+  workerContextsById = mapOf()
 )
 
-var homeMainFeaturePromotionResponseContext = HomeMainFeaturePromotionResponseContext(
+var homeMainFeatureRewardContext = HomeMainFeatureRewardContext(
   contextCollected = false,
-  homeMainFeaturePromotionResponses = emptyList(),
-  serviceFirmResponsesMapById = hashMapOf(),
-  serviceWorkerResponsesMapById = hashMapOf()
-)
-
-var homeMainFeatureRewardResponseContext = HomeMainFeatureRewardResponseContext(
-  contextCollected = false,
-  homeMainFeatureRewardResponses = emptyList()
+  homeMainFeatureRewards = emptyList()
 )
 
 var homeSubFeatureContext = HomeSubFeatureContext(
+  companyContextsById = mapOf(),
   contextCollected = false,
   homeSubFeatures = emptyList(),
-  serviceFirmResponsesMapById = hashMapOf(),
-  serviceWorkerResponsesMapById = hashMapOf()
+  workerContextsById = mapOf()
 )
 
-var serviceCategoryResponseContext = ServiceCategoryResponseContext(
+var serviceCategoryContext = ServiceCategoryContext(
   contextCollected = false,
-  serviceCategoryResponses = emptyList()
+  serviceCategories = emptyList()
 )
