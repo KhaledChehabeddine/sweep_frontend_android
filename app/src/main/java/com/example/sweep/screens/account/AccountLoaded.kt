@@ -19,7 +19,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
@@ -33,15 +32,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.sweep.context.screens.account.AccountCategoryContext
-import com.example.sweep.context.screens.account.AccountCategoryItemResponseContext
-import com.example.sweep.data.screens.account.AccountCategoryItemResponse
+import com.example.sweep.context.screens.AccountCategoryContext
+import com.example.sweep.data.account.AccountCategoryItem
 import com.example.sweep.functions.svgS3UrlToPainter
 
 @Composable
 fun AccountLoaded(
   accountCategoryContext: AccountCategoryContext,
-  accountCategoryItemResponseContext: AccountCategoryItemResponseContext,
   paddingValues: PaddingValues
 ) {
   Surface(
@@ -71,56 +68,54 @@ fun AccountLoaded(
                     vertical = 10.dp
                   )
               ) {
-                accountCategoryItemResponseContext
-                  .accountCategoryItemResponsesMapByCategory[accountCategoryContext.accountCategories[0].id]!!
-                  .forEach { accountMainCategoryItemResponse ->
-                    Column(
-                      modifier = Modifier.fillMaxHeight(),
-                      verticalArrangement = Arrangement.Center
-                    ) {
-                      Row {
-                        Box(
-                          contentAlignment = Alignment.Center,
-                          modifier = Modifier
-                            .size(size = 60.dp)
-                            .clip(MaterialTheme.shapes.small)
-                            .background(color = MaterialTheme.colorScheme.background)
-                            .clickable(
-                              indication = rememberRipple(color = MaterialTheme.colorScheme.secondary),
-                              interactionSource = remember {
-                                MutableInteractionSource()
-                              }
-                            ) {
-                              /* TODO */
-                            }
-                        ) {
-                          Image(
-                            colorFilter = ColorFilter.tint(color = MaterialTheme.colorScheme.onSurface),
-                            contentDescription = accountMainCategoryItemResponse.name,
-                            modifier = Modifier.size(size = 40.dp),
-                            painter = svgS3UrlToPainter(url = accountMainCategoryItemResponse.imageUrl)
-                          )
-                        }
-                      }
-                      Row(
-                        horizontalArrangement = Arrangement.Center,
+                accountCategoryContext.accountMainCategory?.accountCategoryItems?.forEach { accountCategoryItem ->
+                  Column(
+                    modifier = Modifier.fillMaxHeight(),
+                    verticalArrangement = Arrangement.Center
+                  ) {
+                    Row {
+                      Box(
+                        contentAlignment = Alignment.Center,
                         modifier = Modifier
-                          .width(width = 60.dp)
-                          .padding(top = 5.dp)
+                          .size(size = 60.dp)
+                          .clip(MaterialTheme.shapes.small)
+                          .background(color = MaterialTheme.colorScheme.background)
+                          .clickable(
+                            indication = rememberRipple(color = MaterialTheme.colorScheme.secondary),
+                            interactionSource = remember {
+                              MutableInteractionSource()
+                            }
+                          ) {
+                            /* TODO */
+                          }
                       ) {
-                        Text(
-                          color = MaterialTheme.colorScheme.onSurface,
-                          style = MaterialTheme.typography.displayMedium,
-                          text = accountMainCategoryItemResponse.name
+                        Image(
+                          colorFilter = ColorFilter.tint(color = MaterialTheme.colorScheme.onSurface),
+                          contentDescription = accountCategoryItem.name,
+                          modifier = Modifier.size(size = 40.dp),
+                          painter = svgS3UrlToPainter(url = accountCategoryItem.imageUrl)
                         )
                       }
                     }
+                    Row(
+                      horizontalArrangement = Arrangement.Center,
+                      modifier = Modifier
+                        .width(width = 60.dp)
+                        .padding(top = 5.dp)
+                    ) {
+                      Text(
+                        color = MaterialTheme.colorScheme.onSurface,
+                        style = MaterialTheme.typography.displayMedium,
+                        text = accountCategoryItem.name
+                      )
+                    }
                   }
+                }
               }
             }
           }
         }
-        for (index in 1 until accountCategoryItemResponseContext.accountCategoryItemResponsesMapByCategory.size) {
+        repeat(accountCategoryContext.accountSubCategories.size) { index ->
           Row {
             BoxWithConstraints {
               Box(
@@ -128,7 +123,7 @@ fun AccountLoaded(
                   .height(height = maxHeight)
                   .fillMaxWidth()
                   .padding(all = 20.dp)
-                  .clip(RoundedCornerShape(percent = 8))
+                  .clip(MaterialTheme.shapes.small)
                   .background(color = MaterialTheme.colorScheme.onBackground)
               ) {
                 Column(modifier = Modifier.padding(all = 20.dp)) {
@@ -136,14 +131,12 @@ fun AccountLoaded(
                     Text(
                       color = MaterialTheme.colorScheme.onSurface,
                       style = MaterialTheme.typography.headlineMedium,
-                      text = accountCategoryContext.accountCategories[index].name
+                      text = accountCategoryContext.accountSubCategories[index].name
                     )
                   }
                   Spacer(modifier = Modifier.height(height = 5.dp))
                   AccountSubCategory(
-                    accountCategoryItemResponses =
-                    accountCategoryItemResponseContext
-                      .accountCategoryItemResponsesMapByCategory[accountCategoryContext.accountCategories[index].id]!!
+                    accountCategoryItems = accountCategoryContext.accountSubCategories[index].accountCategoryItems
                   )
                 }
               }
@@ -156,10 +149,11 @@ fun AccountLoaded(
 }
 
 @Composable
-private fun AccountSubCategory(accountCategoryItemResponses: List<AccountCategoryItemResponse>) {
-  accountCategoryItemResponses.forEachIndexed { index, accountCategoryItemResponse ->
+private fun AccountSubCategory(accountCategoryItems: List<AccountCategoryItem>) {
+  accountCategoryItems.forEachIndexed { index, accountCategoryItem ->
     Row(
       modifier = Modifier
+        .padding(vertical = 10.dp)
         .fillMaxWidth()
         .clickable(
           indication = rememberRipple(color = MaterialTheme.colorScheme.primaryContainer),
@@ -167,27 +161,24 @@ private fun AccountSubCategory(accountCategoryItemResponses: List<AccountCategor
             MutableInteractionSource()
           }
         ) {
-        }
+          /* TODO */
+        },
+      verticalAlignment = Alignment.CenterVertically
     ) {
-      Row(
-        modifier = Modifier.padding(vertical = 10.dp),
-        verticalAlignment = Alignment.CenterVertically
-      ) {
-        Image(
-          colorFilter = ColorFilter.tint(color = MaterialTheme.colorScheme.onSurface),
-          contentDescription = accountCategoryItemResponse.name,
-          modifier = Modifier.size(size = 24.dp),
-          painter = svgS3UrlToPainter(url = accountCategoryItemResponse.imageUrl)
-        )
-        Text(
-          color = MaterialTheme.colorScheme.onSurface,
-          fontWeight = FontWeight.Medium,
-          modifier = Modifier.padding(start = 10.dp),
-          style = MaterialTheme.typography.displayMedium,
-          text = accountCategoryItemResponse.name
-        )
-      }
+      Image(
+        colorFilter = ColorFilter.tint(color = MaterialTheme.colorScheme.onSurface),
+        contentDescription = accountCategoryItem.name,
+        modifier = Modifier.size(size = 24.dp),
+        painter = svgS3UrlToPainter(url = accountCategoryItem.imageUrl)
+      )
+      Text(
+        color = MaterialTheme.colorScheme.onSurface,
+        fontWeight = FontWeight.Medium,
+        modifier = Modifier.padding(start = 10.dp),
+        style = MaterialTheme.typography.displayMedium,
+        text = accountCategoryItem.name
+      )
     }
-    if (index != accountCategoryItemResponses.size - 1) Divider()
+    if (index != accountCategoryItems.size - 1) Divider()
   }
 }

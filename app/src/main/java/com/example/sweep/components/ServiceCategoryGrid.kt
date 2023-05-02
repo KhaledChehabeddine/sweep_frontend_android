@@ -7,7 +7,6 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -17,11 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.unit.dp
-import com.example.sweep.data.components.ServiceCategoryResponse
+import com.example.sweep.data.components.ServiceCategory
 import com.example.sweep.functions.svgS3UrlToPainter
 
 @Composable
-fun ServiceCategoryGrid(serviceCategoryResponses: List<ServiceCategoryResponse>) {
+fun ServiceCategoryGrid(serviceCategories: List<ServiceCategory>) {
   LazyVerticalGrid(
     columns = GridCells.Fixed(count = 4),
     horizontalArrangement = Arrangement.spacedBy(space = 10.dp),
@@ -29,20 +28,21 @@ fun ServiceCategoryGrid(serviceCategoryResponses: List<ServiceCategoryResponse>)
     userScrollEnabled = false,
     verticalArrangement = Arrangement.spacedBy(space = 10.dp)
   ) {
-    items(serviceCategoryResponses) { serviceCategoryResponse ->
+    items(serviceCategories.size) { index ->
       Box(
         modifier = Modifier
           .height(height = 100.dp)
           .clip(shape = MaterialTheme.shapes.small)
           .background(
-            color = if (serviceCategoryResponse.active) {
+            color = if (serviceCategories[index].active) {
               MaterialTheme.colorScheme.secondaryContainer
             } else {
               MaterialTheme.colorScheme.tertiaryContainer
             }
           )
           .clickable(
-            indication = if (serviceCategoryResponse.active) {
+            indication =
+            if (serviceCategories[index].active) {
               rememberRipple(color = MaterialTheme.colorScheme.onSecondaryContainer)
             } else {
               null
@@ -73,15 +73,16 @@ fun ServiceCategoryGrid(serviceCategoryResponses: List<ServiceCategoryResponse>)
             ) {
               Image(
                 colorFilter = ColorFilter.tint(
-                  color = if (serviceCategoryResponse.active) {
+                  color =
+                  if (serviceCategories[index].active) {
                     MaterialTheme.colorScheme.onSecondary
                   } else {
                     MaterialTheme.colorScheme.tertiary
                   }
                 ),
-                contentDescription = serviceCategoryResponse.name,
+                contentDescription = serviceCategories[index].name,
                 modifier = Modifier.size(size = 30.dp),
-                painter = svgS3UrlToPainter(url = serviceCategoryResponse.imageUrl)
+                painter = svgS3UrlToPainter(url = serviceCategories[index].imageUrl)
               )
             }
           }
@@ -93,7 +94,7 @@ fun ServiceCategoryGrid(serviceCategoryResponses: List<ServiceCategoryResponse>)
           ) {
             Text(
               color = MaterialTheme.colorScheme.onSurface,
-              text = serviceCategoryResponse.name,
+              text = serviceCategories[index].name,
               style = MaterialTheme.typography.labelMedium
             )
           }

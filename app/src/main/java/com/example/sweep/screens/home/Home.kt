@@ -11,20 +11,20 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.example.sweep.api.getApiClient
-import com.example.sweep.context.components.ServiceCategoryResponseContext
-import com.example.sweep.context.homeMainFeaturePromotionResponseContext
-import com.example.sweep.context.homeMainFeatureRewardResponseContext
+import com.example.sweep.context.components.ServiceCategoryContext
+import com.example.sweep.context.homeMainFeaturePromotionContext
+import com.example.sweep.context.homeMainFeatureRewardContext
 import com.example.sweep.context.homeSubFeatureContext
-import com.example.sweep.context.screens.home.HomeMainFeaturePromotionResponseContext
-import com.example.sweep.context.screens.home.HomeMainFeatureRewardResponseContext
+import com.example.sweep.context.screens.home.HomeMainFeaturePromotionContext
+import com.example.sweep.context.screens.home.HomeMainFeatureRewardContext
 import com.example.sweep.context.screens.home.HomeSubFeatureContext
-import com.example.sweep.context.serviceCategoryResponseContext
+import com.example.sweep.context.serviceCategoryContext
 import com.example.sweep.data.ApiResponse
-import com.example.sweep.data.components.ServiceCategoryResponse
-import com.example.sweep.data.screens.home.HomeMainFeaturePromotionResponse
-import com.example.sweep.data.screens.home.HomeMainFeatureRewardResponse
-import com.example.sweep.data.screens.home.HomeSubFeature
-import com.example.sweep.functions.coroutine.getServiceResponses
+import com.example.sweep.data.components.ServiceCategory
+import com.example.sweep.data.home.HomeMainFeaturePromotion
+import com.example.sweep.data.home.HomeMainFeatureReward
+import com.example.sweep.data.home.HomeSubFeature
+import com.example.sweep.functions.coroutine.getServiceProviderContexts
 import io.ktor.client.statement.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
@@ -32,53 +32,51 @@ import kotlinx.serialization.json.Json
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun Home(paddingValues: PaddingValues) {
-  val rememberHomeMainFeaturePromotionResponseContext: HomeMainFeaturePromotionResponseContext by remember {
-    mutableStateOf(value = homeMainFeaturePromotionResponseContext)
+  val rememberHomeMainFeaturePromotionContext: HomeMainFeaturePromotionContext by remember {
+    mutableStateOf(value = homeMainFeaturePromotionContext)
   }
-  val rememberHomeMainFeatureRewardResponseContext: HomeMainFeatureRewardResponseContext by remember {
-    mutableStateOf(value = homeMainFeatureRewardResponseContext)
+  val rememberHomeMainFeatureRewardContext: HomeMainFeatureRewardContext by remember {
+    mutableStateOf(value = homeMainFeatureRewardContext)
   }
   val rememberHomeSubFeatureContext: HomeSubFeatureContext by remember {
     mutableStateOf(value = homeSubFeatureContext)
   }
-  val rememberPagerState: PagerState = rememberPagerState()
-  val rememberServiceCategoryResponseContext: ServiceCategoryResponseContext by remember {
-    mutableStateOf(value = serviceCategoryResponseContext)
-  }
-  var rememberStateLoaded: Boolean by remember {
+  var rememberPageContextLoaded: Boolean by remember {
     mutableStateOf(value = false)
   }
+  val rememberPagerState: PagerState = rememberPagerState()
+  val rememberServiceCategoryContext: ServiceCategoryContext by remember {
+    mutableStateOf(value = serviceCategoryContext)
+  }
 
-  LaunchedEffect(key1 = rememberStateLoaded) {
-    if (!rememberHomeMainFeaturePromotionResponseContext.contextCollected) {
+  LaunchedEffect(key1 = rememberPageContextLoaded) {
+    if (!rememberHomeMainFeaturePromotionContext.contextCollected) {
       val response = getApiClient().readHomeMainFeaturePromotions()
       val json = response.bodyAsText()
-      rememberHomeMainFeaturePromotionResponseContext.homeMainFeaturePromotionResponses =
-        Json.decodeFromString<ApiResponse<List<HomeMainFeaturePromotionResponse>>>(json).data!!
+      rememberHomeMainFeaturePromotionContext.homeMainFeaturePromotions =
+        Json.decodeFromString<ApiResponse<List<HomeMainFeaturePromotion>>>(json).data!!
 
-      for (
-      homeMainFeaturePromotion in rememberHomeMainFeaturePromotionResponseContext.homeMainFeaturePromotionResponses
-      ) {
-        val serviceResponses = getServiceResponses(
-          serviceFirmIds = homeMainFeaturePromotion.serviceFirmIds,
-          serviceWorkerIds = homeMainFeaturePromotion.serviceWorkerIds
+      for (homeMainFeaturePromotion in rememberHomeMainFeaturePromotionContext.homeMainFeaturePromotions) {
+        val serviceProviders = getServiceProviderContexts(
+          companyIds = homeMainFeaturePromotion.companyIds,
+          workerIds = homeMainFeaturePromotion.workerIds
         )
-        rememberHomeMainFeaturePromotionResponseContext.serviceFirmResponsesMapById[homeMainFeaturePromotion.id] =
-          serviceResponses.first
-        rememberHomeMainFeaturePromotionResponseContext.serviceWorkerResponsesMapById[homeMainFeaturePromotion.id] =
-          serviceResponses.second
+        rememberHomeMainFeaturePromotionContext.companyContextsById +=
+          Pair(homeMainFeaturePromotion.id, serviceProviders.first)
+        rememberHomeMainFeaturePromotionContext.workerContextsById +=
+          Pair(homeMainFeaturePromotion.id, serviceProviders.second)
       }
 
-      rememberHomeMainFeaturePromotionResponseContext.contextCollected = true
+      rememberHomeMainFeaturePromotionContext.contextCollected = true
     }
 
-    if (!rememberHomeMainFeatureRewardResponseContext.contextCollected) {
+    if (!rememberHomeMainFeatureRewardContext.contextCollected) {
       val response = getApiClient().readHomeMainFeatureRewards()
       val json = response.bodyAsText()
-      rememberHomeMainFeatureRewardResponseContext.homeMainFeatureRewardResponses =
-        Json.decodeFromString<ApiResponse<List<HomeMainFeatureRewardResponse>>>(json).data!!
+      rememberHomeMainFeatureRewardContext.homeMainFeatureRewards =
+        Json.decodeFromString<ApiResponse<List<HomeMainFeatureReward>>>(json).data!!
 
-      rememberHomeMainFeatureRewardResponseContext.contextCollected = true
+      rememberHomeMainFeatureRewardContext.contextCollected = true
     }
 
     if (!rememberHomeSubFeatureContext.contextCollected) {
@@ -88,44 +86,44 @@ fun Home(paddingValues: PaddingValues) {
         Json.decodeFromString<ApiResponse<List<HomeSubFeature>>>(json).data!!
 
       for (homeSubFeature in rememberHomeSubFeatureContext.homeSubFeatures) {
-        val serviceResponses = getServiceResponses(
-          serviceFirmIds = homeSubFeature.serviceFirmIds,
-          serviceWorkerIds = homeSubFeature.serviceWorkerIds
+        val serviceResponses = getServiceProviderContexts(
+          companyIds = homeSubFeature.companyIds,
+          workerIds = homeSubFeature.workerIds
         )
-        rememberHomeSubFeatureContext.serviceFirmResponsesMapById[homeSubFeature.id] = serviceResponses.first
-        rememberHomeSubFeatureContext.serviceWorkerResponsesMapById[homeSubFeature.id] = serviceResponses.second
+        rememberHomeSubFeatureContext.companyContextsById += Pair(homeSubFeature.id, serviceResponses.first)
+        rememberHomeSubFeatureContext.workerContextsById += Pair(homeSubFeature.id, serviceResponses.second)
       }
 
       rememberHomeSubFeatureContext.contextCollected = true
     }
 
-    if (!rememberServiceCategoryResponseContext.contextCollected) {
+    if (!rememberServiceCategoryContext.contextCollected) {
       val response = getApiClient().readServiceCategories()
       val json = response.bodyAsText()
-      rememberServiceCategoryResponseContext.serviceCategoryResponses =
-        Json.decodeFromString<ApiResponse<List<ServiceCategoryResponse>>>(json).data!!
+      rememberServiceCategoryContext.serviceCategories =
+        Json.decodeFromString<ApiResponse<List<ServiceCategory>>>(json).data!!
 
-      rememberServiceCategoryResponseContext.contextCollected = true
+      rememberServiceCategoryContext.contextCollected = true
     }
 
-    rememberStateLoaded = true
+    rememberPageContextLoaded = true
   }
 
   if (
-    !rememberHomeMainFeaturePromotionResponseContext.contextCollected &&
-    !rememberHomeMainFeatureRewardResponseContext.contextCollected &&
+    !rememberHomeMainFeaturePromotionContext.contextCollected &&
+    !rememberHomeMainFeatureRewardContext.contextCollected &&
     !rememberHomeSubFeatureContext.contextCollected &&
-    !rememberServiceCategoryResponseContext.contextCollected
+    !rememberServiceCategoryContext.contextCollected
   ) {
     HomeLoading(paddingValues = paddingValues)
   } else {
     HomeLoaded(
-      homeMainFeaturePromotionResponseContext = rememberHomeMainFeaturePromotionResponseContext,
-      homeMainFeatureRewardResponseContext = rememberHomeMainFeatureRewardResponseContext,
+      homeMainFeaturePromotionContext = rememberHomeMainFeaturePromotionContext,
+      homeMainFeatureRewardContext = rememberHomeMainFeatureRewardContext,
       homeSubFeatureContext = rememberHomeSubFeatureContext,
       paddingValues = paddingValues,
       pagerState = rememberPagerState,
-      serviceCategoryResponseContext = rememberServiceCategoryResponseContext
+      serviceCategoryContext = rememberServiceCategoryContext
     )
   }
 }

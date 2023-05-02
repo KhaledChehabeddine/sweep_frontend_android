@@ -32,9 +32,9 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
 import com.example.sweep.components.ServiceCategoryGrid
-import com.example.sweep.context.components.ServiceCategoryResponseContext
-import com.example.sweep.context.screens.home.HomeMainFeaturePromotionResponseContext
-import com.example.sweep.context.screens.home.HomeMainFeatureRewardResponseContext
+import com.example.sweep.context.components.ServiceCategoryContext
+import com.example.sweep.context.screens.home.HomeMainFeaturePromotionContext
+import com.example.sweep.context.screens.home.HomeMainFeatureRewardContext
 import com.example.sweep.context.screens.home.HomeSubFeatureContext
 import com.example.sweep.functions.svgS3UrlToPainter
 import kotlin.math.absoluteValue
@@ -42,12 +42,12 @@ import kotlin.math.absoluteValue
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun HomeLoaded(
-  homeMainFeaturePromotionResponseContext: HomeMainFeaturePromotionResponseContext,
-  homeMainFeatureRewardResponseContext: HomeMainFeatureRewardResponseContext,
+  homeMainFeaturePromotionContext: HomeMainFeaturePromotionContext,
+  homeMainFeatureRewardContext: HomeMainFeatureRewardContext,
   homeSubFeatureContext: HomeSubFeatureContext,
   paddingValues: PaddingValues,
   pagerState: PagerState,
-  serviceCategoryResponseContext: ServiceCategoryResponseContext
+  serviceCategoryContext: ServiceCategoryContext
 ) {
   Surface(
     color = MaterialTheme.colorScheme.background,
@@ -65,8 +65,8 @@ fun HomeLoaded(
         ) {
           Row {
             HorizontalPager(
-              pageCount = homeMainFeaturePromotionResponseContext.homeMainFeaturePromotionResponses.size +
-                homeMainFeatureRewardResponseContext.homeMainFeatureRewardResponses.size,
+              pageCount = homeMainFeaturePromotionContext.homeMainFeaturePromotions.size +
+                homeMainFeatureRewardContext.homeMainFeatureRewards.size,
               state = pagerState
             ) { page ->
               Card(
@@ -93,26 +93,22 @@ fun HomeLoaded(
               ) {
                 Image(
                   contentDescription =
-                  if (
-                    page < homeMainFeaturePromotionResponseContext.homeMainFeaturePromotionResponses.size
-                  ) {
+                  if (page < homeMainFeaturePromotionContext.homeMainFeaturePromotions.size) {
                     "Promotion"
                   } else {
                     "Reward"
                   },
                   painter = svgS3UrlToPainter(
                     url =
-                    if (
-                      page < homeMainFeaturePromotionResponseContext.homeMainFeaturePromotionResponses.size
-                    ) {
-                      homeMainFeaturePromotionResponseContext.homeMainFeaturePromotionResponses[page].imageUrl
+                    if (page < homeMainFeaturePromotionContext.homeMainFeaturePromotions.size) {
+                      homeMainFeaturePromotionContext.homeMainFeaturePromotions[page].homeMainFeature.imageUrl
                     } else {
-                      homeMainFeatureRewardResponseContext.homeMainFeatureRewardResponses[page].imageUrl
+                      homeMainFeatureRewardContext.homeMainFeatureRewards[page].homeMainFeature.imageUrl
                     }
                   ),
                   modifier = Modifier
-                    .height(height = 200.dp)
                     .fillMaxWidth()
+                    .aspectRatio(ratio = 16f / 9f)
                     .clip(MaterialTheme.shapes.medium)
                     .clickable(
                       indication = rememberRipple(color = MaterialTheme.colorScheme.secondary),
@@ -127,9 +123,7 @@ fun HomeLoaded(
             }
           }
           Row(modifier = Modifier.padding(top = 20.dp)) {
-            ServiceCategoryGrid(
-              serviceCategoryResponses = serviceCategoryResponseContext.serviceCategoryResponses
-            )
+            ServiceCategoryGrid(serviceCategories = serviceCategoryContext.serviceCategories)
           }
         }
         Spacer(modifier = Modifier.height(height = 20.dp))
@@ -175,10 +169,9 @@ fun HomeLoaded(
               }
               LazyRow {
                 item {
-                  homeSubFeatureContext.serviceFirmResponsesMapById[homeSubFeature.id]!!.forEach {
-                      serviceFirmResponse ->
+                  homeSubFeatureContext.companyContextsById[homeSubFeature.id]!!.forEach { companyContext ->
                     Image(
-                      contentDescription = serviceFirmResponse.description,
+                      contentDescription = companyContext.company.name,
                       modifier = Modifier
                         .height(height = 150.dp)
                         .aspectRatio(ratio = 16f / 9f)
@@ -192,13 +185,12 @@ fun HomeLoaded(
                         ) {
                           /* TODO */
                         },
-                      painter = svgS3UrlToPainter(url = serviceFirmResponse.imageUrl)
+                      painter = svgS3UrlToPainter(url = companyContext.company.bannerImageUrl)
                     )
                   }
-                  homeSubFeatureContext.serviceWorkerResponsesMapById[homeSubFeature.id]!!.forEach {
-                      serviceWorkerResponse ->
+                  homeSubFeatureContext.workerContextsById[homeSubFeature.id]!!.forEach { workerContext ->
                     Image(
-                      contentDescription = serviceWorkerResponse.description,
+                      contentDescription = workerContext.worker.metadata.formattedName,
                       modifier = Modifier
                         .height(150.dp)
                         .aspectRatio(ratio = 16f / 9f)
@@ -212,7 +204,7 @@ fun HomeLoaded(
                         ) {
                           /* TODO */
                         },
-                      painter = svgS3UrlToPainter(url = serviceWorkerResponse.imageUrl)
+                      painter = svgS3UrlToPainter(url = workerContext.worker.bannerImageUrl)
                     )
                   }
                 }
