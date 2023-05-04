@@ -5,6 +5,8 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -14,12 +16,17 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PagerState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -72,8 +79,8 @@ fun HomeLoaded(
               Card(
                 modifier = Modifier
                   .graphicsLayer {
-                    val pageOffset = ((pagerState.currentPage - page) + pagerState.currentPageOffsetFraction)
-                      .absoluteValue
+                    val pageOffset =
+                      ((pagerState.currentPage - page) + pagerState.currentPageOffsetFraction).absoluteValue
 
                     lerp(
                       fraction = 1f - pageOffset.coerceIn(0f, 1f),
@@ -103,7 +110,10 @@ fun HomeLoaded(
                     if (page < homeMainFeaturePromotionContext.homeMainFeaturePromotions.size) {
                       homeMainFeaturePromotionContext.homeMainFeaturePromotions[page].homeMainFeature.imageUrl
                     } else {
-                      homeMainFeatureRewardContext.homeMainFeatureRewards[page].homeMainFeature.imageUrl
+                      homeMainFeatureRewardContext
+                        .homeMainFeatureRewards[page - homeMainFeaturePromotionContext.homeMainFeaturePromotions.size]
+                        .homeMainFeature
+                        .imageUrl
                     }
                   ),
                   modifier = Modifier
@@ -131,7 +141,6 @@ fun HomeLoaded(
           modifier = Modifier
             .background(color = MaterialTheme.colorScheme.onBackground)
             .fillMaxWidth()
-            .padding(start = 20.dp)
         ) {
           homeSubFeatureContext.homeSubFeatures.forEach { homeSubFeature ->
             Column(
@@ -144,68 +153,166 @@ fun HomeLoaded(
                 ) {
                   /* TODO */
                 }
+                .padding(start = 20.dp)
             ) {
               Column(modifier = Modifier.padding(end = 20.dp)) {
-                Row(
-                  modifier = Modifier
-                    .padding(
-                      bottom = 10.dp,
-                      top = 20.dp
-                    )
-                ) {
+                Spacer(modifier = Modifier.height(height = 20.dp))
+                Row {
                   Text(
-                    color = MaterialTheme.colorScheme.tertiary,
+                    color = MaterialTheme.colorScheme.onSurface,
                     style = MaterialTheme.typography.headlineLarge,
                     text = homeSubFeature.title
                   )
                 }
-                Row(modifier = Modifier.padding(bottom = 20.dp)) {
+                Spacer(modifier = Modifier.height(height = 5.dp))
+                Row {
                   Text(
-                    color = MaterialTheme.colorScheme.tertiaryContainer,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                     style = MaterialTheme.typography.labelMedium,
                     text = homeSubFeature.subtitle
                   )
                 }
               }
+              Spacer(modifier = Modifier.height(height = 10.dp))
               LazyRow {
                 item {
                   homeSubFeatureContext.companyContextsById[homeSubFeature.id]!!.forEach { companyContext ->
-                    Image(
-                      contentDescription = companyContext.company.name,
-                      modifier = Modifier
-                        .height(height = 150.dp)
-                        .aspectRatio(ratio = 16f / 9f)
-                        .padding(end = 20.dp)
-                        .clip(MaterialTheme.shapes.medium)
-                        .clickable(
-                          indication = rememberRipple(color = MaterialTheme.colorScheme.secondary),
-                          interactionSource = remember {
-                            MutableInteractionSource()
-                          }
+                    Column(modifier = Modifier.width(width = 270.dp)) {
+                      Row {
+                        Image(
+                          contentDescription = companyContext.company.name,
+                          modifier = Modifier
+                            .fillMaxWidth()
+                            .aspectRatio(ratio = 16f / 9f)
+                            .clip(MaterialTheme.shapes.small)
+                            .clickable(
+                              indication = rememberRipple(color = MaterialTheme.colorScheme.secondary),
+                              interactionSource = remember {
+                                MutableInteractionSource()
+                              }
+                            ) {
+                              /* TODO */
+                            },
+                          painter = svgS3UrlToPainter(url = companyContext.company.bannerImageUrl)
+                        )
+                      }
+                      Spacer(modifier = Modifier.height(height = 10.dp))
+                      Row {
+                        Text(
+                          color = MaterialTheme.colorScheme.onSurface,
+                          style = MaterialTheme.typography.titleMedium,
+                          text = companyContext.company.name
+                        )
+                      }
+                      Spacer(modifier = Modifier.height(height = 5.dp))
+                      Row {
+                        Text(
+                          color = MaterialTheme.colorScheme.onSurface,
+                          style = MaterialTheme.typography.labelMedium,
+                          text = companyContext.company.serviceProvider.serviceProviderType
+                            .replaceFirstChar(Char::uppercase)
+                        )
+                      }
+                      Spacer(modifier = Modifier.height(height = 10.dp))
+                      Row {
+                        Box(
+                          contentAlignment = Alignment.Center,
+                          modifier = Modifier
+                            .height(height = 25.dp)
+                            .width(width = 65.dp)
+                            .clip(MaterialTheme.shapes.small)
+                            .background(color = MaterialTheme.colorScheme.secondaryContainer)
                         ) {
-                          /* TODO */
-                        },
-                      painter = svgS3UrlToPainter(url = companyContext.company.bannerImageUrl)
-                    )
+                          Row(
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                          ) {
+                            Icon(
+                              contentDescription = "Star",
+                              imageVector = Icons.Default.Star,
+                              modifier = Modifier.size(size = 20.dp),
+                              tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                            )
+                            Spacer(modifier = Modifier.width(width = 5.dp))
+                            Text(
+                              color = MaterialTheme.colorScheme.onSecondaryContainer,
+                              style = MaterialTheme.typography.displayMedium,
+                              text = companyContext.company.serviceProvider.averageRating.toString()
+                            )
+                          }
+                        }
+                      }
+                    }
+                    Spacer(modifier = Modifier.width(width = 20.dp))
                   }
                   homeSubFeatureContext.workerContextsById[homeSubFeature.id]!!.forEach { workerContext ->
-                    Image(
-                      contentDescription = workerContext.worker.metadata.formattedName,
-                      modifier = Modifier
-                        .height(150.dp)
-                        .aspectRatio(ratio = 16f / 9f)
-                        .padding(end = 20.dp)
-                        .clip(MaterialTheme.shapes.medium)
-                        .clickable(
-                          indication = rememberRipple(color = MaterialTheme.colorScheme.secondary),
-                          interactionSource = remember {
-                            MutableInteractionSource()
-                          }
+                    Column(modifier = Modifier.width(width = 270.dp)) {
+                      Row {
+                        Image(
+                          contentDescription = workerContext.worker.metadata.formattedName,
+                          modifier = Modifier
+                            .fillMaxWidth()
+                            .aspectRatio(ratio = 16f / 9f)
+                            .clip(MaterialTheme.shapes.small)
+                            .clickable(
+                              indication = rememberRipple(color = MaterialTheme.colorScheme.secondary),
+                              interactionSource = remember {
+                                MutableInteractionSource()
+                              }
+                            ) {
+                              /* TODO */
+                            },
+                          painter = svgS3UrlToPainter(url = workerContext.worker.bannerImageUrl)
+                        )
+                      }
+                      Spacer(modifier = Modifier.height(height = 10.dp))
+                      Row {
+                        Text(
+                          color = MaterialTheme.colorScheme.onSurface,
+                          style = MaterialTheme.typography.titleMedium,
+                          text = workerContext.worker.metadata.formattedName
+                        )
+                      }
+                      Spacer(modifier = Modifier.height(height = 5.dp))
+                      Row {
+                        Text(
+                          color = MaterialTheme.colorScheme.onSurface,
+                          style = MaterialTheme.typography.labelMedium,
+                          text = workerContext.worker.serviceProvider.serviceProviderType
+                            .replaceFirstChar(Char::uppercase)
+                        )
+                      }
+                      Spacer(modifier = Modifier.height(height = 10.dp))
+                      Row {
+                        Box(
+                          contentAlignment = Alignment.Center,
+                          modifier = Modifier
+                            .height(height = 25.dp)
+                            .width(width = 65.dp)
+                            .clip(MaterialTheme.shapes.small)
+                            .background(color = MaterialTheme.colorScheme.secondaryContainer)
                         ) {
-                          /* TODO */
-                        },
-                      painter = svgS3UrlToPainter(url = workerContext.worker.bannerImageUrl)
-                    )
+                          Row(
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                          ) {
+                            Icon(
+                              contentDescription = "Star",
+                              imageVector = Icons.Default.Star,
+                              modifier = Modifier.size(size = 20.dp),
+                              tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                            )
+                            Spacer(modifier = Modifier.width(width = 5.dp))
+                            Text(
+                              color = MaterialTheme.colorScheme.onSecondaryContainer,
+                              style = MaterialTheme.typography.displayMedium,
+                              text = workerContext.worker.serviceProvider.averageRating.toString()
+                            )
+                          }
+                        }
+                      }
+                    }
+                    Spacer(modifier = Modifier.width(width = 20.dp))
                   }
                 }
               }

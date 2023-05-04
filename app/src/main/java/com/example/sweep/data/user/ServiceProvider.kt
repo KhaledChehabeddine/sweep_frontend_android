@@ -14,8 +14,6 @@ data class ServiceProvider(
   val categories: List<Category>,
   @SerialName("description")
   val description: String,
-  @SerialName("flags")
-  val flags: List<String>,
   @SerialName("metadata")
   val metadata: ServiceProviderMetadata,
   @SerialName("reviews")

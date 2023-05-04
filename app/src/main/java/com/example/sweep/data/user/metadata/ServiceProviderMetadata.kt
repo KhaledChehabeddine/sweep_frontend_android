@@ -7,8 +7,6 @@ import kotlinx.serialization.Serializable
 data class ServiceProviderMetadata(
   @SerialName("total_categories")
   val totalCategories: Int,
-  @SerialName("total_flags")
-  val totalFlags: Int,
   @SerialName("total_reviews")
   val totalReviews: Int
 )

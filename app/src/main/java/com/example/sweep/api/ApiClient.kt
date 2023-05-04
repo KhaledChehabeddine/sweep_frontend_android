@@ -27,7 +27,7 @@ class ApiClient(
   }
 
   suspend fun readAccountCategories(): HttpResponse {
-    return this.get(url = "/account_category/read")
+    return this.get(url = "/account_category/read/all")
   }
 
   suspend fun updateAccountCategoryById(data: String, id: String): HttpResponse {
@@ -47,7 +47,7 @@ class ApiClient(
   }
 
   suspend fun readCompanies(): HttpResponse {
-    return this.get(url = "/company/read")
+    return this.get(url = "/company/read/all")
   }
 
   suspend fun updateCompanyById(data: String, id: String): HttpResponse {
@@ -67,7 +67,7 @@ class ApiClient(
   }
 
   suspend fun readHomeMainFeaturePromotions(): HttpResponse {
-    return this.get(url = "/home_main_feature_promotion/read")
+    return this.get(url = "/home_main_feature_promotion/read/all")
   }
 
   suspend fun updateHomeMainFeaturePromotionById(data: String, id: String): HttpResponse {
@@ -87,7 +87,7 @@ class ApiClient(
   }
 
   suspend fun readHomeMainFeatureRewards(): HttpResponse {
-    return this.get(url = "/home_main_feature_reward/read")
+    return this.get(url = "/home_main_feature_reward/read/all")
   }
 
   suspend fun updateHomeMainFeatureRewardById(data: String, id: String): HttpResponse {
@@ -107,7 +107,7 @@ class ApiClient(
   }
 
   suspend fun readHomeSubFeatures(): HttpResponse {
-    return this.get(url = "/home_sub_feature/read")
+    return this.get(url = "/home_sub_feature/read/all")
   }
 
   suspend fun updateHomeSubFeatureById(data: String, id: String): HttpResponse {
@@ -116,6 +116,30 @@ class ApiClient(
 
   suspend fun deleteHomeSubFeatureById(id: String): HttpResponse {
     return this.delete(url = "/home_sub_feature/delete/id/$id")
+  }
+
+  suspend fun createReservation(data: String): HttpResponse {
+    return this.post(data = data, url = "/reservation/create")
+  }
+
+  suspend fun readReservationById(id: String): HttpResponse {
+    return this.get(url = "/reservation/read/id/$id")
+  }
+
+  suspend fun readReservationsByCustomerId(customerId: String): HttpResponse {
+    return this.get(url = "/reservation/read/customer_id/$customerId")
+  }
+
+  suspend fun readReservationsByServiceProviderId(serviceProviderId: String): HttpResponse {
+    return this.get(url = "/reservation/read/service_provider_id/$serviceProviderId")
+  }
+
+  suspend fun readReservations(): HttpResponse {
+    return this.get(url = "/reservation/read/all")
+  }
+
+  suspend fun deleteReservationById(id: String): HttpResponse {
+    return this.delete(url = "/reservation/delete/id/$id")
   }
 
   suspend fun createServiceCategory(data: String): HttpResponse {
@@ -127,7 +151,7 @@ class ApiClient(
   }
 
   suspend fun readServiceCategories(): HttpResponse {
-    return this.get(url = "/service_category/read")
+    return this.get(url = "/service_category/read/all")
   }
 
   suspend fun updateServiceCategoryById(data: String, id: String): HttpResponse {
@@ -147,7 +171,7 @@ class ApiClient(
   }
 
   suspend fun readWorkers(): HttpResponse {
-    return this.get(url = "/worker/read")
+    return this.get(url = "/worker/read/all")
   }
 
   suspend fun updateWorkerById(data: String, id: String): HttpResponse {

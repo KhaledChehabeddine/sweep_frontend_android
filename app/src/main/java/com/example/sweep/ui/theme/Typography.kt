@@ -117,8 +117,9 @@ val Typography = Typography(
 
   titleMedium = TextStyle(
     fontFamily = rubikFontFamily,
-    fontSize = 16.sp,
-    lineHeight = 24.sp
+    fontSize = 18.sp,
+    fontWeight = FontWeight.Bold,
+    lineHeight = 24.sp,
   ),
 
   titleLarge = TextStyle(
