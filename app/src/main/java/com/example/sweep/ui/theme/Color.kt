@@ -69,6 +69,7 @@ val blue_gray400 = Color(0xFF94A3B8)
 val blue_gray900 = Color(0xFF0F172A)
 
 val cool_gray200 = Color(0xFFE5E7EB)
+val cool_gray300 = Color(0xFFD1D5DB)
 val cool_gray400 = Color(0xFF9CA3AF)
 
 val emerald300 = Color(0xFF6EE7B7)

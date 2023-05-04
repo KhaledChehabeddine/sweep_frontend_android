@@ -7,6 +7,7 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -28,13 +29,13 @@ fun ServiceCategoryGrid(serviceCategories: List<ServiceCategory>) {
     userScrollEnabled = false,
     verticalArrangement = Arrangement.spacedBy(space = 10.dp)
   ) {
-    items(serviceCategories.size) { index ->
+    items(serviceCategories) { serviceCategory ->
       Box(
         modifier = Modifier
           .height(height = 100.dp)
           .clip(shape = MaterialTheme.shapes.small)
           .background(
-            color = if (serviceCategories[index].active) {
+            color = if (serviceCategory.active) {
               MaterialTheme.colorScheme.secondaryContainer
             } else {
               MaterialTheme.colorScheme.tertiaryContainer
@@ -42,7 +43,7 @@ fun ServiceCategoryGrid(serviceCategories: List<ServiceCategory>) {
           )
           .clickable(
             indication =
-            if (serviceCategories[index].active) {
+            if (serviceCategory.active) {
               rememberRipple(color = MaterialTheme.colorScheme.onSecondaryContainer)
             } else {
               null
@@ -74,15 +75,15 @@ fun ServiceCategoryGrid(serviceCategories: List<ServiceCategory>) {
               Image(
                 colorFilter = ColorFilter.tint(
                   color =
-                  if (serviceCategories[index].active) {
+                  if (serviceCategory.active) {
                     MaterialTheme.colorScheme.onSecondary
                   } else {
                     MaterialTheme.colorScheme.tertiary
                   }
                 ),
-                contentDescription = serviceCategories[index].name,
+                contentDescription = serviceCategory.name,
                 modifier = Modifier.size(size = 30.dp),
-                painter = svgS3UrlToPainter(url = serviceCategories[index].imageUrl)
+                painter = svgS3UrlToPainter(url = serviceCategory.imageUrl)
               )
             }
           }
@@ -94,7 +95,7 @@ fun ServiceCategoryGrid(serviceCategories: List<ServiceCategory>) {
           ) {
             Text(
               color = MaterialTheme.colorScheme.onSurface,
-              text = serviceCategories[index].name,
+              text = serviceCategory.name,
               style = MaterialTheme.typography.labelMedium
             )
           }

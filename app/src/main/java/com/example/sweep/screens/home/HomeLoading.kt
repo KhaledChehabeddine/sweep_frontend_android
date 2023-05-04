@@ -4,13 +4,13 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.MaterialTheme
@@ -45,86 +45,110 @@ fun HomeLoading(paddingValues: PaddingValues) {
             .background(color = MaterialTheme.colorScheme.onBackground)
             .padding(all = 20.dp)
         ) {
-          Row {
-            Box(
-              modifier = Modifier
-                .fillMaxWidth()
-                .aspectRatio(ratio = 16f / 9f)
-                .placeholder(
-                  color = MaterialTheme.colorScheme.secondaryContainer,
-                  highlight = PlaceholderHighlight.shimmer(),
-                  shape = MaterialTheme.shapes.medium,
-                  visible = true
-                )
-            )
-          }
-          Row(modifier = Modifier.padding(top = 20.dp)) {
-            ServiceCategoryGridLoading()
-          }
+          Box(
+            modifier = Modifier
+              .fillMaxWidth()
+              .aspectRatio(ratio = 16f / 9f)
+              .placeholder(
+                color = MaterialTheme.colorScheme.secondaryContainer,
+                highlight = PlaceholderHighlight.shimmer(),
+                shape = MaterialTheme.shapes.medium,
+                visible = true
+              )
+          )
+          Spacer(modifier = Modifier.height(height = 20.dp))
+          ServiceCategoryGridLoading()
         }
         Spacer(modifier = Modifier.height(height = 20.dp))
         Column(
           modifier = Modifier
             .background(color = MaterialTheme.colorScheme.onBackground)
+            .padding(horizontal = 20.dp)
             .fillMaxWidth()
-            .padding(start = 20.dp)
         ) {
           repeat(times = 2) {
-            Column {
-              Column(modifier = Modifier.padding(end = 20.dp)) {
-                Row(
-                  modifier = Modifier
-                    .padding(
-                      bottom = 10.dp,
-                      top = 20.dp
-                    )
-                ) {
-                  Box(
-                    modifier = Modifier
-                      .height(height = 26.dp)
-                      .fillMaxWidth(fraction = 0.60f)
-                      .placeholder(
-                        color = MaterialTheme.colorScheme.tertiary,
-                        highlight = PlaceholderHighlight.shimmer(),
-                        shape = MaterialTheme.shapes.extraLarge,
-                        visible = true
-                      )
-                  )
-                }
-                Row(modifier = Modifier.padding(bottom = 20.dp)) {
-                  Box(
-                    modifier = Modifier
-                      .height(height = 14.dp)
-                      .fillMaxWidth()
-                      .placeholder(
-                        color = MaterialTheme.colorScheme.tertiaryContainer,
-                        highlight = PlaceholderHighlight.shimmer(),
-                        shape = MaterialTheme.shapes.extraLarge,
-                        visible = true
-                      )
-                  )
-                }
-              }
-              LazyRow(userScrollEnabled = false) {
-                item {
-                  repeat(times = 3) {
+            Spacer(modifier = Modifier.height(height = 20.dp))
+            Box(
+              modifier = Modifier
+                .height(height = 26.dp)
+                .fillMaxWidth(fraction = 0.60f)
+                .placeholder(
+                  color = MaterialTheme.colorScheme.tertiary,
+                  highlight = PlaceholderHighlight.shimmer(),
+                  shape = MaterialTheme.shapes.extraLarge,
+                  visible = true
+                )
+            )
+            Spacer(modifier = Modifier.height(height = 5.dp))
+            Box(
+              modifier = Modifier
+                .height(height = 14.dp)
+                .fillMaxWidth()
+                .placeholder(
+                  color = MaterialTheme.colorScheme.tertiaryContainer,
+                  highlight = PlaceholderHighlight.shimmer(),
+                  shape = MaterialTheme.shapes.extraLarge,
+                  visible = true
+                )
+            )
+            Spacer(modifier = Modifier.height(height = 10.dp))
+            LazyRow(userScrollEnabled = false) {
+              item {
+                repeat(times = 2) {
+                  Column(modifier = Modifier.width(width = 270.dp)) {
                     Box(
                       modifier = Modifier
-                        .height(height = 150.dp)
+                        .fillMaxWidth()
                         .aspectRatio(ratio = 16f / 9f)
-                        .padding(end = 20.dp)
                         .placeholder(
                           color = MaterialTheme.colorScheme.secondaryContainer,
                           highlight = PlaceholderHighlight.shimmer(),
-                          shape = MaterialTheme.shapes.medium,
+                          shape = MaterialTheme.shapes.small,
+                          visible = true
+                        )
+                    )
+                    Spacer(modifier = Modifier.height(height = 10.dp))
+                    Box(
+                      modifier = Modifier
+                        .height(height = 20.dp)
+                        .fillMaxWidth(fraction = 0.60f)
+                        .placeholder(
+                          color = MaterialTheme.colorScheme.tertiary,
+                          highlight = PlaceholderHighlight.shimmer(),
+                          shape = MaterialTheme.shapes.extraLarge,
+                          visible = true
+                        )
+                    )
+                    Spacer(modifier = Modifier.height(height = 5.dp))
+                    Box(
+                      modifier = Modifier
+                        .height(height = 14.dp)
+                        .fillMaxWidth(fraction = 0.30f)
+                        .placeholder(
+                          color = MaterialTheme.colorScheme.onTertiaryContainer,
+                          highlight = PlaceholderHighlight.shimmer(),
+                          shape = MaterialTheme.shapes.extraLarge,
+                          visible = true
+                        )
+                    )
+                    Spacer(modifier = Modifier.height(height = 5.dp))
+                    Box(
+                      modifier = Modifier
+                        .height(height = 25.dp)
+                        .fillMaxWidth(fraction = 0.25f)
+                        .placeholder(
+                          color = MaterialTheme.colorScheme.secondaryContainer,
+                          highlight = PlaceholderHighlight.shimmer(),
+                          shape = MaterialTheme.shapes.small,
                           visible = true
                         )
                     )
                   }
+                  Spacer(modifier = Modifier.width(width = 20.dp))
                 }
               }
-              Spacer(modifier = Modifier.height(height = 20.dp))
             }
+            Spacer(modifier = Modifier.height(height = 30.dp))
           }
         }
       }
