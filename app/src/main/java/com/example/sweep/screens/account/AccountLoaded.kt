@@ -153,7 +153,6 @@ private fun AccountSubCategory(accountCategoryItems: List<AccountCategoryItem>) 
   accountCategoryItems.forEachIndexed { index, accountCategoryItem ->
     Row(
       modifier = Modifier
-        .padding(vertical = 10.dp)
         .fillMaxWidth()
         .clickable(
           indication = rememberRipple(color = MaterialTheme.colorScheme.primaryContainer),
@@ -163,21 +162,25 @@ private fun AccountSubCategory(accountCategoryItems: List<AccountCategoryItem>) 
         ) {
           /* TODO */
         },
-      verticalAlignment = Alignment.CenterVertically
     ) {
-      Image(
-        colorFilter = ColorFilter.tint(color = MaterialTheme.colorScheme.onSurface),
-        contentDescription = accountCategoryItem.name,
-        modifier = Modifier.size(size = 24.dp),
-        painter = svgS3UrlToPainter(url = accountCategoryItem.imageUrl)
-      )
-      Text(
-        color = MaterialTheme.colorScheme.onSurface,
-        fontWeight = FontWeight.Medium,
-        modifier = Modifier.padding(start = 10.dp),
-        style = MaterialTheme.typography.displayMedium,
-        text = accountCategoryItem.name
-      )
+      Row(
+        modifier = Modifier.padding(vertical = 10.dp),
+        verticalAlignment = Alignment.CenterVertically
+      ) {
+        Image(
+          colorFilter = ColorFilter.tint(color = MaterialTheme.colorScheme.onSurface),
+          contentDescription = accountCategoryItem.name,
+          modifier = Modifier.size(size = 24.dp),
+          painter = svgS3UrlToPainter(url = accountCategoryItem.imageUrl)
+        )
+        Text(
+          color = MaterialTheme.colorScheme.onSurface,
+          fontWeight = FontWeight.Medium,
+          modifier = Modifier.padding(start = 10.dp),
+          style = MaterialTheme.typography.displayMedium,
+          text = accountCategoryItem.name
+        )
+      }
     }
     if (index != accountCategoryItems.size - 1) Divider()
   }
