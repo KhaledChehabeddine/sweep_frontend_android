@@ -105,6 +105,19 @@ fun HomeLoaded(
                 } else {
                   "Reward"
                 },
+                modifier = Modifier
+                  .fillMaxWidth()
+                  .aspectRatio(ratio = 16f / 9f)
+                  .clip(MaterialTheme.shapes.medium)
+                  .background(color = MaterialTheme.colorScheme.secondaryContainer)
+                  .clickable(
+                    indication = rememberRipple(color = MaterialTheme.colorScheme.secondary),
+                    interactionSource = remember {
+                      MutableInteractionSource()
+                    }
+                  ) {
+                    /* TODO */
+                  },
                 painter = svgS3UrlToPainter(
                   url =
                   if (page < homeMainFeaturePromotionContext.homeMainFeaturePromotions.size) {
@@ -115,19 +128,7 @@ fun HomeLoaded(
                       .homeMainFeature
                       .imageUrl
                   }
-                ),
-                modifier = Modifier
-                  .fillMaxWidth()
-                  .aspectRatio(ratio = 16f / 9f)
-                  .clip(MaterialTheme.shapes.medium)
-                  .clickable(
-                    indication = rememberRipple(color = MaterialTheme.colorScheme.secondary),
-                    interactionSource = remember {
-                      MutableInteractionSource()
-                    }
-                  ) {
-                    /* TODO */
-                  }
+                )
               )
             }
           }
@@ -195,6 +196,7 @@ fun HomeLoaded(
                           .fillMaxWidth()
                           .aspectRatio(ratio = 16f / 9f)
                           .clip(MaterialTheme.shapes.small)
+                          .background(color = MaterialTheme.colorScheme.secondaryContainer)
                           .clickable(
                             indication = rememberRipple(color = MaterialTheme.colorScheme.secondary),
                             interactionSource = remember {
@@ -273,6 +275,7 @@ fun HomeLoaded(
                           .fillMaxWidth()
                           .aspectRatio(ratio = 16f / 9f)
                           .clip(MaterialTheme.shapes.small)
+                          .background(color = MaterialTheme.colorScheme.secondaryContainer)
                           .clickable(
                             indication = rememberRipple(color = MaterialTheme.colorScheme.secondary),
                             interactionSource = remember {
