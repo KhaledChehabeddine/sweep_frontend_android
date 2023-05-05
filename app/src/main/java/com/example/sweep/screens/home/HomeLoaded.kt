@@ -1,5 +1,6 @@
 package com.example.sweep.screens.home
 
+import android.util.Log
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -35,6 +36,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.util.lerp
@@ -70,71 +72,68 @@ fun HomeLoaded(
             .background(color = MaterialTheme.colorScheme.onBackground)
             .padding(all = 20.dp)
         ) {
-          Row {
-            HorizontalPager(
-              pageCount = homeMainFeaturePromotionContext.homeMainFeaturePromotions.size +
-                homeMainFeatureRewardContext.homeMainFeatureRewards.size,
-              state = pagerState
-            ) { page ->
-              Card(
-                modifier = Modifier
-                  .graphicsLayer {
-                    val pageOffset =
-                      ((pagerState.currentPage - page) + pagerState.currentPageOffsetFraction).absoluteValue
+          HorizontalPager(
+            pageCount = homeMainFeaturePromotionContext.homeMainFeaturePromotions.size +
+              homeMainFeatureRewardContext.homeMainFeatureRewards.size,
+            state = pagerState
+          ) { page ->
+            Card(
+              modifier = Modifier
+                .graphicsLayer {
+                  val pageOffset =
+                    ((pagerState.currentPage - page) + pagerState.currentPageOffsetFraction).absoluteValue
 
-                    lerp(
-                      fraction = 1f - pageOffset.coerceIn(0f, 1f),
-                      start = 0.85f,
-                      stop = 1f
-                    ).also { scale ->
-                      scaleX = scale
-                      scaleY = scale
-                    }
-
-                    alpha = lerp(
-                      fraction = 1f - pageOffset.coerceIn(0f, 1f),
-                      start = 0.5f,
-                      stop = 1f
-                    )
+                  lerp(
+                    fraction = 1f - pageOffset.coerceIn(0f, 1f),
+                    start = 0.85f,
+                    stop = 1f
+                  ).also { scale ->
+                    scaleX = scale
+                    scaleY = scale
                   }
-              ) {
-                Image(
-                  contentDescription =
+
+                  alpha = lerp(
+                    fraction = 1f - pageOffset.coerceIn(0f, 1f),
+                    start = 0.5f,
+                    stop = 1f
+                  )
+                }
+            ) {
+              Image(
+                contentDescription =
+                if (page < homeMainFeaturePromotionContext.homeMainFeaturePromotions.size) {
+                  "Promotion"
+                } else {
+                  "Reward"
+                },
+                painter = svgS3UrlToPainter(
+                  url =
                   if (page < homeMainFeaturePromotionContext.homeMainFeaturePromotions.size) {
-                    "Promotion"
+                    homeMainFeaturePromotionContext.homeMainFeaturePromotions[page].homeMainFeature.imageUrl
                   } else {
-                    "Reward"
-                  },
-                  painter = svgS3UrlToPainter(
-                    url =
-                    if (page < homeMainFeaturePromotionContext.homeMainFeaturePromotions.size) {
-                      homeMainFeaturePromotionContext.homeMainFeaturePromotions[page].homeMainFeature.imageUrl
-                    } else {
-                      homeMainFeatureRewardContext
-                        .homeMainFeatureRewards[page - homeMainFeaturePromotionContext.homeMainFeaturePromotions.size]
-                        .homeMainFeature
-                        .imageUrl
+                    homeMainFeatureRewardContext
+                      .homeMainFeatureRewards[page - homeMainFeaturePromotionContext.homeMainFeaturePromotions.size]
+                      .homeMainFeature
+                      .imageUrl
+                  }
+                ),
+                modifier = Modifier
+                  .fillMaxWidth()
+                  .aspectRatio(ratio = 16f / 9f)
+                  .clip(MaterialTheme.shapes.medium)
+                  .clickable(
+                    indication = rememberRipple(color = MaterialTheme.colorScheme.secondary),
+                    interactionSource = remember {
+                      MutableInteractionSource()
                     }
-                  ),
-                  modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(ratio = 16f / 9f)
-                    .clip(MaterialTheme.shapes.medium)
-                    .clickable(
-                      indication = rememberRipple(color = MaterialTheme.colorScheme.secondary),
-                      interactionSource = remember {
-                        MutableInteractionSource()
-                      }
-                    ) {
-                      /* TODO */
-                    }
-                )
-              }
+                  ) {
+                    /* TODO */
+                  }
+              )
             }
           }
-          Row(modifier = Modifier.padding(top = 20.dp)) {
-            ServiceCategoryGrid(serviceCategories = serviceCategoryContext.serviceCategories)
-          }
+          Spacer(modifier = Modifier.height(height = 20.dp))
+          ServiceCategoryGrid(serviceCategories = serviceCategoryContext.serviceCategories)
         }
         Spacer(modifier = Modifier.height(height = 20.dp))
         Column(
@@ -157,158 +156,155 @@ fun HomeLoaded(
             ) {
               Column(modifier = Modifier.padding(end = 20.dp)) {
                 Spacer(modifier = Modifier.height(height = 20.dp))
-                Row {
-                  Text(
-                    color = MaterialTheme.colorScheme.onSurface,
-                    style = MaterialTheme.typography.headlineLarge,
-                    text = homeSubFeature.title
-                  )
-                }
+                Text(
+                  color = MaterialTheme.colorScheme.onSurface,
+                  style = MaterialTheme.typography.headlineLarge,
+                  text = homeSubFeature.title
+                )
                 Spacer(modifier = Modifier.height(height = 5.dp))
-                Row {
-                  Text(
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    style = MaterialTheme.typography.labelMedium,
-                    text = homeSubFeature.subtitle
-                  )
-                }
+                Text(
+                  color = MaterialTheme.colorScheme.onSurfaceVariant,
+                  style = MaterialTheme.typography.labelMedium,
+                  text = homeSubFeature.subtitle
+                )
               }
               Spacer(modifier = Modifier.height(height = 10.dp))
               LazyRow {
                 item {
                   homeSubFeatureContext.companyContextsById[homeSubFeature.id]!!.forEach { companyContext ->
                     Column(modifier = Modifier.width(width = 270.dp)) {
-                      Row {
-                        Image(
-                          contentDescription = companyContext.company.name,
-                          modifier = Modifier
-                            .fillMaxWidth()
-                            .aspectRatio(ratio = 16f / 9f)
-                            .clip(MaterialTheme.shapes.small)
-                            .clickable(
-                              indication = rememberRipple(color = MaterialTheme.colorScheme.secondary),
-                              interactionSource = remember {
-                                MutableInteractionSource()
-                              }
-                            ) {
-                              /* TODO */
-                            },
-                          painter = svgS3UrlToPainter(url = companyContext.company.bannerImageUrl)
-                        )
-                      }
-                      Spacer(modifier = Modifier.height(height = 10.dp))
-                      Row {
-                        Text(
-                          color = MaterialTheme.colorScheme.onSurface,
-                          style = MaterialTheme.typography.titleMedium,
-                          text = companyContext.company.name
-                        )
-                      }
-                      Spacer(modifier = Modifier.height(height = 5.dp))
-                      Row {
-                        Text(
-                          color = MaterialTheme.colorScheme.onSurface,
-                          style = MaterialTheme.typography.labelMedium,
-                          text = companyContext.company.serviceProvider.serviceProviderType
-                            .replaceFirstChar(Char::uppercase)
-                        )
-                      }
-                      Spacer(modifier = Modifier.height(height = 10.dp))
-                      Row {
-                        Box(
-                          contentAlignment = Alignment.Center,
-                          modifier = Modifier
-                            .height(height = 25.dp)
-                            .width(width = 65.dp)
-                            .clip(MaterialTheme.shapes.small)
-                            .background(color = MaterialTheme.colorScheme.secondaryContainer)
-                        ) {
-                          Row(
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
+                      Image(
+                        contentDescription = companyContext.company.name,
+                        modifier = Modifier
+                          .fillMaxWidth()
+                          .aspectRatio(ratio = 16f / 9f)
+                          .clip(MaterialTheme.shapes.small)
+                          .clickable(
+                            indication = rememberRipple(color = MaterialTheme.colorScheme.secondary),
+                            interactionSource = remember {
+                              MutableInteractionSource()
+                            }
                           ) {
-                            Icon(
-                              contentDescription = "Star",
-                              imageVector = Icons.Default.Star,
-                              modifier = Modifier.size(size = 20.dp),
-                              tint = MaterialTheme.colorScheme.onSecondaryContainer,
-                            )
-                            Spacer(modifier = Modifier.width(width = 5.dp))
-                            Text(
-                              color = MaterialTheme.colorScheme.onSecondaryContainer,
-                              style = MaterialTheme.typography.displayMedium,
-                              text = companyContext.company.serviceProvider.averageRating.toString()
-                            )
-                          }
+                            /* TODO */
+                          },
+                        painter = svgS3UrlToPainter(url = companyContext.company.bannerImageUrl)
+                      )
+                      Spacer(modifier = Modifier.height(height = 10.dp))
+                      Text(
+                        color = MaterialTheme.colorScheme.onSurface,
+                        style = MaterialTheme.typography.titleMedium,
+                        text = companyContext.company.name
+                      )
+                      Spacer(modifier = Modifier.height(height = 5.dp))
+                      Text(
+                        color = MaterialTheme.colorScheme.onSurface,
+                        style = MaterialTheme.typography.labelMedium,
+                        text = companyContext.company.serviceProvider.serviceProviderType
+                          .replaceFirstChar(Char::uppercase)
+                      )
+                      Spacer(modifier = Modifier.height(height = 10.dp))
+                      Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                          .height(height = 25.dp)
+                          .width(width = 65.dp)
+                          .clip(MaterialTheme.shapes.small)
+                          .background(color = MaterialTheme.colorScheme.secondaryContainer)
+                      ) {
+                        Row(
+                          horizontalArrangement = Arrangement.SpaceBetween,
+                          verticalAlignment = Alignment.CenterVertically
+                        ) {
+                          Icon(
+                            contentDescription = "Star",
+                            imageVector = Icons.Default.Star,
+                            modifier = Modifier.size(size = 20.dp),
+                            tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                          )
+                          Spacer(modifier = Modifier.width(width = 5.dp))
+                          Text(
+                            color = MaterialTheme.colorScheme.onSecondaryContainer,
+                            style = MaterialTheme.typography.displayMedium,
+                            text = companyContext.company.serviceProvider.averageRating.toString()
+                          )
                         }
                       }
                     }
                     Spacer(modifier = Modifier.width(width = 20.dp))
                   }
                   homeSubFeatureContext.workerContextsById[homeSubFeature.id]!!.forEach { workerContext ->
+                    val rating = workerContext.worker.serviceProvider.averageRating
+                    val ratingBoxColor: Color?
+                    val ratingContentColor: Color?
+                    if (rating >= 4.5f) {
+                      ratingBoxColor = MaterialTheme.colorScheme.surface
+                      ratingContentColor = MaterialTheme.colorScheme.surfaceVariant
+                    } else if (rating >= 3.0f) {
+                      ratingBoxColor = MaterialTheme.colorScheme.onPrimary
+                      ratingContentColor = MaterialTheme.colorScheme.primary
+                    } else if (rating > 0.0f) {
+                      ratingBoxColor = MaterialTheme.colorScheme.onError
+                      ratingContentColor = MaterialTheme.colorScheme.error
+                    } else {
+                      ratingBoxColor = MaterialTheme.colorScheme.inverseSurface
+                      ratingContentColor = MaterialTheme.colorScheme.inverseOnSurface
+                    }
+
                     Column(modifier = Modifier.width(width = 270.dp)) {
-                      Row {
-                        Image(
-                          contentDescription = workerContext.worker.metadata.formattedName,
-                          modifier = Modifier
-                            .fillMaxWidth()
-                            .aspectRatio(ratio = 16f / 9f)
-                            .clip(MaterialTheme.shapes.small)
-                            .clickable(
-                              indication = rememberRipple(color = MaterialTheme.colorScheme.secondary),
-                              interactionSource = remember {
-                                MutableInteractionSource()
-                              }
-                            ) {
-                              /* TODO */
-                            },
-                          painter = svgS3UrlToPainter(url = workerContext.worker.bannerImageUrl)
-                        )
-                      }
-                      Spacer(modifier = Modifier.height(height = 10.dp))
-                      Row {
-                        Text(
-                          color = MaterialTheme.colorScheme.onSurface,
-                          style = MaterialTheme.typography.titleMedium,
-                          text = workerContext.worker.metadata.formattedName
-                        )
-                      }
-                      Spacer(modifier = Modifier.height(height = 5.dp))
-                      Row {
-                        Text(
-                          color = MaterialTheme.colorScheme.onSurface,
-                          style = MaterialTheme.typography.labelMedium,
-                          text = workerContext.worker.serviceProvider.serviceProviderType
-                            .replaceFirstChar(Char::uppercase)
-                        )
-                      }
-                      Spacer(modifier = Modifier.height(height = 10.dp))
-                      Row {
-                        Box(
-                          contentAlignment = Alignment.Center,
-                          modifier = Modifier
-                            .height(height = 25.dp)
-                            .width(width = 65.dp)
-                            .clip(MaterialTheme.shapes.small)
-                            .background(color = MaterialTheme.colorScheme.secondaryContainer)
-                        ) {
-                          Row(
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically
+                      Image(
+                        contentDescription = workerContext.worker.metadata.formattedName,
+                        modifier = Modifier
+                          .fillMaxWidth()
+                          .aspectRatio(ratio = 16f / 9f)
+                          .clip(MaterialTheme.shapes.small)
+                          .clickable(
+                            indication = rememberRipple(color = MaterialTheme.colorScheme.secondary),
+                            interactionSource = remember {
+                              MutableInteractionSource()
+                            }
                           ) {
-                            Icon(
-                              contentDescription = "Star",
-                              imageVector = Icons.Default.Star,
-                              modifier = Modifier.size(size = 20.dp),
-                              tint = MaterialTheme.colorScheme.onSecondaryContainer,
-                            )
-                            Spacer(modifier = Modifier.width(width = 5.dp))
-                            Text(
-                              color = MaterialTheme.colorScheme.onSecondaryContainer,
-                              style = MaterialTheme.typography.displayMedium,
-                              text = workerContext.worker.serviceProvider.averageRating.toString()
-                            )
-                          }
+                            /* TODO */
+                          },
+                        painter = svgS3UrlToPainter(url = workerContext.worker.bannerImageUrl)
+                      )
+                      Spacer(modifier = Modifier.height(height = 10.dp))
+                      Text(
+                        color = MaterialTheme.colorScheme.onSurface,
+                        style = MaterialTheme.typography.titleMedium,
+                        text = workerContext.worker.metadata.formattedName
+                      )
+                      Spacer(modifier = Modifier.height(height = 5.dp))
+                      Text(
+                        color = MaterialTheme.colorScheme.onSurface,
+                        style = MaterialTheme.typography.labelMedium,
+                        text = workerContext.worker.serviceProvider.serviceProviderType
+                          .replaceFirstChar(Char::uppercase)
+                      )
+                      Spacer(modifier = Modifier.height(height = 10.dp))
+                      Box(
+                        contentAlignment = Alignment.Center,
+                        modifier = Modifier
+                          .height(height = 25.dp)
+                          .width(width = 65.dp)
+                          .clip(MaterialTheme.shapes.small)
+                          .background(color = ratingBoxColor)
+                      ) {
+                        Row(
+                          horizontalArrangement = Arrangement.SpaceBetween,
+                          verticalAlignment = Alignment.CenterVertically
+                        ) {
+                          Icon(
+                            contentDescription = "Star",
+                            imageVector = Icons.Default.Star,
+                            modifier = Modifier.size(size = 20.dp),
+                            tint = ratingContentColor,
+                          )
+                          Spacer(modifier = Modifier.width(width = 5.dp))
+                          Text(
+                            color = ratingContentColor,
+                            style = MaterialTheme.typography.displayMedium,
+                            text = workerContext.worker.serviceProvider.averageRating.toString()
+                          )
                         }
                       }
                     }
