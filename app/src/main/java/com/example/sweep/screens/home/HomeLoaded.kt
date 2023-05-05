@@ -171,6 +171,23 @@ fun HomeLoaded(
               LazyRow {
                 item {
                   homeSubFeatureContext.companyContextsById[homeSubFeature.id]!!.forEach { companyContext ->
+                    val rating = companyContext.company.serviceProvider.averageRating
+                    val ratingBoxColor: Color?
+                    val ratingContentColor: Color?
+                    if (rating >= 4.5f) {
+                      ratingBoxColor = MaterialTheme.colorScheme.surface
+                      ratingContentColor = MaterialTheme.colorScheme.surfaceVariant
+                    } else if (rating >= 3.0f) {
+                      ratingBoxColor = MaterialTheme.colorScheme.onPrimary
+                      ratingContentColor = MaterialTheme.colorScheme.primary
+                    } else if (rating > 0.0f) {
+                      ratingBoxColor = MaterialTheme.colorScheme.onError
+                      ratingContentColor = MaterialTheme.colorScheme.error
+                    } else {
+                      ratingBoxColor = MaterialTheme.colorScheme.inverseSurface
+                      ratingContentColor = MaterialTheme.colorScheme.inverseOnSurface
+                    }
+
                     Column(modifier = Modifier.width(width = 270.dp)) {
                       Image(
                         contentDescription = companyContext.company.name,
@@ -208,7 +225,7 @@ fun HomeLoaded(
                           .height(height = 25.dp)
                           .width(width = 65.dp)
                           .clip(MaterialTheme.shapes.small)
-                          .background(color = MaterialTheme.colorScheme.secondaryContainer)
+                          .background(color = ratingBoxColor)
                       ) {
                         Row(
                           horizontalArrangement = Arrangement.SpaceBetween,
@@ -218,11 +235,11 @@ fun HomeLoaded(
                             contentDescription = "Star",
                             imageVector = Icons.Default.Star,
                             modifier = Modifier.size(size = 20.dp),
-                            tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                            tint = ratingContentColor,
                           )
                           Spacer(modifier = Modifier.width(width = 5.dp))
                           Text(
-                            color = MaterialTheme.colorScheme.onSecondaryContainer,
+                            color = ratingContentColor,
                             style = MaterialTheme.typography.displayMedium,
                             text = companyContext.company.serviceProvider.averageRating.toString()
                           )

@@ -48,7 +48,7 @@ private val darkColorPalette = darkColorScheme(
 )
 
 private val lightColorPalette = lightColorScheme(
-  primary = amber400,
+  primary = amber500,
   onPrimary = amber100,
   primaryContainer = blue200,
   onPrimaryContainer = md_theme_light_onPrimaryContainer,
@@ -69,13 +69,13 @@ private val lightColorPalette = lightColorScheme(
 
   surface = emerald100,
   onSurface = blue_gray900,
-  surfaceVariant = emerald400,
+  surfaceVariant = emerald500,
   onSurfaceVariant = blue_gray400,
   surfaceTint = md_theme_light_surfaceTint,
-  inverseSurface = black20,
-  inverseOnSurface = black100,
+  inverseSurface = blue_gray200,
+  inverseOnSurface = blue_gray500,
 
-  error = rose400,
+  error = rose500,
   onError = rose100,
   errorContainer = md_theme_light_errorContainer,
   onErrorContainer = md_theme_light_onErrorContainer,

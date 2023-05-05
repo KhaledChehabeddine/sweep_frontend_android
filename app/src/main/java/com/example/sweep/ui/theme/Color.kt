@@ -59,10 +59,7 @@ val md_theme_light_inversePrimary = Color(0xFFB3C5FF)
 val md_theme_light_surfaceTint = Color(0xFF0054D8)
 
 val amber100 = Color(0xFFFEF3C7)
-val amber400 = Color(0xFFFBBF24)
-
-val black20 = Color(0xFFCCCCCC)
-val black100 = Color(0xFF000000)
+val amber500 = Color(0xFFF59E0B)
 
 val blue700 = Color(0xFF1D4ED8)
 val blue500 = Color(0xFF3B82F6)
@@ -71,7 +68,9 @@ val blue200 = Color(0xFFBFDBFE)
 val blue100 = Color(0xFFDBEAFE)
 val blue50 = Color(0xFFEFF6FF)
 
+val blue_gray200 = Color(0xFFE2E8F0)
 val blue_gray400 = Color(0xFF94A3B8)
+val blue_gray500 = Color(0xFF64748B)
 val blue_gray900 = Color(0xFF0F172A)
 
 val cool_gray200 = Color(0xFFE5E7EB)
@@ -80,10 +79,10 @@ val cool_gray400 = Color(0xFF9CA3AF)
 
 val emerald100 = Color(0xFFD1FAE5)
 val emerald300 = Color(0xFF6EE7B7)
-val emerald400 = Color(0xFF34D399)
+val emerald500 = Color(0xFF10B981)
 
 val rose100 = Color(0xFFFFE4E6)
-val rose400 = Color(0xFFFB7185)
+val rose500 = Color(0xFFF43F5E)
 
 val white900 = Color(0xFFFFFFFF)
 
