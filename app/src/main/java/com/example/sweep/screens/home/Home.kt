@@ -25,13 +25,18 @@ import com.example.sweep.data.home.HomeMainFeaturePromotion
 import com.example.sweep.data.home.HomeMainFeatureReward
 import com.example.sweep.data.home.HomeSubFeature
 import com.example.sweep.functions.coroutine.getServiceProviderContexts
+import com.google.accompanist.systemuicontroller.SystemUiController
+import com.google.accompanist.systemuicontroller.rememberSystemUiController
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import io.ktor.client.statement.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
 @OptIn(ExperimentalFoundationApi::class)
+@Destination(start = true)
 @Composable
-fun Home(paddingValues: PaddingValues) {
+fun Home(navigator: DestinationsNavigator) {
   val rememberHomeMainFeaturePromotionContext: HomeMainFeaturePromotionContext by remember {
     mutableStateOf(value = homeMainFeaturePromotionContext)
   }
@@ -48,6 +53,7 @@ fun Home(paddingValues: PaddingValues) {
   val rememberServiceCategoryContext: ServiceCategoryContext by remember {
     mutableStateOf(value = serviceCategoryContext)
   }
+  val rememberSystemUiController: SystemUiController = rememberSystemUiController()
 
   LaunchedEffect(key1 = rememberPageContextLoaded) {
     if (!rememberHomeMainFeaturePromotionContext.contextCollected) {
@@ -55,6 +61,12 @@ fun Home(paddingValues: PaddingValues) {
       val json = response.bodyAsText()
       rememberHomeMainFeaturePromotionContext.homeMainFeaturePromotions =
         Json.decodeFromString<ApiResponse<List<HomeMainFeaturePromotion>>>(json).data!!
+
+      val homeMainFeaturePromotionById = mutableMapOf<String, HomeMainFeaturePromotion>()
+      for (homeMainFeaturePromotion in rememberHomeMainFeaturePromotionContext.homeMainFeaturePromotions) {
+        homeMainFeaturePromotionById[homeMainFeaturePromotion.id] = homeMainFeaturePromotion
+      }
+      rememberHomeMainFeaturePromotionContext.homeMainFeaturePromotionById = homeMainFeaturePromotionById
 
       for (homeMainFeaturePromotion in rememberHomeMainFeaturePromotionContext.homeMainFeaturePromotions) {
         val serviceProviders = getServiceProviderContexts(
@@ -76,6 +88,12 @@ fun Home(paddingValues: PaddingValues) {
       rememberHomeMainFeatureRewardContext.homeMainFeatureRewards =
         Json.decodeFromString<ApiResponse<List<HomeMainFeatureReward>>>(json).data!!
 
+      val homeMainFeatureRewardById = mutableMapOf<String, HomeMainFeatureReward>()
+      for (homeMainFeatureReward in rememberHomeMainFeatureRewardContext.homeMainFeatureRewards) {
+        homeMainFeatureRewardById[homeMainFeatureReward.id] = homeMainFeatureReward
+      }
+      rememberHomeMainFeatureRewardContext.homeMainFeatureRewardById = homeMainFeatureRewardById
+
       rememberHomeMainFeatureRewardContext.contextCollected = true
     }
 
@@ -84,6 +102,12 @@ fun Home(paddingValues: PaddingValues) {
       val json = response.bodyAsText()
       rememberHomeSubFeatureContext.homeSubFeatures =
         Json.decodeFromString<ApiResponse<List<HomeSubFeature>>>(json).data!!
+
+      val homeSubFeatureById = mutableMapOf<String, HomeSubFeature>()
+      for (homeSubFeature in rememberHomeSubFeatureContext.homeSubFeatures) {
+        homeSubFeatureById[homeSubFeature.id] = homeSubFeature
+      }
+      rememberHomeSubFeatureContext.homeSubFeatureById = homeSubFeatureById
 
       for (homeSubFeature in rememberHomeSubFeatureContext.homeSubFeatures) {
         val serviceResponses = getServiceProviderContexts(
@@ -115,15 +139,16 @@ fun Home(paddingValues: PaddingValues) {
     !rememberHomeSubFeatureContext.contextCollected &&
     !rememberServiceCategoryContext.contextCollected
   ) {
-    HomeLoading(paddingValues = paddingValues)
+    HomeLoading()
   } else {
     HomeLoaded(
       homeMainFeaturePromotionContext = rememberHomeMainFeaturePromotionContext,
       homeMainFeatureRewardContext = rememberHomeMainFeatureRewardContext,
       homeSubFeatureContext = rememberHomeSubFeatureContext,
-      paddingValues = paddingValues,
+      navigator = navigator,
       pagerState = rememberPagerState,
-      serviceCategoryContext = rememberServiceCategoryContext
+      serviceCategoryContext = rememberServiceCategoryContext,
+      systemUiController = rememberSystemUiController
     )
   }
 }

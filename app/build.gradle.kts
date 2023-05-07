@@ -2,6 +2,7 @@ import org.jlleitschuh.gradle.ktlint.reporter.ReporterType
 
 plugins {
   id("com.android.application")
+  id("com.google.devtools.ksp") version "1.8.10-1.0.9"
   id("org.jlleitschuh.gradle.ktlint") version "11.3.1"
   kotlin("android")
   kotlin("plugin.serialization") version "1.8.10"
@@ -54,6 +55,7 @@ android {
 dependencies {
   val accompanistVersion = "0.30.0"
   val coilVersion = "2.3.0"
+  val composeDestinationsVersion = "1.4.4-beta"
   val composeVersion = "1.4.2"
   val ktorVersion = "2.3.0"
 
@@ -77,8 +79,6 @@ dependencies {
   implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.1")
   @Suppress("GradleDependency")
   implementation("androidx.navigation:navigation-compose:2.6.0-alpha08") // 2.6.0-beta01 doesn't navigate correctly
-  // AWS SDK Support
-  implementation("aws.sdk.kotlin:s3:0.17.5-beta")
   // Accompanist Support
   implementation("com.google.accompanist:accompanist-pager:$accompanistVersion")
   implementation("com.google.accompanist:accompanist-pager-indicators:$accompanistVersion")
@@ -87,13 +87,28 @@ dependencies {
   // Coil Support
   implementation("io.coil-kt:coil-compose:$coilVersion")
   implementation("io.coil-kt:coil-svg:$coilVersion")
+  // Compose Destinations Support
+  implementation("io.github.raamcosta.compose-destinations:core:$composeDestinationsVersion")
   // Ktor Support
   implementation("io.ktor:ktor-client-android-jvm:$ktorVersion")
   implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
   implementation("io.ktor:ktor-client-logging-jvm:$ktorVersion")
   implementation("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
 
+  ksp("io.github.raamcosta.compose-destinations:ksp:$composeDestinationsVersion")
+
   testImplementation("junit:junit:4.13.2")
+}
+
+kotlin {
+  sourceSets {
+    debug {
+      kotlin.srcDir("build/generated/ksp/debug/kotlin")
+    }
+    release {
+      kotlin.srcDir("build/generated/ksp/release/kotlin")
+    }
+  }
 }
 
 tasks.named("preBuild") {

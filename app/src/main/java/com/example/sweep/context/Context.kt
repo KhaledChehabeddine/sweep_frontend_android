@@ -15,18 +15,21 @@ var accountCategoryContext = AccountCategoryContext(
 var homeMainFeaturePromotionContext = HomeMainFeaturePromotionContext(
   contextCollected = false,
   companyContextsById = mapOf(),
+  homeMainFeaturePromotionById = mapOf(),
   homeMainFeaturePromotions = emptyList(),
   workerContextsById = mapOf()
 )
 
 var homeMainFeatureRewardContext = HomeMainFeatureRewardContext(
   contextCollected = false,
+  homeMainFeatureRewardById = mapOf(),
   homeMainFeatureRewards = emptyList()
 )
 
 var homeSubFeatureContext = HomeSubFeatureContext(
   companyContextsById = mapOf(),
   contextCollected = false,
+  homeSubFeatureById = mapOf(),
   homeSubFeatures = emptyList(),
   workerContextsById = mapOf()
 )

@@ -80,11 +80,24 @@ private val rubikFontFamily = FontFamily(
 
 // Set of Material typography styles to start with
 val Typography = Typography(
+  bodyLarge = TextStyle(
+    fontFamily = rubikFontFamily,
+    fontWeight = FontWeight.Bold,
+    fontSize = 20.sp,
+    lineHeight = 28.sp
+  ),
+
   bodyMedium = TextStyle(
     fontFamily = rubikFontFamily,
     fontWeight = FontWeight.Medium,
     fontSize = 16.sp,
     lineHeight = 24.sp
+  ),
+
+  bodySmall = TextStyle(
+    fontFamily = rubikFontFamily,
+    fontSize = 12.sp,
+    lineHeight = 16.sp
   ),
 
   displayMedium = TextStyle(
