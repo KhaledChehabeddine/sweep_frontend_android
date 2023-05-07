@@ -1,24 +1,26 @@
-package com.example.sweep.components.topbars
+package com.example.sweep.components.topbars.home
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material.icons.outlined.Notifications
-import androidx.compose.material3.*
+import androidx.compose.material3.Badge
+import androidx.compose.material3.BadgedBox
+import androidx.compose.material3.CenterAlignedTopAppBar
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.sweep.data.notificationIcon
-import com.example.sweep.ui.theme.SweepTheme
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopBarHome() {
+fun TopBarHomeLoaded() {
   CenterAlignedTopAppBar(
     actions = {
       if (notificationIcon.badgeCount > 0) {
         IconButton(
-          colors = IconButtonDefaults.iconButtonColors(
-            contentColor = MaterialTheme.colorScheme.onSurface
-          ),
+          colors = IconButtonDefaults.iconButtonColors(contentColor = MaterialTheme.colorScheme.onSurface),
           onClick = {
             /* TODO */
           }
@@ -36,9 +38,7 @@ fun TopBarHome() {
         }
       } else {
         IconButton(
-          colors = IconButtonDefaults.iconButtonColors(
-            contentColor = MaterialTheme.colorScheme.onSurface
-          ),
+          colors = IconButtonDefaults.iconButtonColors(contentColor = MaterialTheme.colorScheme.onSurface),
           onClick = {
             /* TODO */
           }
@@ -50,14 +50,10 @@ fun TopBarHome() {
         }
       }
     },
-    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-      containerColor = MaterialTheme.colorScheme.background
-    ),
+    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(containerColor = MaterialTheme.colorScheme.background),
     navigationIcon = {
       IconButton(
-        colors = IconButtonDefaults.iconButtonColors(
-          contentColor = MaterialTheme.colorScheme.onSurface
-        ),
+        colors = IconButtonDefaults.iconButtonColors(contentColor = MaterialTheme.colorScheme.onSurface),
         onClick = {
           /* TODO */
         }
@@ -70,12 +66,4 @@ fun TopBarHome() {
     },
     title = { }
   )
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun Preview() {
-  SweepTheme {
-    TopBarHome()
-  }
 }

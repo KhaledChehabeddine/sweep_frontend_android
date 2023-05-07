@@ -10,7 +10,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.sweep.components.topbars.TopBarAccount
 import com.example.sweep.components.topbars.TopBarHistory
-import com.example.sweep.components.topbars.TopBarHome
 import com.example.sweep.components.topbars.TopBarSweep
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -27,7 +26,7 @@ fun TopBar(
     startDestination = "home"
   ) {
     composable(route = "home") {
-      TopBarHome()
+//      TopBarHome()
       systemUiController.setStatusBarColor(color = MaterialTheme.colorScheme.background)
     }
     composable(route = "search") {
@@ -35,9 +34,7 @@ fun TopBar(
     }
     composable(route = "sweep") {
       TopBarSweep()
-      systemUiController.setStatusBarColor(
-        color = MaterialTheme.colorScheme.onSecondaryContainer
-      )
+      systemUiController.setStatusBarColor(color = MaterialTheme.colorScheme.onSecondaryContainer)
     }
     composable(route = "history") {
       TopBarHistory(pagerState = pagerState)

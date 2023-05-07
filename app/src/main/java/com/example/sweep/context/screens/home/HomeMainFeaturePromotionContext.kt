@@ -7,6 +7,7 @@ import com.example.sweep.data.home.HomeMainFeaturePromotion
 data class HomeMainFeaturePromotionContext(
   var contextCollected: Boolean,
   var companyContextsById: Map<String, List<CompanyContext>>,
+  var homeMainFeaturePromotionById: Map<String, HomeMainFeaturePromotion>,
   var homeMainFeaturePromotions: List<HomeMainFeaturePromotion>,
   var workerContextsById: Map<String, List<WorkerContext>>
 )
