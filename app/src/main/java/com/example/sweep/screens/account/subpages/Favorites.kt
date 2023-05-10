@@ -20,6 +20,7 @@ import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -27,19 +28,37 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.sweep.components.BottomBar
+import com.example.sweep.components.topbars.accountSubpages.TopBarFavorites
 import com.example.sweep.ui.theme.SweepTheme
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
+@Destination
 @Composable
-fun Favorites() {
-  Surface(
-    color = MaterialTheme.colorScheme.background,
-    modifier = Modifier
-      .fillMaxSize(),
-  ) {
-    Column() {
-      LazyColumn() {
-        items(10) {
-          FavoritesPage()
+fun Favorites(navigator: DestinationsNavigator) {
+  Scaffold(
+    topBar = {
+      TopBarFavorites(navigator = navigator)
+    },
+    bottomBar = {
+      BottomBar(
+        currentPage = "account",
+        navigator = navigator,
+      )
+    },
+  ) { paddingValues ->
+    Surface(
+      color = MaterialTheme.colorScheme.background,
+      modifier = Modifier
+        .fillMaxSize()
+        .padding(paddingValues = paddingValues)
+    ) {
+      Column() {
+        LazyColumn() {
+          items(10) {
+            FavoritesPage()
+          }
         }
       }
     }
@@ -117,6 +136,6 @@ fun FavoritesPage() {
 @Composable
 private fun Preview() {
   SweepTheme {
-    Favorites()
+//    Favorites()
   }
 }

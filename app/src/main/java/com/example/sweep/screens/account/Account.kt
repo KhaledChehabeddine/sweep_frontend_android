@@ -1,6 +1,6 @@
 package com.example.sweep.screens.account
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -8,16 +8,21 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import com.example.sweep.api.getApiClient
+import com.example.sweep.components.BottomBar
+import com.example.sweep.components.topbars.TopBarAccount
 import com.example.sweep.context.accountCategoryContext
 import com.example.sweep.context.screens.AccountCategoryContext
 import com.example.sweep.data.ApiResponse
 import com.example.sweep.data.account.AccountCategory
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import io.ktor.client.statement.*
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
+@Destination
 @Composable
-fun Account(paddingValues: PaddingValues) {
+fun Account(navigator: DestinationsNavigator) {
   val rememberAccountCategoryContext: AccountCategoryContext by remember {
     mutableStateOf(value = accountCategoryContext)
   }
@@ -44,11 +49,36 @@ fun Account(paddingValues: PaddingValues) {
   }
 
   if (!rememberAccountCategoryContext.contextCollected) {
-    AccountLoading(paddingValues = paddingValues)
+    Scaffold(
+      bottomBar = {
+        BottomBar(
+          currentPage = "account",
+          navigator = navigator,
+        )
+      },
+      topBar = {
+        TopBarAccount()
+      }
+    ) { paddingValues ->
+      AccountLoading(paddingValues = paddingValues)
+    }
   } else {
-    AccountLoaded(
-      accountCategoryContext = rememberAccountCategoryContext,
-      paddingValues = paddingValues
-    )
+    Scaffold(
+      bottomBar = {
+        BottomBar(
+          currentPage = "account",
+          navigator = navigator,
+        )
+      },
+      topBar = {
+        TopBarAccount()
+      }
+    ) { paddingValues ->
+      AccountLoaded(
+        accountCategoryContext = rememberAccountCategoryContext,
+        paddingValues = paddingValues,
+        navigator = navigator,
+      )
+    }
   }
 }

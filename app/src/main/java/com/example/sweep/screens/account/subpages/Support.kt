@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,38 +20,56 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.sweep.components.BottomBar
+import com.example.sweep.components.topbars.accountSubpages.TopBarSupport
 import com.example.sweep.ui.theme.SweepTheme
 import com.google.accompanist.placeholder.PlaceholderHighlight
 import com.google.accompanist.placeholder.material.placeholder
 import com.google.accompanist.placeholder.material.shimmer
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
+@Destination
 @Composable
-fun Support() {
-  Surface(
-    color = MaterialTheme.colorScheme.background,
-    modifier = Modifier
-      .fillMaxSize(),
-  ) {
-    BoxWithConstraints {
-      Column() {
-        Box(
-          modifier = Modifier
-            .fillMaxWidth()
-            .padding(
-              top = 0.dp,
-              start = 20.dp,
-              end = 20.dp,
-              bottom = 20.dp,
-            )
-            .clip(MaterialTheme.shapes.small)
-            .background(color = MaterialTheme.colorScheme.onBackground)
-        ) {
-          Column {
-            for (i in 0..5) {
+fun Support(navigator: DestinationsNavigator) {
+  Scaffold(
+    topBar = {
+      TopBarSupport(navigator = navigator)
+    },
+    bottomBar = {
+      BottomBar(
+        currentPage = "account",
+        navigator = navigator,
+      )
+    },
+  ) { paddingValues ->
+    Surface(
+      color = MaterialTheme.colorScheme.background,
+      modifier = Modifier
+        .fillMaxSize()
+        .padding(paddingValues = paddingValues)
+    ) {
+      BoxWithConstraints {
+        Column() {
+          Box(
+            modifier = Modifier
+              .fillMaxWidth()
+              .padding(
+                top = 0.dp,
+                start = 20.dp,
+                end = 20.dp,
+                bottom = 20.dp,
+              )
+              .clip(MaterialTheme.shapes.small)
+              .background(color = MaterialTheme.colorScheme.onBackground)
+          ) {
+            Column {
+              for (i in 0..5) {
+                SupportSection()
+                Divider()
+              }
               SupportSection()
-              Divider()
             }
-            SupportSection()
           }
         }
       }
@@ -93,6 +112,6 @@ fun SupportSection() {
 @Composable
 private fun Preview() {
   SweepTheme {
-    Support()
+//    Support()
   }
 }

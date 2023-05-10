@@ -10,7 +10,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.sweep.screens.SearchScreen
 import com.example.sweep.screens.SweepScreen
-import com.example.sweep.screens.account.Account
 import com.example.sweep.screens.history.HistoryScreen
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
@@ -43,7 +42,7 @@ fun Content(
       )
     }
     composable(route = "account") {
-      Account(paddingValues = paddingValues)
+//      Account(paddingValues = paddingValues)
     }
   }
 }

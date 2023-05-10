@@ -1,6 +1,5 @@
 package com.example.sweep.screens.account.subpages
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,31 +17,50 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.sweep.components.BottomBar
+import com.example.sweep.components.topbars.accountSubpages.TopBarAddresses
 import com.example.sweep.ui.theme.SweepTheme
 import com.google.accompanist.placeholder.PlaceholderHighlight
 import com.google.accompanist.placeholder.material.placeholder
 import com.google.accompanist.placeholder.material.shimmer
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
+@Destination
 @Composable
-fun Addresses(times: Int) {
-  Surface(
-    color = MaterialTheme.colorScheme.background,
-    modifier = Modifier
-      .fillMaxSize()
-      .padding(20.dp),
-  ) {
-    Column(
-      horizontalAlignment = Alignment.CenterHorizontally,
+fun Addresses(navigator: DestinationsNavigator) {
+  val times = 5
+  Scaffold(
+    topBar = {
+      TopBarAddresses(navigator = navigator)
+    },
+    bottomBar = {
+      BottomBar(
+        currentPage = "account",
+        navigator = navigator,
+      )
+    },
+  ) { paddingValues ->
+    Surface(
+      color = MaterialTheme.colorScheme.background,
+      modifier = Modifier
+        .fillMaxSize()
+        .padding(paddingValues = paddingValues),
     ) {
-      repeat(times = times) { index ->
-        AddressEntry()
-        if (index != times - 1) Divider()
+      Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+      ) {
+        repeat(times = times) { index ->
+          AddressEntry()
+          if (index != times - 1) Divider()
+        }
       }
     }
   }
@@ -113,6 +131,6 @@ fun AddressEntry() {
 @Composable
 private fun Preview() {
   SweepTheme {
-    Addresses(5)
+//    Addresses(5)
   }
 }

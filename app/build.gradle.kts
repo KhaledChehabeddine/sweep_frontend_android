@@ -53,6 +53,8 @@ android {
 }
 
 dependencies {
+//  implementation("com.google.android.gms:play-services-maps:18.1.0")
+//  implementation("androidx.navigation:navigation-safe-args-generator:2.5.3")
   val accompanistVersion = "0.30.0"
   val coilVersion = "2.3.0"
   val composeDestinationsVersion = "1.4.4-beta"

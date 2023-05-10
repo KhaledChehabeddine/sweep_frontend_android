@@ -9,18 +9,24 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.sweep.ui.theme.SweepTheme
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @OptIn(ExperimentalMaterial3Api::class)
+@Destination
 @Composable
-fun TopBarProfile() {
+fun TopBarProfile(navigator: DestinationsNavigator) {
   CenterAlignedTopAppBar(
-    actions = { },
     colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
       containerColor = MaterialTheme.colorScheme.background
     ),
 
     navigationIcon = {
-      IconButton(onClick = { /*TODO*/ }) {
+      IconButton(
+        onClick = {
+          navigator.popBackStack()
+        }
+      ) {
         Icon(
           modifier = Modifier
             .padding(10.dp),
@@ -43,6 +49,6 @@ fun TopBarProfile() {
 @Composable
 private fun Preview() {
   SweepTheme {
-    TopBarProfile()
+//    TopBarProfile()
   }
 }
