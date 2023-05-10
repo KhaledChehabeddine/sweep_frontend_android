@@ -9,7 +9,8 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.painterResource
 import com.example.sweep.R.drawable.ic_sweep_logo
-import com.example.sweep.screens.destinations.HomeDestination
+import com.example.sweep.destinations.AccountDestination
+import com.example.sweep.destinations.HomeDestination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Composable
@@ -67,7 +68,7 @@ fun BottomBar(
       label = {
         Text(
           style = MaterialTheme.typography.bodySmall,
-          text = "Search"
+          text = "Sweep"
         )
       },
       onClick = {
@@ -109,7 +110,7 @@ fun BottomBar(
         )
       },
       onClick = {
-        /* TODO */
+        navigator.navigate(direction = AccountDestination())
       },
       selected = currentPage == "account",
     )

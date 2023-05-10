@@ -34,12 +34,20 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.example.sweep.context.screens.AccountCategoryContext
 import com.example.sweep.data.account.AccountCategoryItem
+import com.example.sweep.destinations.AddressesDestination
+import com.example.sweep.destinations.ComingSoonDestination
+import com.example.sweep.destinations.FavoritesDestination
+import com.example.sweep.destinations.ProfileDestination
+import com.example.sweep.destinations.SupportDestination
 import com.example.sweep.functions.svgS3UrlToPainter
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Composable
 fun AccountLoaded(
   accountCategoryContext: AccountCategoryContext,
-  paddingValues: PaddingValues
+  paddingValues: PaddingValues,
+  navigator: DestinationsNavigator
 ) {
   Surface(
     color = MaterialTheme.colorScheme.background,
@@ -86,7 +94,20 @@ fun AccountLoaded(
                               MutableInteractionSource()
                             }
                           ) {
-                            /* TODO */
+                            when (accountCategoryItem.name) {
+                              "Profile" -> {
+                                navigator.navigate(direction = ProfileDestination())
+                              }
+                              "Support" -> {
+                                navigator.navigate(direction = SupportDestination())
+                              }
+                              "Language" -> {
+                                navigator.navigate(direction = ComingSoonDestination())
+                              }
+                              "Payments" -> {
+                                navigator.navigate(direction = ComingSoonDestination())
+                              }
+                            }
                           }
                       ) {
                         Image(
@@ -136,6 +157,7 @@ fun AccountLoaded(
                   }
                   Spacer(modifier = Modifier.height(height = 5.dp))
                   AccountSubCategory(
+                    navigator = navigator,
                     accountCategoryItems = accountCategoryContext.accountSubCategories[index].accountCategoryItems
                   )
                 }
@@ -148,8 +170,12 @@ fun AccountLoaded(
   }
 }
 
+@Destination
 @Composable
-private fun AccountSubCategory(accountCategoryItems: List<AccountCategoryItem>) {
+fun AccountSubCategory(
+  navigator: DestinationsNavigator,
+  accountCategoryItems: List<AccountCategoryItem>
+) {
   accountCategoryItems.forEachIndexed { index, accountCategoryItem ->
     Row(
       modifier = Modifier
@@ -160,8 +186,39 @@ private fun AccountSubCategory(accountCategoryItems: List<AccountCategoryItem>) 
             MutableInteractionSource()
           }
         ) {
-          /* TODO */
-        },
+          when (accountCategoryItem.name) {
+            "Addresses" -> {
+              navigator.navigate(direction = AddressesDestination())
+            }
+            "Favorites" -> {
+              navigator.navigate(direction = FavoritesDestination())
+            }
+            "Notifications" -> {
+              navigator.navigate(direction = ComingSoonDestination())
+            }
+            "Preferences" -> {
+              navigator.navigate(direction = ComingSoonDestination())
+            }
+            "Add Funds" -> {
+              navigator.navigate(direction = ComingSoonDestination())
+            }
+            "Send Funds" -> {
+              navigator.navigate(direction = ComingSoonDestination())
+            }
+            "Wallet" -> {
+              navigator.navigate(direction = ComingSoonDestination())
+            }
+            "FAQ" -> {
+              navigator.navigate(direction = ComingSoonDestination())
+            }
+            "Legal" -> {
+              navigator.navigate(direction = ComingSoonDestination())
+            }
+            "Support Tickets" -> {
+              navigator.navigate(direction = ComingSoonDestination())
+            }
+          }
+        }
     ) {
       Row(
         modifier = Modifier.padding(vertical = 10.dp),

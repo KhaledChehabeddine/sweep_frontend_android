@@ -1,4 +1,4 @@
-package com.example.sweep.components.topbars.account
+package com.example.sweep.components.topbars.accountSubpages
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -9,10 +9,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.sweep.ui.theme.SweepTheme
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopBarSupport() {
+fun TopBarSupport(navigator: DestinationsNavigator) {
   CenterAlignedTopAppBar(
     actions = { },
     colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
@@ -20,7 +21,9 @@ fun TopBarSupport() {
     ),
 
     navigationIcon = {
-      IconButton(onClick = { /*TODO*/ }) {
+      IconButton(onClick = {
+        navigator.popBackStack()
+      }) {
         Icon(
           modifier = Modifier
             .padding(10.dp),
@@ -43,6 +46,6 @@ fun TopBarSupport() {
 @Composable
 private fun Preview() {
   SweepTheme {
-    TopBarSupport()
+//    TopBarSupport()
   }
 }
