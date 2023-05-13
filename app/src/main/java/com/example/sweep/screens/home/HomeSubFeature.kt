@@ -40,8 +40,8 @@ import com.example.sweep.components.topbars.home.TopBarHomeSubFeature
 import com.example.sweep.context.homeSubFeatureContext
 import com.example.sweep.context.screens.home.HomeSubFeatureContext
 import com.example.sweep.data.home.HomeSubFeature
+import com.example.sweep.destinations.ServiceProviderDestination
 import com.example.sweep.functions.svgS3UrlToPainter
-import com.example.sweep.screens.destinations.ServiceProviderDestination
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -112,8 +112,8 @@ fun HomeSubFeature(
                 ) {
                   navigator.navigate(
                     direction = ServiceProviderDestination(
-                      serviceProviderId = companyContext.company.id,
-                      serviceProviderType = companyContext.company.serviceProvider.serviceProviderType
+                      companyContext = companyContext,
+                      serviceProviderType = companyContext.company.serviceProvider.serviceProviderType,
                     )
                   )
                 }
@@ -199,8 +199,8 @@ fun HomeSubFeature(
                 ) {
                   navigator.navigate(
                     direction = ServiceProviderDestination(
-                      serviceProviderId = workerContext.worker.id,
-                      serviceProviderType = workerContext.worker.serviceProvider.serviceProviderType
+                      serviceProviderType = workerContext.worker.serviceProvider.serviceProviderType,
+                      workerContext = workerContext
                     )
                   )
                 }

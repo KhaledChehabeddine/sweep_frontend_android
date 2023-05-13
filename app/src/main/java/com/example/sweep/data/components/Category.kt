@@ -13,5 +13,5 @@ data class Category(
   @SerialName("name")
   val name: String,
   @SerialName("service_items")
-  val serviceItemIds: List<ServiceItem>
+  val serviceItems: List<ServiceItem>
 )

@@ -3,7 +3,9 @@ package com.example.sweep.context.screens.home
 import com.example.sweep.context.screens.user.CompanyContext
 import com.example.sweep.context.screens.user.WorkerContext
 import com.example.sweep.data.home.HomeSubFeature
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class HomeSubFeatureContext(
   var companyContextsById: Map<String, List<CompanyContext>>,
   var contextCollected: Boolean,
