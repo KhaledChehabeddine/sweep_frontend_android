@@ -1,8 +1,10 @@
 package com.example.sweep.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -26,22 +28,29 @@ import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.sweep.components.BottomBar
-import com.example.sweep.ui.theme.SweepTheme
+import com.example.sweep.context.screens.user.CompanyContext
+import com.example.sweep.context.screens.user.WorkerContext
+import com.example.sweep.functions.svgS3UrlToPainter
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
 @Destination
 @Composable
 fun ServiceProvider(
+  companyContext: CompanyContext? = null,
   navigator: DestinationsNavigator,
-  serviceProviderId: String,
-  serviceProviderType: String
+  serviceProviderType: String,
+  workerContext: WorkerContext? = null
 ) {
   Scaffold(
     bottomBar = {
@@ -52,7 +61,8 @@ fun ServiceProvider(
     },
     topBar = { }
   ) { paddingValues ->
-    ServiceProviderScreen(
+    CompanyScreen(
+      companyContext = companyContext!!,
       navigator = navigator,
       paddingValues = paddingValues
     )
@@ -60,7 +70,8 @@ fun ServiceProvider(
 }
 
 @Composable
-private fun ServiceProviderScreen(
+private fun CompanyScreen(
+  companyContext: CompanyContext,
   navigator: DestinationsNavigator,
   paddingValues: PaddingValues
 ) {
@@ -72,44 +83,45 @@ private fun ServiceProviderScreen(
   ) {
     LazyColumn {
       item {
-        Box(
-          modifier = Modifier
-            .fillMaxWidth()
-            .aspectRatio(ratio = 16f / 9f)
-            .background(color = MaterialTheme.colorScheme.secondaryContainer)
-            .padding(all = 10.dp)
-        ) {
-          IconButton(
-            colors = IconButtonDefaults.iconButtonColors(
-              containerColor = MaterialTheme.colorScheme.onBackground,
-              contentColor = MaterialTheme.colorScheme.onSurface
-            ),
-            onClick = {
-              navigator.popBackStack()
+        Box {
+          Image(
+            contentDescription = companyContext.company.name,
+            modifier = Modifier
+              .fillMaxWidth()
+              .aspectRatio(ratio = 16f / 9f)
+              .background(color = MaterialTheme.colorScheme.secondaryContainer),
+            painter = svgS3UrlToPainter(url = companyContext.company.bannerImageUrl)
+          )
+          Box(modifier = Modifier.padding(all = 10.dp)) {
+            IconButton(
+              colors = IconButtonDefaults.iconButtonColors(
+                containerColor = MaterialTheme.colorScheme.onBackground,
+                contentColor = MaterialTheme.colorScheme.onSurface
+              ),
+              onClick = {
+                navigator.popBackStack()
+              }
+            ) {
+              Icon(
+                contentDescription = "Back",
+                imageVector = Icons.Outlined.ArrowBackIos
+              )
             }
-          ) {
-            Icon(
-              contentDescription = "Back",
-              imageVector = Icons.Outlined.ArrowBackIos
-            )
           }
         }
         Column(modifier = Modifier.background(color = MaterialTheme.colorScheme.onBackground)) {
           Column(modifier = Modifier.padding(all = 20.dp)) {
-            Box(
-              modifier = Modifier
-                .height(height = 22.dp)
-                .fillMaxWidth(fraction = 0.5f)
-                .clip(shape = MaterialTheme.shapes.medium)
-                .background(color = MaterialTheme.colorScheme.inverseOnSurface)
+            Text(
+              color = MaterialTheme.colorScheme.onSurface,
+              style = MaterialTheme.typography.bodyLarge,
+              text = companyContext.company.name
             )
-            Spacer(modifier = Modifier.height(height = 5.dp))
-            Box(
-              modifier = Modifier
-                .height(height = 22.dp)
-                .fillMaxWidth()
-                .clip(shape = MaterialTheme.shapes.medium)
-                .background(color = MaterialTheme.colorScheme.onTertiaryContainer)
+            Spacer(modifier = Modifier.height(height = 10.dp))
+            Text(
+              color = MaterialTheme.colorScheme.onSurfaceVariant,
+              fontWeight = FontWeight.Normal,
+              style = MaterialTheme.typography.headlineMedium,
+              text = companyContext.company.serviceProvider.description
             )
           }
           Divider()
@@ -120,38 +132,48 @@ private fun ServiceProviderScreen(
               .padding(all = 20.dp),
           ) {
             Column {
-              Row {
-                Box(
-                  modifier = Modifier
-                    .height(height = 52.dp)
-                    .width(width = 78.dp)
-                    .clip(shape = MaterialTheme.shapes.medium)
-                    .background(color = MaterialTheme.colorScheme.inverseOnSurface)
+              Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                  color = MaterialTheme.colorScheme.onSurface,
+                  fontSize = 52.sp,
+                  text = companyContext.company.serviceProvider.averageRating.toString()
                 )
                 Spacer(modifier = Modifier.width(width = 10.dp))
                 Column {
+                  val rating = companyContext.company.serviceProvider.averageRating
+                  val ratingBoxColor: Color = if (rating >= 4.5f) {
+                    MaterialTheme.colorScheme.surfaceVariant
+                  } else if (rating >= 3.0f) {
+                    MaterialTheme.colorScheme.primary
+                  } else if (rating > 0.0f) {
+                    MaterialTheme.colorScheme.error
+                  } else {
+                    MaterialTheme.colorScheme.inverseOnSurface
+                  }
+
                   Row {
-                    repeat(times = 4) {
+                    for (i in 1..companyContext.company.serviceProvider.averageRating.toInt()) {
                       Icon(
                         contentDescription = "Star",
                         imageVector = Icons.Outlined.Star,
-                        tint = MaterialTheme.colorScheme.surfaceVariant
+                        tint = ratingBoxColor
                       )
                     }
-                    Icon(
-                      contentDescription = "Star",
-                      imageVector = Icons.Outlined.Star,
-                      tint = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
+                    for (i in 1..(5 - companyContext.company.serviceProvider.averageRating.toInt())) {
+                      Icon(
+                        contentDescription = "Star",
+                        imageVector = Icons.Outlined.Star,
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                      )
+                    }
                   }
                   Spacer(modifier = Modifier.height(height = 5.dp))
                   Row {
-                    Box(
-                      modifier = Modifier
-                        .height(height = 16.dp)
-                        .width(width = 70.dp)
-                        .clip(shape = MaterialTheme.shapes.medium)
-                        .background(color = MaterialTheme.colorScheme.onTertiaryContainer)
+                    Text(
+                      color = MaterialTheme.colorScheme.tertiary,
+                      fontWeight = FontWeight.Normal,
+                      style = MaterialTheme.typography.headlineMedium,
+                      text = "Based on ${companyContext.company.serviceProvider.metadata.totalReviews} reviews"
                     )
                   }
                 }
@@ -172,14 +194,25 @@ private fun ServiceProviderScreen(
           Divider()
           LazyRow(modifier = Modifier.padding(all = 20.dp)) {
             item {
-              repeat(times = 5) {
-                Box(
-                  modifier = Modifier
-                    .height(height = 30.dp)
-                    .width(width = 85.dp)
-                    .clip(shape = MaterialTheme.shapes.small)
-                    .background(color = MaterialTheme.colorScheme.onSecondaryContainer)
-                )
+              for (category in companyContext.company.serviceProvider.categories) {
+                BoxWithConstraints {
+                  Box(
+                    contentAlignment = Alignment.Center,
+                    modifier = Modifier
+                      .height(height = maxHeight)
+                      .width(width = maxWidth)
+                      .clip(shape = MaterialTheme.shapes.small)
+                      .background(color = MaterialTheme.colorScheme.onSecondaryContainer)
+                  ) {
+                    Text(
+                      color = MaterialTheme.colorScheme.onBackground,
+                      fontWeight = FontWeight.Normal,
+                      modifier = Modifier.padding(all = 10.dp),
+                      style = MaterialTheme.typography.headlineMedium,
+                      text = category.name
+                    )
+                  }
+                }
                 Spacer(modifier = Modifier.width(width = 10.dp))
               }
             }
@@ -191,44 +224,41 @@ private fun ServiceProviderScreen(
             .fillMaxWidth()
             .background(color = MaterialTheme.colorScheme.onBackground)
         ) {
-          repeat(times = 2) {
+          for (category in companyContext.company.serviceProvider.categories) {
             Row(modifier = Modifier.padding(all = 20.dp)) {
-              Box(
-                modifier = Modifier
-                  .height(height = 22.dp)
-                  .fillMaxWidth(fraction = 0.5f)
-                  .clip(shape = MaterialTheme.shapes.medium)
-                  .background(color = MaterialTheme.colorScheme.inverseOnSurface)
+              Text(
+                color = MaterialTheme.colorScheme.onSurface,
+                style = MaterialTheme.typography.bodyLarge,
+                text = category.name
               )
             }
             Divider()
-            repeat(times = 3) {
+            for (serviceItem in category.serviceItems) {
               Row(modifier = Modifier.padding(all = 20.dp)) {
                 Column(modifier = Modifier.weight(weight = 0.60f)) {
-                  Box(
-                    modifier = Modifier
-                      .height(height = 20.dp)
-                      .fillMaxWidth()
-                      .clip(shape = MaterialTheme.shapes.medium)
-                      .background(color = MaterialTheme.colorScheme.inverseOnSurface)
+                  Text(
+                    color = MaterialTheme.colorScheme.onSurface,
+                    style = MaterialTheme.typography.titleMedium,
+                    text = serviceItem.name
                   )
                   Spacer(modifier = Modifier.height(height = 10.dp))
-                  Box(
-                    modifier = Modifier
-                      .height(height = 16.dp)
-                      .fillMaxWidth(fraction = 0.85f)
-                      .clip(shape = MaterialTheme.shapes.medium)
-                      .background(color = MaterialTheme.colorScheme.onTertiaryContainer)
+                  Text(
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                    fontWeight = FontWeight.Normal,
+                    style = MaterialTheme.typography.headlineMedium,
+                    text = serviceItem.description
                   )
                 }
                 Spacer(modifier = Modifier.width(width = 10.dp))
                 Column(modifier = Modifier.weight(weight = 0.40f)) {
-                  Box(
+                  Image(
+                    contentDescription = serviceItem.name,
                     modifier = Modifier
                       .fillMaxWidth()
                       .aspectRatio(ratio = 16f / 9f)
                       .clip(shape = MaterialTheme.shapes.small)
-                      .background(color = MaterialTheme.colorScheme.inverseOnSurface)
+                      .background(color = MaterialTheme.colorScheme.secondaryContainer),
+                    painter = svgS3UrlToPainter(url = serviceItem.imageUrl)
                   )
                 }
               }
@@ -237,22 +267,5 @@ private fun ServiceProviderScreen(
         }
       }
     }
-//    Image(
-//      contentDescription = workerContext.worker.metadata.formattedName,
-//      modifier = Modifier
-//        .fillMaxWidth()
-//        .aspectRatio(ratio = 16f / 9f)
-//        .clip(shape = MaterialTheme.shapes.small)
-//        .background(color = MaterialTheme.colorScheme.secondaryContainer),
-//      painter = svgS3UrlToPainter(url = workerContext.worker.bannerImageUrl)
-//    )
-  }
-}
-
-@Preview(showBackground = true)
-@Composable
-private fun Preview() {
-  SweepTheme {
-//    ServiceProviderScreen(paddingValues = PaddingValues())
   }
 }

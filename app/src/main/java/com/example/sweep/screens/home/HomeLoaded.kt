@@ -46,9 +46,9 @@ import com.example.sweep.context.components.ServiceCategoryContext
 import com.example.sweep.context.screens.home.HomeMainFeaturePromotionContext
 import com.example.sweep.context.screens.home.HomeMainFeatureRewardContext
 import com.example.sweep.context.screens.home.HomeSubFeatureContext
+import com.example.sweep.destinations.HomeSubFeatureDestination
+import com.example.sweep.destinations.ServiceProviderDestination
 import com.example.sweep.functions.svgS3UrlToPainter
-import com.example.sweep.screens.destinations.HomeSubFeatureDestination
-import com.example.sweep.screens.destinations.ServiceProviderDestination
 import com.google.accompanist.systemuicontroller.SystemUiController
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlin.math.absoluteValue
@@ -224,8 +224,8 @@ fun HomeLoaded(
                             ) {
                               navigator.navigate(
                                 direction = ServiceProviderDestination(
-                                  serviceProviderId = companyContext.company.id,
-                                  serviceProviderType = companyContext.company.serviceProvider.serviceProviderType
+                                  companyContext = companyContext,
+                                  serviceProviderType = companyContext.company.serviceProvider.serviceProviderType,
                                 )
                               )
                             },
@@ -308,8 +308,8 @@ fun HomeLoaded(
                             ) {
                               navigator.navigate(
                                 direction = ServiceProviderDestination(
-                                  serviceProviderId = workerContext.worker.id,
-                                  serviceProviderType = workerContext.worker.serviceProvider.serviceProviderType
+                                  serviceProviderType = workerContext.worker.serviceProvider.serviceProviderType,
+                                  workerContext = workerContext
                                 )
                               )
                             },
