@@ -1,52 +1,76 @@
 package com.example.sweep.screens
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.sweep.destinations.HomeDestination
 import com.example.sweep.ui.theme.SweepTheme
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
+@Destination
 @Composable
-fun ProfileSetupScreen() {
-  Column(
-    verticalArrangement = Arrangement.spacedBy(15.dp),
-    horizontalAlignment = Alignment.CenterHorizontally,
-    modifier = Modifier.fillMaxSize()
-  ) {
-    Spacer(modifier = Modifier.height(50.dp))
-
-    Icon(
-      Icons.Default.AccountCircle,
-      contentDescription = "",
+fun ProfileSetupScreen(navigator: DestinationsNavigator) {
+  Scaffold() { paddingValues ->
+    Column(
+      verticalArrangement = Arrangement.spacedBy(15.dp),
+      horizontalAlignment = Alignment.CenterHorizontally,
       modifier = Modifier
-        .size(200.dp)
-    )
+        .fillMaxSize()
+        .padding(paddingValues)
+    ) {
+      Spacer(modifier = Modifier.height(50.dp))
 
-    Name()
-    LastName()
-    DOB()
-    DropdownMenu()
+      Icon(
+        Icons.Default.AccountCircle,
+        tint = MaterialTheme.colorScheme.onSecondary,
+        contentDescription = "",
+        modifier = Modifier
+          .size(200.dp)
+      )
+
+      FirstName()
+      LastName()
+      DOB()
+      DropDownMenu()
+
+      Button(
+        onClick = {
+          navigator.navigate(HomeDestination)
+        },
+        shape = MaterialTheme.shapes.small,
+        colors = ButtonDefaults.buttonColors(MaterialTheme.colorScheme.onSecondary),
+        modifier = Modifier.padding(10.dp)
+      ) {
+        Text(text = "Submit")
+      }
+    }
   }
 }
 
 @Composable
-fun Name() {
-  val name_ = remember {
+fun FirstName() {
+  val name = remember {
     mutableStateOf("")
   }
   OutlinedTextField(
-    value = name_.value,
+    value = name.value,
     onValueChange = {
-      name_.value = it
+      name.value = it
     },
     label = {
-      Text("Last Name")
+      Text(
+        "First Name",
+      )
     },
     singleLine = true
 
@@ -55,16 +79,18 @@ fun Name() {
 
 @Composable
 fun LastName() {
-  val Lastname = remember {
+  val lastname = remember {
     mutableStateOf("")
   }
   OutlinedTextField(
-    value = Lastname.value,
+    value = lastname.value,
     onValueChange = {
-      Lastname.value = it
+      lastname.value = it
     },
     label = {
-      Text("First Name")
+      Text(
+        "Last Name",
+      )
     },
     singleLine = true
 
@@ -73,65 +99,82 @@ fun LastName() {
 
 @Composable
 fun DOB() {
-  val DOB = remember {
+  val birthdate = remember {
     mutableStateOf("")
   }
   OutlinedTextField(
-    value = DOB.value,
+    value = birthdate.value,
     onValueChange = {
-      DOB.value = it
+      birthdate.value = it
     },
     label = {
-      Text("Date of Birth")
+      Text(
+        "Date of Birth",
+      )
     },
     singleLine = true
 
   )
 }
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun DropdownMenu() {
-  val options = listOf("Male", "Female", "Non-Binary", "IDK", " AC-130H Gunship")
+fun DropDownMenu() {
   var expanded by remember { mutableStateOf(false) }
-  var selectedOptionText by remember { mutableStateOf(options[0]) }
+  val suggestions = listOf("Man", "Woman", "Other", "Rather Not Specify")
+  var selectedText by remember { mutableStateOf("") }
 
-  ExposedDropdownMenuBox(
-    expanded = expanded,
-    onExpandedChange = {
-      expanded = !expanded
-    }
-  ) {
+  val icon = if (expanded) {
+    Icons.Filled.KeyboardArrowUp
+  } else {
+    Icons.Filled.KeyboardArrowDown
+  }
+
+  Column() {
     OutlinedTextField(
-      readOnly = true,
-      value = selectedOptionText,
-      onValueChange = { },
-//            label = { Text("Label") },
+      value = selectedText,
+      enabled = false,
+      onValueChange = { selectedText = it },
+      textStyle = MaterialTheme.typography.bodyLarge,
+      modifier = Modifier
+        .clickable { expanded = !expanded },
+      label = {
+        Text(
+          "Gender",
+        )
+      },
       trailingIcon = {
-        ExposedDropdownMenuDefaults.TrailingIcon(
-          expanded = expanded
+        Icon(
+          icon,
+          "contentDescription",
+//          Modifier.clickable { expanded = !expanded }
         )
       }
-//            colors = ExposedDropdownMenuDefaults.textFieldColors()
     )
-    ExposedDropdownMenu(
-      expanded = expanded,
-      onDismissRequest = {
-        expanded = false
-      }
+    MaterialTheme(
+      MaterialTheme.colorScheme.copy(surface = Color.White),
     ) {
-      options.forEach { selectionOption ->
-        DropdownMenuItem(
-
-          onClick = {
-            selectedOptionText = selectionOption
-            expanded = false
-          },
-          text = { selectedOptionText }
-        )
-//                {
-//                    Text(text = selectionOption)
-//                }
+      DropdownMenu(
+        expanded = expanded,
+        onDismissRequest = { expanded = false },
+        modifier = Modifier
+          .fillMaxWidth(fraction = 0.6f)
+      ) {
+        suggestions.forEach { label ->
+          DropdownMenuItem(
+            {
+              Text(
+                text = label,
+                color = MaterialTheme.colorScheme.onSurface
+              )
+            },
+            modifier = Modifier
+              .background(MaterialTheme.colorScheme.surface),
+            onClick = {
+              selectedText = label
+              expanded = false
+            }
+          )
+        }
       }
     }
   }
@@ -141,6 +184,6 @@ fun DropdownMenu() {
 @Composable
 private fun Preview() {
   SweepTheme {
-    ProfileSetupScreen()
+//    ProfileSetupScreen()
   }
 }

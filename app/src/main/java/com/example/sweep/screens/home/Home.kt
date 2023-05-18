@@ -34,7 +34,7 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
 @OptIn(ExperimentalFoundationApi::class)
-@Destination(start = true)
+@Destination
 @Composable
 fun Home(navigator: DestinationsNavigator) {
   val rememberHomeMainFeaturePromotionContext: HomeMainFeaturePromotionContext by remember {
