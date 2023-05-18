@@ -46,6 +46,8 @@ import com.example.sweep.context.components.ServiceCategoryContext
 import com.example.sweep.context.screens.home.HomeMainFeaturePromotionContext
 import com.example.sweep.context.screens.home.HomeMainFeatureRewardContext
 import com.example.sweep.context.screens.home.HomeSubFeatureContext
+import com.example.sweep.destinations.HomeMainFeaturePromotionDestination
+import com.example.sweep.destinations.HomeMainFeatureRewardDestination
 import com.example.sweep.destinations.HomeSubFeatureDestination
 import com.example.sweep.destinations.ServiceProviderDestination
 import com.example.sweep.functions.svgS3UrlToPainter
@@ -135,7 +137,23 @@ fun HomeLoaded(
                         MutableInteractionSource()
                       }
                     ) {
-                      /* TODO */
+                      if (page < homeMainFeaturePromotionContext.homeMainFeaturePromotions.size) {
+                        navigator.navigate(
+                          direction = HomeMainFeaturePromotionDestination(
+                            homeMainFeaturePromotionId =
+                            homeMainFeaturePromotionContext.homeMainFeaturePromotions[page].id
+                          )
+                        )
+                      } else {
+                        navigator.navigate(
+                          direction = HomeMainFeatureRewardDestination(
+                            homeMainFeatureReward =
+                            homeMainFeatureRewardContext
+                              .homeMainFeatureRewards
+                            [page - homeMainFeaturePromotionContext.homeMainFeaturePromotions.size]
+                          )
+                        )
+                      }
                     },
                   painter = svgS3UrlToPainter(
                     url =
