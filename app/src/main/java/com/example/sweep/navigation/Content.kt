@@ -8,7 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.example.sweep.screens.SearchScreen
 import com.example.sweep.screens.SweepScreen
 import com.example.sweep.screens.history.HistoryScreen
 import com.google.accompanist.systemuicontroller.SystemUiController
@@ -30,7 +29,10 @@ fun Content(
 //      Home()
     }
     composable(route = "search") {
-      SearchScreen(systemUiController = systemUiController)
+//      SearchScreen(
+//        navigator = ,
+//        systemUiController = systemUiController
+//      )
     }
     composable(route = "sweep") {
       SweepScreen(paddingValues = paddingValues)
